@@ -3,13 +3,13 @@ import "./styles/Option.css";
 
 interface Props {
   name: Algorithm;
-  handleOnSetSelected: (name: Algorithm) => void;
+  setSelected: (name: Algorithm) => void;
   selected: Algorithm
 }
 
-export const Option: React.FC<Props> = ({ name, handleOnSetSelected, selected }) => {
+export const Option: React.FC<Props> = ({ name, setSelected, selected }) => {
   const handleOnClick = () => {
-    handleOnSetSelected(name);
+    setSelected(name);
   };
 
   const className =  name === selected ? "option-selected" : "option"
