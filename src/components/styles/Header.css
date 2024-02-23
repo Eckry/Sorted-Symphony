@@ -1,0 +1,15 @@
+.header {
+  text-align: center;
+}
+
+.header-title {
+  font-size: 4rem;
+  color: var(--highlight-color);
+  margin-top: 50px;
+}
+
+.header-phrase {
+  color: var(--tertiary-brighty-color);
+  font-style: italic;
+  margin-top: 1rem;
+}
