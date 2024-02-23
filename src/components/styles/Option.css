@@ -1,0 +1,7 @@
+.option {
+  list-style: none;
+  color: var(--highlight-color);
+  background-color: var(--secondary-color);
+  border-radius: 15px;
+  padding: 1rem;
+}

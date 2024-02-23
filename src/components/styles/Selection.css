@@ -1,0 +1,12 @@
+.selection-container {
+  margin-top: 30px;
+  background-color: var(--tertiary-color);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
