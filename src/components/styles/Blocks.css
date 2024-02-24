@@ -1,0 +1,16 @@
+.blocks-container {
+  height: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  gap: 5px;
+  background-color: var(--secondary-color);
+  padding: 1rem;
+  margin-top: 50px;
+}
+
+.block {
+  background-color: var(--highlight-color);
+  width: 15px;
+}
