@@ -1,4 +1,5 @@
 import "./App.css";
+import { Blocks } from "./components/Blocks";
 import { Header } from "./components/Header";
 import { Selection } from "./components/Selection";
 
@@ -7,6 +8,7 @@ function App() {
     <main className="main-container">
       <Header />
       <Selection />
+      <Blocks />
     </main>
   );
 }
