@@ -4,11 +4,24 @@ import { useSelected } from "./useSelected";
 import { Block } from "../types";
 
 const initialBlocks = [
+  { val: 22, color: "white" },
+  { val: 21, color: "white" },
+  { val: 20, color: "white" },
+  { val: 19, color: "white" },
+  { val: 18, color: "white" },
+  { val: 17, color: "white" },
+  { val: 16, color: "white" },
+  { val: 15, color: "white" },
+  { val: 14, color: "white" },
+  { val: 13, color: "white" },
+  { val: 12, color: "white" },
+  { val: 11, color: "white" },
   { val: 10, color: "white" },
   { val: 9, color: "white" },
   { val: 8, color: "white" },
   { val: 7, color: "white" },
   { val: 6, color: "white" },
+  { val: 23, color: "white" },
   { val: 5, color: "white" },
   { val: 4, color: "white" },
   { val: 3, color: "white" },
@@ -37,18 +50,17 @@ export const useSort = () => {
     async function resetColor(prevBlocks: Block[]) {
       for (let i = 0; i < prevBlocks.length; i++) {
         const newBlocks = prevBlocks.map((block, idx) => {
-          if (idx === i) return { ...block, color: "blue" };
+          if (idx === i) return { ...block, color: "goldenrod" };
           return { ...block, color: "white" };
         });
         prevBlocks = [...newBlocks];
         setBlocks(newBlocks);
         await sleep(50);
       }
-      prevBlocks[prevBlocks.length - 1] = {
-        ...prevBlocks[prevBlocks.length - 1],
-        color: "white",
-      };
-      setBlocks(prevBlocks);
+      const newBlocks = prevBlocks.map((block) => {
+        return { ...block, color: "white" };
+      });
+      setBlocks(newBlocks);
     }
 
     async function bubbleSort() {
