@@ -1,9 +1,11 @@
-import { useSort } from "../hooks/useSort";
+import { Block } from "../types";
 import "./styles/Blocks.css";
 
-export const Blocks = () => {
-  const { blocks } = useSort();
+interface Props {
+  blocks: Block[];
+}
 
+export const Blocks: React.FC<Props> = ({ blocks }) => {
   return (
     <div className="blocks-container">
       {blocks.map(({ val, color }) => {
