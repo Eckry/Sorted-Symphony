@@ -5,6 +5,20 @@ import { useSelected } from "./useSelected";
 import { resetColor, swap } from "../helpers";
 
 const initialBlocks = [
+  { val: 37, color: "white" },
+  { val: 36, color: "white" },
+  { val: 35, color: "white" },
+  { val: 34, color: "white" },
+  { val: 33, color: "white" },
+  { val: 32, color: "white" },
+  { val: 31, color: "white" },
+  { val: 30, color: "white" },
+  { val: 29, color: "white" },
+  { val: 28, color: "white" },
+  { val: 27, color: "white" },
+  { val: 26, color: "white" },
+  { val: 25, color: "white" },
+  { val: 24, color: "white" },
   { val: 22, color: "white" },
   { val: 21, color: "white" },
   { val: 20, color: "white" },
@@ -49,7 +63,7 @@ export const useSort = () => {
       }
       await resetColor(prevBlocks, setBlocks);
     }
-    
+
     switch (selected) {
       case algorithms.BUBBLESORT:
         bubbleSort();
