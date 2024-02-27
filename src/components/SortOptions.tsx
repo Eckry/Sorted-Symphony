@@ -1,3 +1,4 @@
+import "./styles/SortOptions.css"
 import { Block } from "../types";
 import { lowShuffle, shuffle } from "../helpers";
 import { sortOptions } from "../consts";
@@ -25,10 +26,10 @@ export const SortOptions: React.FC<Props> = ({ setBlocks, blocks }) => {
   };
 
   return (
-    <div>
-      <button onClick={handleRandom}>{sortOptions.RANDOM}</button>
-      <button onClick={handleReversed}>{sortOptions.REVERSED}</button>
-      <button onClick={handleNearlySorted}>{sortOptions.NEARLY_SORTED}</button>
-    </div>
+    <footer className="sortoptions-container">
+      <button className="sortoption" onClick={handleRandom}>{sortOptions.RANDOM}</button>
+      <button className="sortoption" onClick={handleReversed}>{sortOptions.REVERSED}</button>
+      <button className="sortoption" onClick={handleNearlySorted}>{sortOptions.NEARLY_SORTED}</button>
+    </footer>
   );
 };
