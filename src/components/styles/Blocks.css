@@ -1,5 +1,5 @@
 .blocks-container {
-  height: auto;
+  height: 500px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -12,5 +12,5 @@
 
 .block {
   background-color: var(--highlight-color);
-  width: 15px;
+  width: 100%;
 }

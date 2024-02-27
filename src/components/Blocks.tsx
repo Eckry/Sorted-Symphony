@@ -13,7 +13,7 @@ export const Blocks: React.FC<Props> = ({ blocks }) => {
           <div
             key={crypto.randomUUID()}
             className="block"
-            style={{ height: `${val * 10}px`, backgroundColor: color }}
+            style={{ height: `${val * 100 / blocks.length}%`, backgroundColor: color }}
           ></div>
         );
       })}
