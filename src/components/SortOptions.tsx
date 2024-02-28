@@ -6,9 +6,10 @@ import { sortOptions } from "../consts";
 interface Props {
   setBlocks: (blocks: Block[]) => void;
   blocks: Block[];
+  isSorting: boolean
 }
 
-export const SortOptions: React.FC<Props> = ({ setBlocks, blocks }) => {
+export const SortOptions: React.FC<Props> = ({ setBlocks, blocks, isSorting }) => {
   const handleRandom = () => {
     const newBlocks = shuffle([...blocks]);
     setBlocks(newBlocks);
@@ -27,9 +28,9 @@ export const SortOptions: React.FC<Props> = ({ setBlocks, blocks }) => {
 
   return (
     <footer className="sortoptions-container">
-      <button className="sortoption" onClick={handleRandom}>{sortOptions.RANDOM}</button>
-      <button className="sortoption" onClick={handleReversed}>{sortOptions.REVERSED}</button>
-      <button className="sortoption" onClick={handleNearlySorted}>{sortOptions.NEARLY_SORTED}</button>
+      <button disabled={isSorting} className="sortoption" onClick={handleRandom}>{sortOptions.RANDOM}</button>
+      <button disabled={isSorting} className="sortoption" onClick={handleReversed}>{sortOptions.REVERSED}</button>
+      <button disabled={isSorting} className="sortoption" onClick={handleNearlySorted}>{sortOptions.NEARLY_SORTED}</button>
     </footer>
   );
 };

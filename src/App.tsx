@@ -7,13 +7,17 @@ import { SortOptions } from "./components/SortOptions";
 import { useSort } from "./hooks/useSort";
 
 function App() {
-  const { blocks, setBlocks, changeIsSorting } = useSort();
+  const { blocks, setBlocks, changeIsSorting, isSorting } = useSort();
   return (
     <main className="main-container">
       <Header />
       <Selection />
       <Blocks blocks={blocks} />
-      <SortOptions blocks={blocks} setBlocks={setBlocks} />
+      <SortOptions
+        isSorting={isSorting}
+        blocks={blocks}
+        setBlocks={setBlocks}
+      />
       <Configuration changeIsSorting={changeIsSorting} />
     </main>
   );
