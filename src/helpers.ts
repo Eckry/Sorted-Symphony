@@ -24,19 +24,20 @@ export const lowShuffle = (array: Block[]) => {
 export const sleep = (delay: number) =>
   new Promise((resolve) => setTimeout(resolve, delay));
 
-export const swap = async (i: number, j: number, prevBlocks: Block[]) => {
+export const swap = async (i: number, j: number, prevBlocks: Block[], delay: number) => {
   const newBlocks = prevBlocks.map((block, idx) => {
     if (idx === i) return { val: prevBlocks[j].val, color: "white" };
     if (idx === j) return { val: prevBlocks[i].val, color: "red" };
     return { ...block, color: "white" };
   });
-  await sleep(10);
+  await sleep(delay);
   return newBlocks;
 };
 
 export const resetColor = async (
   prevBlocks: Block[],
-  setBlocks: (blocks: Block[]) => void
+  setBlocks: (blocks: Block[]) => void,
+  delay: number
 ) => {
   for (let i = 0; i < prevBlocks.length; i++) {
     const newBlocks = prevBlocks.map((block, idx) => {
@@ -45,7 +46,7 @@ export const resetColor = async (
     });
     prevBlocks = [...newBlocks];
     setBlocks(newBlocks);
-    await sleep(10);
+    await sleep(delay);
   }
   const newBlocks = prevBlocks.map((block) => {
     return { ...block, color: "white" };
