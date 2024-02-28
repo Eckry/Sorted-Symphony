@@ -6,3 +6,10 @@ export type Block = {
   val: number
   color: string
 }
+
+export interface Configuration {
+  velocity: number
+  elements: number
+}
+
+export type ConfigurationVelocity = Pick<Configuration, "velocity">;
