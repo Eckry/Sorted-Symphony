@@ -1,0 +1,30 @@
+.configuration-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.play-sort {
+  padding: 0.5rem 1rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: var(--highlight-color);
+  font-weight: bold;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  aspect-ratio: 1;
+}
+
+.play-sort:hover {
+  background-color: var(--tertiary-color);
+}
+
+.configuration-range {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  color: white;
+}
