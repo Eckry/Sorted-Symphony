@@ -81,6 +81,7 @@ export const useSort = () => {
       }
       await resetColor(prevBlocks, setBlocks, 10);
       isSortingRef.current = false;
+      setIsSorting(false);
     }
 
     async function selectionSort() {
@@ -101,6 +102,7 @@ export const useSort = () => {
         }
       }
       await resetColor(prevBlocks, setBlocks, 10);
+      setIsSorting(false);
       isSortingRef.current = false;
     }
 
@@ -114,5 +116,5 @@ export const useSort = () => {
     }
   }, [isSorting]);
 
-  return { blocks, setBlocks, changeIsSorting };
+  return { blocks, setBlocks, changeIsSorting, isSorting };
 };
