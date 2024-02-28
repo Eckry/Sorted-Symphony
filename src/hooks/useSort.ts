@@ -3,41 +3,14 @@ import { useEffect, useState, useRef } from "react";
 import { algorithms } from "../consts";
 import { useSelected } from "./useSelected";
 import { resetColor, swap } from "../helpers";
-import { Block, ConfigurationVelocity } from "../types";
+import { Block, ConfigurationElements, ConfigurationVelocity } from "../types";
 
 const initialBlocks = [
-  { val: 37, color: "white" },
-  { val: 36, color: "white" },
-  { val: 35, color: "white" },
-  { val: 34, color: "white" },
-  { val: 33, color: "white" },
-  { val: 32, color: "white" },
-  { val: 31, color: "white" },
-  { val: 30, color: "white" },
-  { val: 29, color: "white" },
-  { val: 28, color: "white" },
-  { val: 27, color: "white" },
-  { val: 26, color: "white" },
-  { val: 25, color: "white" },
-  { val: 24, color: "white" },
-  { val: 22, color: "white" },
-  { val: 21, color: "white" },
-  { val: 20, color: "white" },
-  { val: 19, color: "white" },
-  { val: 18, color: "white" },
-  { val: 17, color: "white" },
-  { val: 16, color: "white" },
-  { val: 15, color: "white" },
-  { val: 14, color: "white" },
-  { val: 13, color: "white" },
-  { val: 12, color: "white" },
-  { val: 11, color: "white" },
   { val: 10, color: "white" },
   { val: 9, color: "white" },
   { val: 8, color: "white" },
   { val: 7, color: "white" },
   { val: 6, color: "white" },
-  { val: 23, color: "white" },
   { val: 5, color: "white" },
   { val: 4, color: "white" },
   { val: 3, color: "white" },
@@ -60,6 +33,26 @@ export const useSort = () => {
   const changeIsSorting = () => {
     isSortingRef.current = !isSortingRef.current;
     setIsSorting((prevIsSorting) => !prevIsSorting);
+  };
+
+  const changeElements = ({ elements }: ConfigurationElements) => {
+    const length = blocks.length;
+    if (length === elements) return;
+    if (length < elements) {
+      const newElements: Block[] = [];
+      for (let i = length; i < elements; i++) {
+        newElements.push({ val: i + 1, color: "white" });
+      }
+      const newBlocks = [...blocks, ...newElements].sort(
+        (a, b) => a.val - b.val
+      );
+      setBlocks(newBlocks);
+      return;
+    } else {
+      const prevBlocks = [...blocks].sort((a, b) => a.val - b.val);
+      const newBlocks = prevBlocks.slice(0, elements - 1);
+      setBlocks(newBlocks);
+    }
   };
 
   const changeVelocity = ({ velocity }: ConfigurationVelocity) => {
@@ -133,5 +126,12 @@ export const useSort = () => {
     }
   }, [isSorting]);
 
-  return { blocks, setBlocks, changeIsSorting, isSorting, changeVelocity };
+  return {
+    blocks,
+    setBlocks,
+    changeIsSorting,
+    isSorting,
+    changeVelocity,
+    changeElements,
+  };
 };
