@@ -12,4 +12,5 @@ export interface Configuration {
   elements: number
 }
 
+export type ConfigurationElements = Pick<Configuration, "elements">;
 export type ConfigurationVelocity = Pick<Configuration, "velocity">;
