@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { algorithms } from "../consts";
 import { useSelected } from "./useSelected";
 import { resetColor, swap } from "../helpers";
+import { Block } from "../types";
 
 const initialBlocks = [
   { val: 37, color: "white" },
@@ -47,29 +48,71 @@ const initialBlocks = [
 export const useSort = () => {
   const { selected } = useSelected();
   const [blocks, setBlocks] = useState(initialBlocks);
+  const isSortingRef = useRef(false);
+  const [isSorting, setIsSorting] = useState(false);
+
+  const changeIsSorting = () => {
+    isSortingRef.current = !isSortingRef.current;
+    setIsSorting((prevIsSorting) => !prevIsSorting);
+  };
 
   useEffect(() => {
+    function stop(prevBlocks: Block[]) {
+      const newBlocks = prevBlocks.map((block) => {
+        return { ...block, color: "white" };
+      });
+      setBlocks(newBlocks);
+      return;
+    }
+
+    if (!isSortingRef.current) return;
     async function bubbleSort() {
       let prevBlocks = structuredClone(blocks);
       for (let i = 0; i < blocks.length; i++) {
         for (let j = 0; j + 1 < blocks.length - i; j++) {
           const { val: a } = prevBlocks[j];
           const { val: b } = prevBlocks[j + 1];
+          if (!isSortingRef.current) return stop(prevBlocks);
           if (a > b) {
-            prevBlocks = await swap(j, j + 1, prevBlocks);
+            prevBlocks = await swap(j, j + 1, prevBlocks, 10);
             setBlocks(prevBlocks);
           }
         }
       }
-      await resetColor(prevBlocks, setBlocks);
+      await resetColor(prevBlocks, setBlocks, 10);
+      isSortingRef.current = false;
+    }
+
+    async function selectionSort() {
+      let prevBlocks = structuredClone(blocks);
+      for (let i = 0; i < blocks.length; i++) {
+        let min = i;
+        for (let j = i + 1; j < blocks.length; j++) {
+          const { val: a } = prevBlocks[min];
+          const { val: b } = prevBlocks[j];
+          if (!isSortingRef.current) return stop(prevBlocks);
+          if (a > b) {
+            min = j;
+          }
+        }
+        if (i !== min) {
+          prevBlocks = await swap(i, min, prevBlocks, 50);
+          setBlocks(prevBlocks);
+        }
+      }
+      await resetColor(prevBlocks, setBlocks, 10);
+      isSortingRef.current = false;
     }
 
     switch (selected) {
       case algorithms.BUBBLESORT:
         bubbleSort();
         break;
+      case algorithms.SELECTIONSORT:
+        selectionSort();
+        break;
     }
-  }, [selected]);
+  }, [isSorting]);
 
-  return { blocks, setBlocks };
+  return { blocks, setBlocks, changeIsSorting };
 };
