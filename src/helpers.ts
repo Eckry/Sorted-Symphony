@@ -11,7 +11,7 @@ export const shuffle = (array: Block[]) => {
 export const lowShuffle = (array: Block[]) => {
   array.sort((a, b) => a.val - b.val);
 
-  const increment = Math.floor(array.length / 3);
+  const increment = Math.floor(array.length / (array.length / 3));
 
   for (let i = 0; i < array.length; i += increment) {
     const j = Math.floor(Math.random() * array.length);
