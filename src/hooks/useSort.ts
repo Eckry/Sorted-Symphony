@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { algorithms } from "../consts";
 import { useSelected } from "./useSelected";
 import { resetColor, swap } from "../helpers";
-import { Block } from "../types";
+import { Block, ConfigurationVelocity } from "../types";
 
 const initialBlocks = [
   { val: 37, color: "white" },
@@ -45,15 +45,27 @@ const initialBlocks = [
   { val: 1, color: "white" },
 ];
 
+const initialConfiguration = {
+  velocity: 50,
+  elements: 100,
+};
+
 export const useSort = () => {
   const { selected } = useSelected();
   const [blocks, setBlocks] = useState(initialBlocks);
   const isSortingRef = useRef(false);
   const [isSorting, setIsSorting] = useState(false);
+  const [configuration, setConfiguration] = useState(initialConfiguration);
 
   const changeIsSorting = () => {
     isSortingRef.current = !isSortingRef.current;
     setIsSorting((prevIsSorting) => !prevIsSorting);
+  };
+
+  const changeVelocity = ({ velocity }: ConfigurationVelocity) => {
+    setConfiguration((prevConfig) => {
+      return { ...prevConfig, velocity: 100 - velocity };
+    });
   };
 
   useEffect(() => {
@@ -74,12 +86,17 @@ export const useSort = () => {
           const { val: b } = prevBlocks[j + 1];
           if (!isSortingRef.current) return stop(prevBlocks);
           if (a > b) {
-            prevBlocks = await swap(j, j + 1, prevBlocks, 10);
+            prevBlocks = await swap(
+              j,
+              j + 1,
+              prevBlocks,
+              configuration.velocity
+            );
             setBlocks(prevBlocks);
           }
         }
       }
-      await resetColor(prevBlocks, setBlocks, 10);
+      await resetColor(prevBlocks, setBlocks, configuration.velocity);
       isSortingRef.current = false;
       setIsSorting(false);
     }
@@ -97,11 +114,11 @@ export const useSort = () => {
           }
         }
         if (i !== min) {
-          prevBlocks = await swap(i, min, prevBlocks, 50);
+          prevBlocks = await swap(i, min, prevBlocks, configuration.velocity);
           setBlocks(prevBlocks);
         }
       }
-      await resetColor(prevBlocks, setBlocks, 10);
+      await resetColor(prevBlocks, setBlocks, configuration.velocity);
       setIsSorting(false);
       isSortingRef.current = false;
     }
@@ -116,5 +133,5 @@ export const useSort = () => {
     }
   }, [isSorting]);
 
-  return { blocks, setBlocks, changeIsSorting, isSorting };
+  return { blocks, setBlocks, changeIsSorting, isSorting, changeVelocity };
 };
