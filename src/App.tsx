@@ -30,6 +30,7 @@ function App() {
         changeIsSorting={changeIsSorting}
         changeElements={changeElements}
         blocks={blocks}
+        isSorting={isSorting}
       />
     </main>
   );

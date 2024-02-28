@@ -5,14 +5,16 @@ interface Props {
   changeIsSorting: () => void;
   changeVelocity: ({ velocity }: ConfigurationVelocity) => void;
   changeElements: ({ elements }: ConfigurationElements) => void;
-  blocks: Block[]
+  blocks: Block[];
+  isSorting: boolean;
 }
 
 export const Configuration: React.FC<Props> = ({
   changeIsSorting,
   changeVelocity,
   changeElements,
-  blocks
+  blocks,
+  isSorting,
 }) => {
   const handleSort = () => {
     changeIsSorting();
@@ -32,6 +34,7 @@ export const Configuration: React.FC<Props> = ({
     <section className="configuration-container">
       <div className="configuration-range">
         <input
+          disabled={isSorting}
           onChange={handleChangeElements}
           id="configuration-quantity"
           type="range"
@@ -46,6 +49,7 @@ export const Configuration: React.FC<Props> = ({
       </button>
       <div className="configuration-range">
         <input
+          disabled={isSorting}
           onChange={handleChangeVelocity}
           id="configuration-velocity"
           type="range"
