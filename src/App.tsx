@@ -7,8 +7,14 @@ import { SortOptions } from "./components/SortOptions";
 import { useSort } from "./hooks/useSort";
 
 function App() {
-  const { blocks, setBlocks, changeIsSorting, isSorting, changeVelocity } =
-    useSort();
+  const {
+    blocks,
+    setBlocks,
+    changeIsSorting,
+    isSorting,
+    changeVelocity,
+    changeElements,
+  } = useSort();
   return (
     <main className="main-container">
       <Header />
@@ -22,6 +28,8 @@ function App() {
       <Configuration
         changeVelocity={changeVelocity}
         changeIsSorting={changeIsSorting}
+        changeElements={changeElements}
+        blocks={blocks}
       />
     </main>
   );
