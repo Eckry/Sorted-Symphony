@@ -1,0 +1,12 @@
+.description-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1rem;
+}
+
+.extra-information {
+  border: 1px solid brown;
+  padding: 1rem;
+  background-color: var(--secondary-color);
+}
+
