@@ -1,5 +1,6 @@
 import "./App.css";
 import { Blocks } from "./components/Blocks";
+import { Code } from "./components/Code";
 import { Configuration } from "./components/Configuration";
 import { Header } from "./components/Header";
 import { Selection } from "./components/Selection";
@@ -32,6 +33,7 @@ function App() {
         blocks={blocks}
         isSorting={isSorting}
       />
+      <Code />
     </main>
   );
 }
