@@ -2,6 +2,7 @@ import "./App.css";
 import { Blocks } from "./components/Blocks";
 import { Code } from "./components/Code";
 import { Configuration } from "./components/Configuration";
+import { Description } from "./components/Description";
 import { Header } from "./components/Header";
 import { Selection } from "./components/Selection";
 import { SortOptions } from "./components/SortOptions";
@@ -34,6 +35,7 @@ function App() {
         isSorting={isSorting}
       />
       <Code />
+      <Description />
     </main>
   );
 }
