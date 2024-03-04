@@ -1,3 +1,10 @@
+.code-header {
+  display: flex;
+  background-color: var(--secondary-color);
+  justify-content: space-between;
+  align-items: center;
+}
+
 .code-container {
   padding: 1rem;
   font-size: 1.5rem;
@@ -8,10 +15,18 @@
   list-style: none;
   gap: 1rem;
   padding: 1rem;
-  background-color: var(--secondary-color);
 }
 
-.code, .code-selected {
+.copy-clipboard {
+  padding: 1rem;
+  background-color: var(--secondary-color);
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.code,
+.code-selected {
   cursor: pointer;
   border: 2px solid white;
   border-radius: 10px;
