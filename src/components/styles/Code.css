@@ -1,0 +1,24 @@
+.code-container {
+  padding: 1rem;
+  font-size: 2rem;
+}
+
+.codes-container {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--secondary-color);
+}
+
+.code, .code-selected {
+  cursor: pointer;
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.code-selected {
+  border-color: var(--highlight-color);
+  color: var(--highlight-color);
+}
