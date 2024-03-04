@@ -11,26 +11,43 @@ export const Code = () => {
     languages.JavaScript
   );
   const { code } = useSelected();
+  const [copied, setCopied] = useState(false);
+
+  let timeoutId: number;
 
   const changeLanguage = (language: Language) => {
     setLanguageSelected(language);
   };
 
+  const handleCopyToClipboard = () => {
+    clearTimeout(timeoutId);
+    setCopied(true);
+    navigator.clipboard.writeText(code[languageSelected]);
+    timeoutId = setTimeout(() => {
+      setCopied(false);
+    }, 1000);
+  };
+
   return (
     <section className="code-container">
-      <ul className="codes-container">
-        {Object.entries(languages).map(([key, val], idx) => {
-          return (
-            <li
-              className={val === languageSelected ? "code-selected" : "code"}
-              key={idx}
-              onClick={() => changeLanguage(val)}
-            >
-              {key}
-            </li>
-          );
-        })}
-      </ul>
+      <header className="code-header">
+        <ul className="codes-container">
+          {Object.entries(languages).map(([key, val], idx) => {
+            return (
+              <li
+                className={val === languageSelected ? "code-selected" : "code"}
+                key={idx}
+                onClick={() => changeLanguage(val)}
+              >
+                {key}
+              </li>
+            );
+          })}
+        </ul>
+        <button className="copy-clipboard" onClick={handleCopyToClipboard}>
+          {copied ? "Copied!" : "Copy"}
+        </button>
+      </header>
       <SyntaxHighlighter
         showLineNumbers
         language={languageSelected.toLowerCase()}
