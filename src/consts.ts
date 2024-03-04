@@ -12,3 +12,10 @@ export const sortOptions = {
   REVERSED: "Reversed",
   NEARLY_SORTED: "Nearly sorted",
 };
+
+export const languages = {
+  "C++": "cpp",
+  JavaScript: "javascript",
+  Python: "python",
+  Java: "java",
+} as const
