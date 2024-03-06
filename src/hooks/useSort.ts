@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef } from "react";
 import { algorithms } from "../consts";
 import { useSelected } from "./useSelected";
-import { resetColor, swap } from "../helpers";
+import { isSorted, resetColor, swap, swapAndPaintBoth } from "../helpers";
 import { Block, ConfigurationElements, ConfigurationVelocity } from "../types";
 
 const initialBlocks = [
@@ -116,12 +116,51 @@ export const useSort = () => {
       isSortingRef.current = false;
     }
 
+    async function quickSort() {
+      let prevBlocks = structuredClone(blocks);
+      async function executeQuickSort(first: number, last: number) {
+        const center = Math.floor((first + last) / 2);
+        const pivot = prevBlocks[center];
+        let i = first;
+        let j = last;
+        
+        do {
+          while (prevBlocks[i].val < pivot.val) i++;
+          while (prevBlocks[j].val > pivot.val) j--;
+          if (!isSortingRef.current) return;
+          if (i <= j) {
+            prevBlocks = await swapAndPaintBoth(
+              i,
+              j,
+              prevBlocks,
+              configuration.velocity
+            );
+            setBlocks(prevBlocks);
+            i++;
+            j--;
+          }
+        } while (i <= j);
+
+        if (first < j) await executeQuickSort(first, j);
+        if (i < last) await executeQuickSort(i, last);
+      }
+
+      if(!isSorted(prevBlocks)) await executeQuickSort(0, prevBlocks.length - 1);
+      if (!isSortingRef.current) return stop(prevBlocks);
+      await resetColor(prevBlocks, setBlocks, configuration.velocity);
+      setIsSorting(false);
+      isSortingRef.current = false;
+    }
+
     switch (selected) {
       case algorithms.BUBBLESORT:
         bubbleSort();
         break;
       case algorithms.SELECTIONSORT:
         selectionSort();
+        break;
+      case algorithms.QUICKSORT:
+        quickSort();
         break;
     }
   }, [isSorting]);
