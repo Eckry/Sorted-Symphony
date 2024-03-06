@@ -41,6 +41,23 @@ export const swap = async (
   return blocks;
 };
 
+export const swapAndPaintBoth = async (
+  i: number,
+  j: number,
+  prevBlocks: Block[],
+  delay: number
+) => {
+  const blocks = prevBlocks.map((block) => {
+    return { ...block, color: "white" };
+  });
+
+  const temp = { ...blocks[i], color: "red" };
+  blocks[i] = { ...blocks[j], color: "red" };
+  blocks[j] = temp;
+  await sleep(delay);
+  return blocks;
+};
+
 export const resetColor = async (
   prevBlocks: Block[],
   setBlocks: (blocks: Block[]) => void,
@@ -59,4 +76,13 @@ export const resetColor = async (
     return { ...block, color: "white" };
   });
   setBlocks(newBlocks);
+};
+
+export const isSorted = (prevBlocks: Block[]) => {
+  for (let i = 0; i + 1 < prevBlocks.length; i++) {
+    if (prevBlocks[i].val > prevBlocks[i + 1].val) {
+      return false;
+    }
+  }
+  return true;
 };
