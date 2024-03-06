@@ -17,7 +17,7 @@ export const SelectedContext = createContext<Props>({
 });
 
 export const SelectedProvider: React.FC<children> = ({ children }) => {
-  const [selected, setSelected] = useState<Algorithm>(algorithms.BUBBLESORT);
+  const [selected, setSelected] = useState<Algorithm>(algorithms.QUICKSORT);
 
   return (
     <SelectedContext.Provider value={{ selected, setSelected }}>
