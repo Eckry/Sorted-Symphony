@@ -24,6 +24,24 @@ export const lowShuffle = (array: Block[]) => {
 export const sleep = (delay: number) =>
   new Promise((resolve) => setTimeout(resolve, delay));
 
+export const insert = async (
+  prevBlocks: Block[],
+  arr: number[],
+  i: number,
+  j: number,
+  delay: number
+) => {
+  const newBlocks = prevBlocks.map((block) => {
+    return { ...block, color: "white" };
+  });
+
+  newBlocks[i].val = arr[j];
+  newBlocks[i].color = "red";
+
+  await sleep(delay);
+  return newBlocks;
+};
+
 export const swap = async (
   i: number,
   j: number,
