@@ -182,9 +182,8 @@ export const useSort = () => {
           if (!isSortingRef.current) return;
           prevBlocks = await insert(
             prevBlocks,
-            L,
+            L[i],
             k,
-            i,
             configuration.velocity
           );
           if (L[i] <= M[j]) {
@@ -193,9 +192,8 @@ export const useSort = () => {
           } else {
             prevBlocks = await insert(
               prevBlocks,
-              M,
+              M[j],
               k,
-              j,
               configuration.velocity
             );
             setBlocks(prevBlocks);
@@ -208,9 +206,8 @@ export const useSort = () => {
           if (!isSortingRef.current) return;
           prevBlocks = await insert(
             prevBlocks,
-            L,
+            L[i],
             k,
-            i,
             configuration.velocity
           );
           setBlocks(prevBlocks);
@@ -222,9 +219,8 @@ export const useSort = () => {
           if (!isSortingRef.current) return;
           prevBlocks = await insert(
             prevBlocks,
-            M,
+            M[j],
             k,
-            j,
             configuration.velocity
           );
           setBlocks(prevBlocks);
@@ -247,7 +243,7 @@ export const useSort = () => {
 
       if (!isSorted(prevBlocks))
         await executeMergeSort(0, prevBlocks.length - 1);
-      
+
       if (!isSortingRef.current) {
         resetMerge(prevMerge);
         return stop(prevMerge);
@@ -256,6 +252,45 @@ export const useSort = () => {
       await resetColor(prevBlocks, setBlocks, configuration.velocity);
       setIsSorting(false);
       isSortingRef.current = false;
+    }
+
+    async function insertionSort() {
+      let prevBlocks = structuredClone(blocks);
+      let prevStatus = structuredClone(blocks);
+      for (let i = 1; i < prevBlocks.length; i++) {
+        prevStatus = structuredClone(prevBlocks);
+        const key = prevBlocks[i].val;
+        let j = i - 1;
+        while (j >= 0 && key < prevBlocks[j].val) {
+          if (!isSortingRef.current) break;
+          prevBlocks = await insert(
+            prevBlocks,
+            prevBlocks[j].val,
+            j + 1,
+            configuration.velocity
+          );
+          setBlocks(prevBlocks);
+          j--;
+        }
+
+        if (!isSortingRef.current) break;
+        prevBlocks = await insert(
+          prevBlocks,
+          key,
+          j + 1,
+          configuration.velocity
+        );
+        setBlocks(prevBlocks);
+      }
+
+      if (!isSortingRef.current) {
+        resetMerge(prevStatus);
+        return stop(prevStatus);
+      }
+      
+      await resetColor(prevBlocks, setBlocks, configuration.velocity);
+      isSortingRef.current = false;
+      setIsSorting(false);
     }
 
     switch (selected) {
@@ -270,6 +305,9 @@ export const useSort = () => {
         break;
       case algorithms.MERGESORT:
         mergeSort();
+        break;
+      case algorithms.INSERTIONSORT:
+        insertionSort();
         break;
     }
   }, [isSorting]);
