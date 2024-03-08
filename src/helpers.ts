@@ -26,16 +26,15 @@ export const sleep = (delay: number) =>
 
 export const insert = async (
   prevBlocks: Block[],
-  arr: number[],
+  numberToInsert: number,
   i: number,
-  j: number,
   delay: number
 ) => {
   const newBlocks = prevBlocks.map((block) => {
     return { ...block, color: "white" };
   });
 
-  newBlocks[i].val = arr[j];
+  newBlocks[i].val = numberToInsert;
   newBlocks[i].color = "red";
 
   await sleep(delay);
