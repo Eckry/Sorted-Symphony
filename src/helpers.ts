@@ -103,3 +103,14 @@ export const isSorted = (prevBlocks: Block[]) => {
   }
   return true;
 };
+
+export const stop = (
+  prevBlocks: Block[],
+  setBlocks: (newBlocks: Block[]) => void
+) => {
+  const newBlocks = prevBlocks.map((block) => {
+    return { ...block, color: "white" };
+  });
+  setBlocks(newBlocks);
+  return;
+};
