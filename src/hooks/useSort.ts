@@ -68,6 +68,7 @@ export const useSort = () => {
   };
 
   useEffect(() => {
+    if (!isSortingRef.current) return;
     function stop(prevBlocks: Block[]) {
       const newBlocks = prevBlocks.map((block) => {
         return { ...block, color: "white" };
@@ -121,8 +122,8 @@ export const useSort = () => {
         }
       }
       await resetColor(prevBlocks, setBlocks, configuration.velocity);
-      setIsSorting(false);
       isSortingRef.current = false;
+      setIsSorting(false);
     }
 
     async function quickSort() {
@@ -158,8 +159,8 @@ export const useSort = () => {
         await executeQuickSort(0, prevBlocks.length - 1);
       if (!isSortingRef.current) return stop(prevBlocks);
       await resetColor(prevBlocks, setBlocks, configuration.velocity);
-      setIsSorting(false);
       isSortingRef.current = false;
+      setIsSorting(false);
     }
 
     async function mergeSort() {
@@ -250,8 +251,8 @@ export const useSort = () => {
       }
 
       await resetColor(prevBlocks, setBlocks, configuration.velocity);
-      setIsSorting(false);
       isSortingRef.current = false;
+      setIsSorting(false);
     }
 
     async function insertionSort() {
@@ -287,7 +288,60 @@ export const useSort = () => {
         resetMerge(prevStatus);
         return stop(prevStatus);
       }
-      
+
+      await resetColor(prevBlocks, setBlocks, configuration.velocity);
+      isSortingRef.current = false;
+      setIsSorting(false);
+    }
+
+    async function heapSort() {
+      let prevBlocks = structuredClone(blocks);
+
+      async function heapify(n: number, i: number) {
+        if (!isSortingRef.current) return stop(prevBlocks);
+        let largest = i;
+        const left = 2 * i + 1;
+        const right = 2 * i + 2;
+
+        if (left < n && prevBlocks[left].val > prevBlocks[largest].val) {
+          largest = left;
+        }
+
+        if (right < n && prevBlocks[right].val > prevBlocks[largest].val) {
+          largest = right;
+        }
+
+        if (largest != i) {
+          prevBlocks = await swap(
+            i,
+            largest,
+            prevBlocks,
+            configuration.velocity
+          );
+          setBlocks(prevBlocks);
+          await heapify(n, largest);
+        }
+      }
+
+      if (isSorted(prevBlocks)) {
+        await resetColor(prevBlocks, setBlocks, configuration.velocity);
+        isSortingRef.current = false;
+        setIsSorting(false);
+        return;
+      }
+
+      for (let i = Math.floor(prevBlocks.length / 2) - 1; i >= 0; i--) {
+        if (!isSortingRef.current) return stop(prevBlocks);
+        await heapify(prevBlocks.length, i);
+      }
+
+      for (let i = prevBlocks.length - 1; i >= 0; i--) {
+        if (!isSortingRef.current) return stop(prevBlocks);
+        prevBlocks = await swap(0, i, prevBlocks, configuration.velocity);
+        setBlocks(prevBlocks);
+        await heapify(i, 0);
+      }
+
       await resetColor(prevBlocks, setBlocks, configuration.velocity);
       isSortingRef.current = false;
       setIsSorting(false);
@@ -308,6 +362,9 @@ export const useSort = () => {
         break;
       case algorithms.INSERTIONSORT:
         insertionSort();
+        break;
+      case algorithms.HEAPSORT:
+        heapSort();
         break;
     }
   }, [isSorting]);
