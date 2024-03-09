@@ -6,6 +6,7 @@ import {
   insert,
   isSorted,
   resetColor,
+  stop,
   swap,
   swapAndPaintBoth,
 } from "../helpers";
@@ -69,17 +70,6 @@ export const useSort = () => {
 
   useEffect(() => {
     if (!isSortingRef.current) return;
-    function stop(prevBlocks: Block[]) {
-      const newBlocks = prevBlocks.map((block) => {
-        return { ...block, color: "white" };
-      });
-      setBlocks(newBlocks);
-      return;
-    }
-
-    function resetMerge(prevMerge: Block[]) {
-      setBlocks(prevMerge);
-    }
 
     async function bubbleSort() {
       let prevBlocks = structuredClone(blocks);
@@ -87,7 +77,7 @@ export const useSort = () => {
         for (let j = 0; j + 1 < blocks.length - i; j++) {
           const { val: a } = prevBlocks[j];
           const { val: b } = prevBlocks[j + 1];
-          if (!isSortingRef.current) return stop(prevBlocks);
+          if (!isSortingRef.current) return stop(prevBlocks, setBlocks);
           if (a > b) {
             prevBlocks = await swap(
               j,
@@ -111,7 +101,7 @@ export const useSort = () => {
         for (let j = i + 1; j < blocks.length; j++) {
           const { val: a } = prevBlocks[min];
           const { val: b } = prevBlocks[j];
-          if (!isSortingRef.current) return stop(prevBlocks);
+          if (!isSortingRef.current) return stop(prevBlocks, setBlocks);
           if (a > b) {
             min = j;
           }
@@ -157,7 +147,7 @@ export const useSort = () => {
 
       if (!isSorted(prevBlocks))
         await executeQuickSort(0, prevBlocks.length - 1);
-      if (!isSortingRef.current) return stop(prevBlocks);
+      if (!isSortingRef.current) return stop(prevBlocks, setBlocks);
       await resetColor(prevBlocks, setBlocks, configuration.velocity);
       isSortingRef.current = false;
       setIsSorting(false);
@@ -246,8 +236,8 @@ export const useSort = () => {
         await executeMergeSort(0, prevBlocks.length - 1);
 
       if (!isSortingRef.current) {
-        resetMerge(prevMerge);
-        return stop(prevMerge);
+        setBlocks(prevMerge);
+        return stop(prevMerge, setBlocks);
       }
 
       await resetColor(prevBlocks, setBlocks, configuration.velocity);
@@ -285,8 +275,8 @@ export const useSort = () => {
       }
 
       if (!isSortingRef.current) {
-        resetMerge(prevStatus);
-        return stop(prevStatus);
+        setBlocks(prevStatus);
+        return stop(prevStatus, setBlocks);
       }
 
       await resetColor(prevBlocks, setBlocks, configuration.velocity);
@@ -298,7 +288,7 @@ export const useSort = () => {
       let prevBlocks = structuredClone(blocks);
 
       async function heapify(n: number, i: number) {
-        if (!isSortingRef.current) return stop(prevBlocks);
+        if (!isSortingRef.current) return stop(prevBlocks, setBlocks);
         let largest = i;
         const left = 2 * i + 1;
         const right = 2 * i + 2;
@@ -331,12 +321,12 @@ export const useSort = () => {
       }
 
       for (let i = Math.floor(prevBlocks.length / 2) - 1; i >= 0; i--) {
-        if (!isSortingRef.current) return stop(prevBlocks);
+        if (!isSortingRef.current) return stop(prevBlocks, setBlocks);
         await heapify(prevBlocks.length, i);
       }
 
       for (let i = prevBlocks.length - 1; i >= 0; i--) {
-        if (!isSortingRef.current) return stop(prevBlocks);
+        if (!isSortingRef.current) return stop(prevBlocks, setBlocks);
         prevBlocks = await swap(0, i, prevBlocks, configuration.velocity);
         setBlocks(prevBlocks);
         await heapify(i, 0);
