@@ -1,24 +1,26 @@
 import { Block } from "./types";
 
 export const shuffle = (array: Block[]) => {
-  for (let i = array.length - 1; i > 0; i--) {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
   }
-  return array;
+  return newArray;
 };
 
 export const lowShuffle = (array: Block[]) => {
-  array.sort((a, b) => a.val - b.val);
+  const newArray = [...array];
+  newArray.sort((a, b) => a.val - b.val);
 
-  const increment = Math.floor(array.length / (array.length / 3));
+  const increment = Math.floor(newArray.length / (newArray.length / 3));
 
-  for (let i = 0; i < array.length; i += increment) {
-    const j = Math.floor(Math.random() * array.length);
-    [array[i], array[j]] = [array[j], array[i]];
+  for (let i = 0; i < newArray.length; i += increment) {
+    const j = Math.floor(Math.random() * newArray.length);
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
   }
 
-  return array;
+  return newArray;
 };
 
 export const sleep = (delay: number) =>
