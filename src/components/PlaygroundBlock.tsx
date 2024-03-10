@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./styles/PlaygroundBlock.css";
 import { useEffect, useState } from "react";
-import { Algorithm, SortOption } from "../types";
+import { Algorithm, SortOption, SortingAlgorithms } from "../types";
 import { Blocks } from "./Blocks";
 import { BubbleSort } from "../algorithms/BubbleSort";
 import { SelectionSort } from "../algorithms/SelectionSort";
@@ -14,49 +15,46 @@ import { initialBlocks, sortOptions } from "../consts";
 interface Props {
   algorithm: Algorithm;
   option: SortOption;
+  isSorting: boolean;
+  setIsSorting: (newIsSorting: SortingAlgorithms) => void;
 }
 
-export const PlaygroundBlock: React.FC<Props> = ({ algorithm, option }) => {
+const imports = {
+  BubbleSort,
+  SelectionSort,
+  QuickSort,
+  MergeSort,
+  InsertionSort,
+  HeapSort,
+};
+
+export const PlaygroundBlock: React.FC<Props> = ({
+  algorithm,
+  option,
+  isSorting,
+  setIsSorting,
+}) => {
   const [blocks, setBlocks] = useState(() => {
     if (option === sortOptions.NEARLY_SORTED) return lowShuffle(initialBlocks);
     if (option === sortOptions.RANDOM) return shuffle(initialBlocks);
     return initialBlocks;
   });
 
-  const getAlgorithm = (algorithm: Algorithm) => {
-    switch (algorithm) {
-      case "BubbleSort":
-        return BubbleSort();
-      case "SelectionSort":
-        return SelectionSort();
-      case "QuickSort":
-        return QuickSort();
-      case "MergeSort":
-        return MergeSort();
-      case "InsertionSort":
-        return InsertionSort();
-      case "HeapSort":
-        return HeapSort();
-      default:
-        return null;
-    }
+  const handleSortFinished = (finished: boolean) => {
+    setIsSorting((prevState: SortingAlgorithms) => {
+      return {
+        ...prevState,
+        [algorithm]: { ...prevState[algorithm], [option]: finished },
+      };
+    });
   };
 
-  const algorithmSelected = getAlgorithm(algorithm);
-
-  function placeholder() {
-    return;
-  }
+  const [init, stop] = imports[algorithm]();
 
   useEffect(() => {
-    if (!algorithmSelected) return;
-    algorithmSelected[`init${algorithm}`](
-      blocks,
-      setBlocks,
-      { velocity: 10 },
-      placeholder
-    );
-  }, []);
+    if (!isSorting) return stop();
+    init(blocks, setBlocks, { velocity: 25, elements: 0 }, handleSortFinished);
+  }, [isSorting]);
 
   return (
     <div className="playground-block">
