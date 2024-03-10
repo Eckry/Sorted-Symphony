@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { insert, isSorted, resetColor, stop } from "../helpers";
-import { Block, Configuration } from "../types";
+import { AlgorithmFunction, Block, Configuration } from "../types";
 
-export const MergeSort = () => {
+export const MergeSort = (): AlgorithmFunction => {
   const isSortingRef = useRef(true);
 
   const stopMergeSort = () => {
@@ -91,5 +91,5 @@ export const MergeSort = () => {
     setIsSorting(false);
   };
 
-  return { stopMergeSort, initMergeSort };
+  return [initMergeSort, stopMergeSort];
 };

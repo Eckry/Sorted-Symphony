@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { resetColor, stop, swap } from "../helpers";
-import { Block, Configuration } from "../types";
+import { AlgorithmFunction, Block, Configuration } from "../types";
 
-export const SelectionSort = () => {
+export const SelectionSort = (): AlgorithmFunction => {
   const isSortingRef = useRef(true);
 
   const stopSelectionSort = () => {
@@ -37,5 +37,5 @@ export const SelectionSort = () => {
     setIsSorting(false);
   };
 
-  return { stopSelectionSort, initSelectionSort };
+  return [initSelectionSort, stopSelectionSort];
 };

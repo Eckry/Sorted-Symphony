@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { isSorted, resetColor, stop, swap } from "../helpers";
-import { Block, Configuration } from "../types";
+import { AlgorithmFunction, Block, Configuration } from "../types";
 
-export const HeapSort = () => {
+export const HeapSort = (): AlgorithmFunction => {
   const isSortingRef = useRef(true);
 
   const stopHeapSort = () => {
@@ -63,5 +63,5 @@ export const HeapSort = () => {
     setIsSorting(false);
   };
 
-  return { stopHeapSort, initHeapSort };
+  return [initHeapSort, stopHeapSort];
 };

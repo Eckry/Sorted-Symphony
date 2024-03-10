@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { resetColor, stop, swap } from "../helpers";
-import { Block, Configuration } from "../types";
+import { AlgorithmFunction, Block, Configuration } from "../types";
 
-export const BubbleSort = () => {
+export const BubbleSort = (): AlgorithmFunction => {
   const isSortingRef = useRef(true);
 
   const stopBubbleSort = () => {
@@ -33,5 +33,5 @@ export const BubbleSort = () => {
     setIsSorting(false);
   };
 
-  return { stopBubbleSort, initBubbleSort };
+  return [initBubbleSort, stopBubbleSort];
 };

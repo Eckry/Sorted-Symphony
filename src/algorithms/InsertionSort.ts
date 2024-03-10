@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { insert, resetColor, stop } from "../helpers";
-import { Block, Configuration } from "../types";
+import { AlgorithmFunction, Block, Configuration } from "../types";
 
-export const InsertionSort = () => {
+export const InsertionSort = (): AlgorithmFunction => {
   const isSortingRef = useRef(true);
 
   const stopInsertionSort = () => {
@@ -49,5 +49,5 @@ export const InsertionSort = () => {
     setIsSorting(false);
   };
 
-  return { stopInsertionSort, initInsertionSort };
+  return [initInsertionSort, stopInsertionSort];
 };
