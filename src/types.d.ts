@@ -1,17 +1,17 @@
-import { algorithms, languages } from "./consts";
+import { algorithms, languages, sortOptions } from "./consts";
 
-export type Algorithm = typeof algorithms[keyof typeof algorithms]
-
-export type Language = typeof languages[keyof typeof languages]
+export type Algorithm = (typeof algorithms)[keyof typeof algorithms];
+export type SortOption = (typeof sortOptions)[keyof typeof sortOptions];
+export type Language = (typeof languages)[keyof typeof languages];
 
 export type Block = {
-  val: number
-  color: string
-}
+  val: number;
+  color: string;
+};
 
 export interface Configuration {
-  velocity: number
-  elements: number
+  velocity: number;
+  elements: number;
 }
 
 export type ConfigurationElements = Pick<Configuration, "elements">;
