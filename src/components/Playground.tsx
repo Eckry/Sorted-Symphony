@@ -76,6 +76,7 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
                     algorithm={algorithm}
                     option={sortOption}
                     setIsSorting={setIsSorting}
+                    key={`${algorithm}-${sortOption}`}
                   />
                 );
               })}
