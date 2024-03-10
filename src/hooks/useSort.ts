@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, useRef } from "react";
-import { algorithms } from "../consts";
 import { useSelected } from "./useSelected";
 import { Block, ConfigurationElements, ConfigurationVelocity } from "../types";
 import { BubbleSort } from "../algorithms/BubbleSort";
@@ -28,6 +27,15 @@ const initialConfiguration = {
   elements: 100,
 };
 
+const imports = {
+  BubbleSort,
+  SelectionSort,
+  QuickSort,
+  MergeSort,
+  InsertionSort,
+  HeapSort,
+};
+
 export const useSort = () => {
   const { selected } = useSelected();
   const [blocks, setBlocks] = useState(initialBlocks);
@@ -35,12 +43,7 @@ export const useSort = () => {
   const [isSorting, setIsSorting] = useState(false);
   const [configuration, setConfiguration] = useState(initialConfiguration);
 
-  const { initBubbleSort, stopBubbleSort } = BubbleSort();
-  const { initSelectionSort, stopSelectionSort } = SelectionSort();
-  const { initQuickSort, stopQuickSort } = QuickSort();
-  const { initMergeSort, stopMergeSort } = MergeSort();
-  const { initInsertionSort, stopInsertionSort } = InsertionSort();
-  const { initHeapSort, stopHeapSort } = HeapSort();
+  const [init, stop] = imports[selected]();
 
   const changeIsSorting = () => {
     isSortingRef.current = !isSortingRef.current;
@@ -74,32 +77,8 @@ export const useSort = () => {
   };
 
   useEffect(() => {
-    switch (selected) {
-      case algorithms.BUBBLESORT:
-        if (!isSorting) return stopBubbleSort();
-        initBubbleSort(blocks, setBlocks, configuration, setIsSorting);
-        break;
-      case algorithms.SELECTIONSORT:
-        if (!isSorting) return stopSelectionSort();
-        initSelectionSort(blocks, setBlocks, configuration, setIsSorting);
-        break;
-      case algorithms.QUICKSORT:
-        if (!isSorting) return stopQuickSort();
-        initQuickSort(blocks, setBlocks, configuration, setIsSorting);
-        break;
-      case algorithms.MERGESORT:
-        if (!isSorting) return stopMergeSort();
-        initMergeSort(blocks, setBlocks, configuration, setIsSorting);
-        break;
-      case algorithms.INSERTIONSORT:
-        if (!isSorting) return stopInsertionSort();
-        initInsertionSort(blocks, setBlocks, configuration, setIsSorting);
-        break;
-      case algorithms.HEAPSORT:
-        if (!isSorting) return stopHeapSort();
-        initHeapSort(blocks, setBlocks, configuration, setIsSorting);
-        break;
-    }
+    if (!isSorting) return stop();
+    init(blocks, setBlocks, configuration, setIsSorting);
   }, [isSorting]);
 
   return {
