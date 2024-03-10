@@ -16,3 +16,21 @@ export interface Configuration {
 
 export type ConfigurationElements = Pick<Configuration, "elements">;
 export type ConfigurationVelocity = Pick<Configuration, "velocity">;
+
+export type AlgorithmFunction = [
+  (
+    blocks: Block[],
+    setBlocks: (newBLocks: Block[]) => void,
+    configuration: Configuration,
+    setIsSorting: (newIsSorting: boolean) => void
+  ) => void,
+  () => void
+];
+
+interface SortingAlgorithmsOption {
+  [sortOption: string]: boolean;
+}
+
+export interface SortingAlgorithms {
+  [key: string]: LoadingAlgorithmsOption;
+}
