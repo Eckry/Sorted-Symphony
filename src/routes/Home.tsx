@@ -1,4 +1,4 @@
-import "./styles/Home.css"
+import "./styles/Home.css";
 import { Blocks } from "../components/Blocks";
 import { Code } from "../components/Code";
 import { Configuration } from "../components/Configuration";
@@ -21,7 +21,9 @@ export const Home = () => {
     <main className="main-container">
       <Header />
       <Selection />
-      <Blocks blocks={blocks} />
+      <div className="home-blocks">
+        <Blocks blocks={blocks} />
+      </div>
       <SortOptions
         isSorting={isSorting}
         blocks={blocks}
@@ -38,4 +40,4 @@ export const Home = () => {
       <Description />
     </main>
   );
-}
+};
