@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./styles/PlaygroundBlock.css";
 import { useEffect, useState } from "react";
-import { Algorithm, SortOption, SortingAlgorithms } from "../types";
+import { Algorithm, SortOption } from "../types";
 import { Blocks } from "./Blocks";
 import { BubbleSort } from "../algorithms/BubbleSort";
 import { SelectionSort } from "../algorithms/SelectionSort";
@@ -15,8 +15,7 @@ import { initialBlocks, sortOptions } from "../consts";
 interface Props {
   algorithm: Algorithm;
   option: SortOption;
-  isSorting: boolean;
-  setIsSorting: (newIsSorting: SortingAlgorithms) => void;
+  position: `${number}-${number}`
 }
 
 const imports = {
@@ -28,36 +27,30 @@ const imports = {
   HeapSort,
 };
 
-export const PlaygroundBlock: React.FC<Props> = ({
-  algorithm,
-  option,
-  isSorting,
-  setIsSorting,
-}) => {
+export const PlaygroundBlock: React.FC<Props> = ({ algorithm, option, position }) => {
   const [blocks, setBlocks] = useState(() => {
     if (option === sortOptions.NEARLY_SORTED) return lowShuffle(initialBlocks);
     if (option === sortOptions.RANDOM) return shuffle(initialBlocks);
     return initialBlocks;
   });
-
-  const handleSortFinished = (finished: boolean) => {
-    setIsSorting((prevState: SortingAlgorithms) => {
-      return {
-        ...prevState,
-        [algorithm]: { ...prevState[algorithm], [option]: finished },
-      };
-    });
-  };
+  const [isSorting, setIsSorting] = useState(false);
 
   const [init, stop] = imports[algorithm]();
 
+  const handleOnClick = () => {
+    setIsSorting(true);
+  };
+
   useEffect(() => {
     if (!isSorting) return stop();
-    init(blocks, setBlocks, { velocity: 25, elements: 0 }, handleSortFinished);
+    init(blocks, setBlocks, { velocity: 25, elements: 0 }, setIsSorting);
   }, [isSorting]);
 
   return (
-    <div className="playground-block">
+    <div
+      onClick={handleOnClick}
+      className={`playground-block playground-block-${position}`}
+    >
       <Blocks blocks={blocks} />
     </div>
   );
