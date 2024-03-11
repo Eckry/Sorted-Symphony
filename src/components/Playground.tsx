@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
-  const handleColumnClick = (column: number) => {
+  const createHandleColumnClick = (column: number) => () => {
     algorithmsSelected.forEach((_, idx) => {
       const block = document.querySelector(
         `.playground-block-${idx}-${column}`
@@ -21,20 +21,44 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
     });
   };
 
+  const createHandleRowClick = (row: number) => () => {
+    Object.values(sortOptions).forEach((_, idx) => {
+      const block = document.querySelector(`.playground-block-${row}-${idx}`);
+
+      if (block instanceof HTMLElement) {
+        block.click();
+      }
+    });
+  };
+
+  const handleClickAll = () => {
+    algorithmsSelected.forEach((_, row) => {
+      Object.values(sortOptions).forEach((__, column) => {
+        const block = document.querySelector(
+          `.playground-block-${row}-${column}`
+        );
+
+        if (block instanceof HTMLElement) {
+          block.click();
+        }
+      });
+    });
+  };
+
   return (
     <section className="playground-container">
       <div className="playground-type">
-        <span></span>
+        <button onClick={handleClickAll}>All</button>
         {Object.values(sortOptions).map((option, idx) => {
           return (
-            <button onClick={() => handleColumnClick(idx)}>{option}</button>
+            <button onClick={createHandleColumnClick(idx)}>{option}</button>
           );
         })}
 
         {algorithmsSelected.map((algorithm, x) => {
           return (
             <React.Fragment key={crypto.randomUUID()}>
-              <p>{algorithm}</p>
+              <button onClick={createHandleRowClick(x)}>{algorithm}</button>
               {Object.values(sortOptions).map((sortOption, y) => {
                 return (
                   <PlaygroundBlock
