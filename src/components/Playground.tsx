@@ -10,9 +10,9 @@ interface Props {
 
 export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
   const createHandleColumnClick = (column: number) => () => {
-    algorithmsSelected.forEach((_, idx) => {
+    algorithmsSelected.forEach((_, row) => {
       const block = document.querySelector(
-        `.playground-block-${idx}-${column}`
+        `.playground-block-${column}-${row}`
       );
 
       if (block instanceof HTMLElement) {
@@ -22,8 +22,8 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
   };
 
   const createHandleRowClick = (row: number) => () => {
-    Object.values(sortOptions).forEach((_, idx) => {
-      const block = document.querySelector(`.playground-block-${row}-${idx}`);
+    Object.values(sortOptions).forEach((_, column) => {
+      const block = document.querySelector(`.playground-block-${column}-${row}`);
 
       if (block instanceof HTMLElement) {
         block.click();
@@ -35,7 +35,7 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
     algorithmsSelected.forEach((_, row) => {
       Object.values(sortOptions).forEach((__, column) => {
         const block = document.querySelector(
-          `.playground-block-${row}-${column}`
+          `.playground-block-${column}-${row}`
         );
 
         if (block instanceof HTMLElement) {
@@ -55,16 +55,16 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
           );
         })}
 
-        {algorithmsSelected.map((algorithm, x) => {
+        {algorithmsSelected.map((algorithm, row) => {
           return (
             <React.Fragment key={crypto.randomUUID()}>
-              <button onClick={createHandleRowClick(x)}>{algorithm}</button>
-              {Object.values(sortOptions).map((sortOption, y) => {
+              <button onClick={createHandleRowClick(row)}>{algorithm}</button>
+              {Object.values(sortOptions).map((sortOption, column) => {
                 return (
                   <PlaygroundBlock
                     algorithm={algorithm}
                     option={sortOption}
-                    position={`${x}-${y}`}
+                    position={`${column}-${row}`}
                     key={`${algorithm}-${sortOption}`}
                   />
                 );
