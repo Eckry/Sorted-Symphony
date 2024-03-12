@@ -51,7 +51,7 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
         <button onClick={handleClickAll}>All</button>
         {Object.values(sortOptions).map((option, idx) => {
           return (
-            <button onClick={createHandleColumnClick(idx)}>{option}</button>
+            <button key={option} onClick={createHandleColumnClick(idx)}>{option}</button>
           );
         })}
 
