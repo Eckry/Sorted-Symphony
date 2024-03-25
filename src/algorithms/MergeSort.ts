@@ -33,9 +33,8 @@ export const MergeSort = (): AlgorithmFunction => {
 
       while (i < n1 && j < n2) {
         if (!isSortingRef.current) return;
-        prevBlocks = await insert(prevBlocks, L[i], k, configuration.velocity);
         if (L[i] <= M[j]) {
-          setBlocks(prevBlocks);
+          prevBlocks = await insert(prevBlocks, L[i], k, configuration.velocity);
           i++;
         } else {
           prevBlocks = await insert(
