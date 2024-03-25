@@ -23,7 +23,7 @@ export const QuickSort = (): AlgorithmFunction => {
       let i = first;
       let j = last;
 
-      do {
+      while (i <= j) {
         while (prevBlocks[i].val < pivot.val) i++;
         while (prevBlocks[j].val > pivot.val) j--;
         if (!isSortingRef.current) return;
@@ -38,7 +38,7 @@ export const QuickSort = (): AlgorithmFunction => {
           i++;
           j--;
         }
-      } while (i <= j);
+      }
 
       if (first < j) await executeQuickSort(first, j);
       if (i < last) await executeQuickSort(i, last);
