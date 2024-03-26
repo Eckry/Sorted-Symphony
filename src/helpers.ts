@@ -1,6 +1,15 @@
-import { AudioFile, Block } from "./types";
+import { Block } from "./types";
+import { audios } from "./consts";
 
-const audios: AudioFile[] = ["./DO.wav", "./FA.wav", "./LA.wav", "./MI.wav", "./SOL.wav"]
+const play = (pitch: number, length: number) => {
+  const audioIndex = Math.floor((pitch / length) * 5);
+  const path = audios[audioIndex];
+  const audioClone = new Audio(path);
+  if (audioClone instanceof HTMLAudioElement) {
+    audioClone.volume = 0.1;
+    audioClone.play();
+  }
+};
 
 export const shuffle = (array: Block[]) => {
   const newArray = [...array];
@@ -120,13 +129,4 @@ export const stop = (
   });
   setBlocks(newBlocks);
   return;
-};
-
-const play = (pitch: number, length: number) => {
-  const audioIndex = Math.floor((pitch / length) * 6);
-  const audioClone = new Audio(audios[audioIndex]);
-  if (audioClone instanceof HTMLAudioElement) {
-    audioClone.volume = 0.1;
-    audioClone.play();
-  }
 };
