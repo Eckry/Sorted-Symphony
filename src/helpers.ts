@@ -1,4 +1,6 @@
-import { Block } from "./types";
+import { AudioFile, Block } from "./types";
+
+const audios: AudioFile[] = ["./DO.wav", "./FA.wav", "./LA.wav", "./MI.wav", "./SOL.wav"]
 
 export const shuffle = (array: Block[]) => {
   const newArray = [...array];
@@ -40,6 +42,7 @@ export const insert = async (
   newBlocks[i].color = "red";
 
   await sleep(delay);
+  play(numberToInsert, newBlocks.length);
   return newBlocks;
 };
 
@@ -57,6 +60,7 @@ export const swap = async (
   blocks[i] = { ...blocks[j], color: "white" };
   blocks[j] = temp;
   await sleep(delay);
+  play(blocks[i].val, blocks.length);
   return blocks;
 };
 
@@ -74,6 +78,7 @@ export const swapAndPaintBoth = async (
   blocks[i] = { ...blocks[j], color: "red" };
   blocks[j] = temp;
   await sleep(delay);
+  play(blocks[j].val, blocks.length);
   return blocks;
 };
 
@@ -115,4 +120,13 @@ export const stop = (
   });
   setBlocks(newBlocks);
   return;
+};
+
+const play = (pitch: number, length: number) => {
+  const audioIndex = Math.floor((pitch / length) * 6);
+  const audioClone = new Audio(audios[audioIndex]);
+  if (audioClone instanceof HTMLAudioElement) {
+    audioClone.volume = 0.1;
+    audioClone.play();
+  }
 };
