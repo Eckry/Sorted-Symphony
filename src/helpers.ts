@@ -94,17 +94,7 @@ export const swapAndPaintBoth = async (
 export const resetColor = async (
   prevBlocks: Block[],
   setBlocks: (blocks: Block[]) => void,
-  delay: number
 ) => {
-  for (let i = 0; i < prevBlocks.length; i++) {
-    const newBlocks = prevBlocks.map((block, idx) => {
-      if (idx === i) return { ...block, color: "goldenrod" };
-      return { ...block, color: "white" };
-    });
-    prevBlocks = [...newBlocks];
-    setBlocks(newBlocks);
-    await sleep(delay);
-  }
   const newBlocks = prevBlocks.map((block) => {
     return { ...block, color: "white" };
   });
