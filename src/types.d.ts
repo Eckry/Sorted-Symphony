@@ -11,6 +11,16 @@ export type AudioFile =
   | "./MI.wav"
   | "./SOL.wav";
 
+export interface AlgorithmInformation {
+  description: string;
+  time: {
+    avg: string;
+    best: string;
+    worst: string;
+    space: string;
+  };
+}
+
 export type Block = {
   val: number;
   color: string;
@@ -39,5 +49,5 @@ interface SortingAlgorithmsOption {
 }
 
 export interface SortingAlgorithms {
-  [key: string]: LoadingAlgorithmsOption;
+  [key: string]: LoadingAlgorithmsOption; //! Needs a fix
 }
