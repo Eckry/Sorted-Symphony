@@ -1,3 +1,5 @@
+import { AudioFile } from "./types";
+
 export const algorithms = {
   QUICKSORT: "QuickSort",
   MERGESORT: "MergeSort",
@@ -20,7 +22,7 @@ export const languages = {
   Java: "java",
 } as const;
 
-export const audios = [
+export const audios: AudioFile[] = [
   "./DO.wav",
   "./RE.wav",
   "./MI.wav",
