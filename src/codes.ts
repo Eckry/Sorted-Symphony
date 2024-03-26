@@ -279,7 +279,41 @@ def mergeSort(arr, l, r):
     merge(arr, l, m, r)
 `,
   },
-  InsertionSort: {},
+  InsertionSort: {
+    javascript: `for (let i = 1; i < n; i++) {
+  const  key = arr[i];
+  let j = i - 1;
+
+  while (j >= 0 && key < arr[j]) {
+      arr[j + 1] = arr[j];
+      j--;
+  }
+  
+  arr[j + 1] = key;
+}`,
+    cpp: `for (int i = 1; i < n; i++)
+{
+  int key = arr[i];
+  int j = i - 1;
+
+  while (j >= 0 && key < arr[j])
+  {
+    arr[j + 1] = arr[j];
+    j--;
+  }
+  
+  arr[j + 1] = key;
+}`,
+python: `for i in range(1, n):
+  key = arr[i]
+  j = i - 1
+
+  while j >= 0 and key < arr[j]:
+    arr[j + 1] = arr[j]
+    j -= 1
+    
+  arr[j + 1] = key`
+  },
   HeapSort: {
     javascript: `function heapify(arr, n, i) {
   let largest = i;
@@ -336,7 +370,7 @@ void heapSort(int arr[], int n)
     heapify(arr, i, 0);
   }
 }`,
-python: `def heapify(arr, n, i):
+    python: `def heapify(arr, n, i):
   largest = i
   left = 2 * i + 1
   right = 2 * i + 2
@@ -356,6 +390,6 @@ def heapSort(arr, n):
   for i in range(n - 1, 0, -1):
     arr[i], arr[0] = arr[0], arr[i]
     heapify(arr, i, 0)
-`
+`,
   },
 };
