@@ -3,6 +3,13 @@ import { algorithms, languages, sortOptions } from "./consts";
 export type Algorithm = (typeof algorithms)[keyof typeof algorithms];
 export type SortOption = (typeof sortOptions)[keyof typeof sortOptions];
 export type Language = (typeof languages)[keyof typeof languages];
+export type AudioFile =
+  | "./DO.wav"
+  | "./RE.wav"
+  | "./FA.wav"
+  | "./LA.wav"
+  | "./MI.wav"
+  | "./SOL.wav";
 
 export type Block = {
   val: number;
