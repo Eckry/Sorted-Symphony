@@ -11,6 +11,12 @@ const play = (pitch: number, length: number) => {
   }
 };
 
+const playFinish = () => {
+  const audio = new Audio("./finish.mp3");
+  audio.volume = 0.2;
+  audio.play();
+}
+
 export const shuffle = (array: Block[]) => {
   const newArray = [...array];
   for (let i = newArray.length - 1; i > 0; i--) {
@@ -99,6 +105,7 @@ export const resetColor = async (
     return { ...block, color: "white" };
   });
   setBlocks(newBlocks);
+  playFinish();
 };
 
 export const isSorted = (prevBlocks: Block[]) => {
