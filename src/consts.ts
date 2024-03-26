@@ -20,6 +20,15 @@ export const languages = {
   Java: "java",
 } as const;
 
+export const audios = [
+  "./DO.wav",
+  "./RE.wav",
+  "./MI.wav",
+  "./FA.wav",
+  "./SOL.wav",
+  "./LA.wav",
+];
+
 export const initialBlocks = {
   Reversed: [
     { val: 30, color: "white" },
