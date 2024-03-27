@@ -1,5 +1,6 @@
 import { Block } from "./types";
 import { audios } from "./consts";
+import { colors } from "./consts";
 
 const play = (pitch: number, length: number) => {
   const audioIndex = Math.floor((pitch / length) * 5);
@@ -50,11 +51,11 @@ export const insert = async (
   delay: number
 ) => {
   const newBlocks = prevBlocks.map((block) => {
-    return { ...block, color: "white" };
+    return { ...block, color: colors.DEFAULT };
   });
 
   newBlocks[i].val = numberToInsert;
-  newBlocks[i].color = "red";
+  newBlocks[i].color = colors.HIGHLIGHT;
 
   await sleep(delay);
   play(numberToInsert, newBlocks.length);
@@ -68,11 +69,11 @@ export const swap = async (
   delay: number
 ) => {
   const blocks = prevBlocks.map((block) => {
-    return { ...block, color: "white" };
+    return { ...block, color: colors.DEFAULT };
   });
 
-  const temp = { ...blocks[i], color: "red" };
-  blocks[i] = { ...blocks[j], color: "white" };
+  const temp = { ...blocks[i], color: colors.HIGHLIGHT };
+  blocks[i] = { ...blocks[j], color: colors.DEFAULT };
   blocks[j] = temp;
   await sleep(delay);
   play(blocks[i].val, blocks.length);
@@ -86,11 +87,11 @@ export const swapAndPaintBoth = async (
   delay: number
 ) => {
   const blocks = prevBlocks.map((block) => {
-    return { ...block, color: "white" };
+    return { ...block, color: colors.DEFAULT };
   });
 
-  const temp = { ...blocks[i], color: "red" };
-  blocks[i] = { ...blocks[j], color: "red" };
+  const temp = { ...blocks[i], color: colors.HIGHLIGHT };
+  blocks[i] = { ...blocks[j], color: colors.HIGHLIGHT };
   blocks[j] = temp;
   await sleep(delay);
   play(blocks[j].val, blocks.length);
@@ -102,7 +103,7 @@ export const resetColor = async (
   setBlocks: (blocks: Block[]) => void,
 ) => {
   const newBlocks = prevBlocks.map((block) => {
-    return { ...block, color: "white" };
+    return { ...block, color: colors.DEFAULT };
   });
   setBlocks(newBlocks);
   playFinish();
@@ -122,7 +123,7 @@ export const stop = (
   setBlocks: (newBlocks: Block[]) => void
 ) => {
   const newBlocks = prevBlocks.map((block) => {
-    return { ...block, color: "white" };
+    return { ...block, color: colors.DEFAULT };
   });
   setBlocks(newBlocks);
   return;

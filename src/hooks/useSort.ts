@@ -8,19 +8,7 @@ import { QuickSort } from "../algorithms/QuickSort";
 import { MergeSort } from "../algorithms/MergeSort";
 import { InsertionSort } from "../algorithms/InsertionSort";
 import { HeapSort } from "../algorithms/HeapSort";
-
-const initialBlocks = [
-  { val: 10, color: "white" },
-  { val: 9, color: "white" },
-  { val: 8, color: "white" },
-  { val: 7, color: "white" },
-  { val: 6, color: "white" },
-  { val: 5, color: "white" },
-  { val: 4, color: "white" },
-  { val: 3, color: "white" },
-  { val: 2, color: "white" },
-  { val: 1, color: "white" },
-];
+import { initialBlocks } from "../consts";
 
 const initialConfiguration = {
   velocity: 50,
@@ -38,7 +26,7 @@ const imports = {
 
 export const useSort = () => {
   const { selected } = useSelected();
-  const [blocks, setBlocks] = useState(initialBlocks);
+  const [blocks, setBlocks] = useState(initialBlocks.Random);
   const isSortingRef = useRef(false);
   const [isSorting, setIsSorting] = useState(false);
   const [configuration, setConfiguration] = useState(initialConfiguration);
