@@ -12,6 +12,15 @@
   --highlight-color: #FB2576;
 }
 
+.bg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+  background: radial-gradient(ellipse 80% 80% at 50% -20%, var(--secondary-color), var(--primary-color));
+}
+
 html {
   color-scheme: dark;
 }
