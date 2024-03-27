@@ -1,17 +1,17 @@
 .option, .option-selected {
   list-style: none;
-  color: var(--highlight-color);
-  background-color: var(--secondary-color);
-  border-radius: 15px;
+  color: var(--tertiary-brighty-color);
+  border: 2px solid var(--secondary-color);
+  border-radius: 8px;
   padding: 1rem;
   cursor: pointer;
 }
 
 .option:hover {
-  background-color: var(--primary-color);
+  border: 2px solid var(--tertiary-color);
 }
 
 .option-selected {
-  background-color: var(--highlight-color);
-  color: var(--primary-color);
+  border: 2px solid var(--highlight-color);
+  color: var(--highlight-color);
 }
