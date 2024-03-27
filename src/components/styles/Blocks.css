@@ -5,12 +5,10 @@
   align-items: flex-end;
   justify-content: center;
   width: 100%;
-  background-color: var(--secondary-color);
   padding: 1rem;
   z-index: -1;
 }
 
 .block {
-  background-color: var(--highlight-color);
   width: 100%;
 }
