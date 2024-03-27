@@ -14,7 +14,7 @@ export const Blocks: React.FC<Props> = ({ blocks }) => {
             key={crypto.randomUUID()}
             className="block"
             style={{ height: `${val * 100 / blocks.length}%`, backgroundColor: color }}
-          ></div>
+          ><span className="block-top" style={{height: `${100 / val}%`}}></span></div>
         );
       })}
     </div>

@@ -11,4 +11,13 @@
 
 .block {
   width: 100%;
+  border-top: 2px solid var(--highlight-color);
+  position: relative;
+}
+
+.block-top {
+  position: absolute;
+  left: 0;
+  width: 2px;
+  background-color: var(--highlight-color);
 }
