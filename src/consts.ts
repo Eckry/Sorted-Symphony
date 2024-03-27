@@ -1,7 +1,7 @@
 import { AudioFile } from "./types";
 
 export const colors = {
-  DEFAULT: "var(--tertiary-brighty-color)",
+  DEFAULT: "var(--primary-brighty-color)",
   HIGHLIGHT: "var(--highlight-color)"
 }
 
