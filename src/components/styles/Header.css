@@ -5,11 +5,15 @@
 .header-title {
   font-size: 4rem;
   color: var(--highlight-color);
-  margin-top: 50px;
+  font-weight: lighter;
+  font-style: italic;
+  font-family: 'Kaushan Script', sans-serif;
 }
 
 .header-phrase {
   color: var(--tertiary-brighty-color);
+  font-family: 'Averia Serif Libre', sans-serif;
   font-style: italic;
+  font-size: 1.5rem;
   margin-top: 1rem;
 }
