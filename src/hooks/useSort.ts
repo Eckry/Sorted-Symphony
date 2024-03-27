@@ -8,7 +8,7 @@ import { QuickSort } from "../algorithms/QuickSort";
 import { MergeSort } from "../algorithms/MergeSort";
 import { InsertionSort } from "../algorithms/InsertionSort";
 import { HeapSort } from "../algorithms/HeapSort";
-import { initialBlocks } from "../consts";
+import { colors, initialBlocks } from "../consts";
 
 const initialConfiguration = {
   velocity: 50,
@@ -44,7 +44,7 @@ export const useSort = () => {
     if (length < elements) {
       const newElements: Block[] = [];
       for (let i = length; i < elements; i++) {
-        newElements.push({ val: i + 1, color: "white" });
+        newElements.push({ val: i + 1, color: colors.DEFAULT });
       }
       const newBlocks = [...blocks, ...newElements].sort(
         (a, b) => a.val - b.val
