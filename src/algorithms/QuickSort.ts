@@ -46,7 +46,7 @@ export const QuickSort = (): AlgorithmFunction => {
 
     if (!isSorted(prevBlocks)) await executeQuickSort(0, prevBlocks.length - 1);
     if (!isSortingRef.current) return stop(prevBlocks, setBlocks);
-    await resetColor(prevBlocks, setBlocks, configuration.velocity);
+    await resetColor(prevBlocks, setBlocks);
     isSortingRef.current = false;
     setIsSorting(false);
   };

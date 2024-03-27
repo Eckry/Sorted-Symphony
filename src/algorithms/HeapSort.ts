@@ -40,7 +40,7 @@ export const HeapSort = (): AlgorithmFunction => {
     }
 
     if (isSorted(prevBlocks)) {
-      await resetColor(prevBlocks, setBlocks, configuration.velocity);
+      await resetColor(prevBlocks, setBlocks);
       isSortingRef.current = false;
       setIsSorting(false);
       return;
@@ -58,7 +58,7 @@ export const HeapSort = (): AlgorithmFunction => {
       await heapify(i, 0);
     }
 
-    await resetColor(prevBlocks, setBlocks, configuration.velocity);
+    await resetColor(prevBlocks, setBlocks);
     isSortingRef.current = false;
     setIsSorting(false);
   };

@@ -32,7 +32,7 @@ export const SelectionSort = (): AlgorithmFunction => {
         setBlocks(prevBlocks);
       }
     }
-    await resetColor(prevBlocks, setBlocks, configuration.velocity);
+    await resetColor(prevBlocks, setBlocks);
     isSortingRef.current = false;
     setIsSorting(false);
   };

@@ -85,7 +85,7 @@ export const MergeSort = (): AlgorithmFunction => {
       return stop(prevMerge, setBlocks);
     }
 
-    await resetColor(prevBlocks, setBlocks, configuration.velocity);
+    await resetColor(prevBlocks, setBlocks);
     isSortingRef.current = false;
     setIsSorting(false);
   };
