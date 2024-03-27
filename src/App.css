@@ -5,16 +5,15 @@
 }
 
 :root {
-  --primary-color: #2D3250;
-  --secondary-color: #424769;
-  --tertiary-color: #7077A1;
+  --primary-color: #060014;
+  --secondary-color: #16004d;
+  --tertiary-color: #3F0071;
   --tertiary-brighty-color: #a0a7d2;
-  --highlight-color: #F6B17A;
+  --highlight-color: #FB2576;
 }
 
 html {
   color-scheme: dark;
-
 }
 
 body {
