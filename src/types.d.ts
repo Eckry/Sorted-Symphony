@@ -43,11 +43,3 @@ export type AlgorithmFunction = [
   ) => void,
   () => void
 ];
-
-interface SortingAlgorithmsOption {
-  [sortOption: string]: boolean;
-}
-
-export interface SortingAlgorithms {
-  [key: string]: LoadingAlgorithmsOption; //! Needs a fix
-}
