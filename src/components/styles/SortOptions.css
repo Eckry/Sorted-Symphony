@@ -11,11 +11,12 @@
   cursor: pointer;
   outline: none;
   border: none;
+  width: 100%;
   font-weight: bold;
-  background-color: var(--secondary-color);
-  color: var(--highlight-color);
+  background-color: var(--primary-brighty-color);
+  color: var(--tertiary-brighty-color);
 }
 
 .sortoption:hover {
-  background-color: var(--tertiary-color);
+  background-color: var(--secondary-color);
 }
