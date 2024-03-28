@@ -33,16 +33,36 @@ export const Configuration: React.FC<Props> = ({
   return (
     <section className="configuration-container">
       <div className="configuration-range">
-        <input
-          disabled={isSorting}
-          onChange={handleChangeElements}
-          id="configuration-quantity"
-          type="range"
-          min={10}
-          max={200}
-          defaultValue={blocks.length}
-        />
-        <label htmlFor="configuration-quantity">Elements</label>
+        <div className="wrapper">
+          <input
+            disabled={isSorting}
+            onChange={handleChangeElements}
+            id="configuration-quantity"
+            type="range"
+            min={10}
+            max={200}
+            defaultValue={blocks.length}
+          />
+          <div className="rail">
+            <div
+              className="inner-rail"
+              style={{ width: `${blocks.length / 2 > 90 ? 90 : blocks.length / 2}%` }}
+            ></div>
+          </div>
+          <div className="control-wrapper">
+            <div
+              className="control"
+              style={{ left: `calc(${blocks.length / 2}% - 3px)` }}
+            ></div>
+            <div
+              style={{ left: `calc(${blocks.length / 2}% + 0.5px)` }}
+              className="control-dot"
+            ></div>
+          </div>
+        </div>
+        <label htmlFor="configuration-quantity" className="configuration-label">
+          Elements
+        </label>
       </div>
       <button className="play-sort" onClick={handleSort}>
         II
@@ -56,7 +76,9 @@ export const Configuration: React.FC<Props> = ({
           min={1}
           max={100}
         />
-        <label htmlFor="configuration-velocity">Velocity</label>
+        <label htmlFor="configuration-velocity" className="configuration-label">
+          Velocity
+        </label>
       </div>
     </section>
   );
