@@ -68,6 +68,7 @@ for(int i = 0; i < n; i++){
   arr[minIdx] = arr[i];
   arr[i] = temp;
 }`,
+    java: ``,
   },
   QuickSort: {
     javascript: `function quickSort(arr, l, r) {
@@ -135,6 +136,7 @@ for(int i = 0; i < n; i++){
   if (i < r) quickSort(arr, i, r);
   if (l < j) quickSort(arr, l, j);
 }`,
+    java: ``,
   },
   MergeSort: {
     javascript: `function merge(arr, p, q, r) {
@@ -278,6 +280,7 @@ def mergeSort(arr, l, r):
     mergeSort(arr, m + 1, r)
     merge(arr, l, m, r)
 `,
+    java: ``,
   },
   InsertionSort: {
     javascript: `for (let i = 1; i < n; i++) {
@@ -304,7 +307,7 @@ def mergeSort(arr, l, r):
   
   arr[j + 1] = key;
 }`,
-python: `for i in range(1, n):
+    python: `for i in range(1, n):
   key = arr[i]
   j = i - 1
 
@@ -312,7 +315,8 @@ python: `for i in range(1, n):
     arr[j + 1] = arr[j]
     j -= 1
     
-  arr[j + 1] = key`
+  arr[j + 1] = key`,
+    java: ``,
   },
   HeapSort: {
     javascript: `function heapify(arr, n, i) {
@@ -391,5 +395,6 @@ def heapSort(arr, n):
     arr[i], arr[0] = arr[0], arr[i]
     heapify(arr, i, 0)
 `,
+    java: ``,
   },
 };
