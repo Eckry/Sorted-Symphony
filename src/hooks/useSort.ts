@@ -60,7 +60,7 @@ export const useSort = () => {
 
   const changeVelocity = ({ velocity }: ConfigurationVelocity) => {
     setConfiguration((prevConfig) => {
-      return { ...prevConfig, velocity: 100 - velocity };
+      return { ...prevConfig, velocity: 200 - velocity };
     });
   };
 
@@ -76,5 +76,6 @@ export const useSort = () => {
     isSorting,
     changeVelocity,
     changeElements,
+    configuration
   };
 };

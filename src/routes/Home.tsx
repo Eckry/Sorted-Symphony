@@ -16,6 +16,7 @@ export const Home = () => {
     isSorting,
     changeVelocity,
     changeElements,
+    configuration,
   } = useSort();
   return (
     <main className="main-container">
@@ -35,6 +36,7 @@ export const Home = () => {
         changeElements={changeElements}
         blocks={blocks}
         isSorting={isSorting}
+        configuration={configuration}
       />
       <Code />
       <Description />
