@@ -18,7 +18,7 @@ export const RangeInputVelocity: React.FC<Props> = ({
   };
 
   const rangeMax = 100;
-  const rangeMin = 10;
+  const rangeMin = 1;
 
   const percent = (length - rangeMin) / (rangeMax - rangeMin);
 

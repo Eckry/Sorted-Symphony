@@ -1,5 +1,10 @@
 import { AudioFile } from "./types";
 
+export const initialConfiguration = {
+  velocity: 150,
+  elements: 100,
+};
+
 export const colors = {
   DEFAULT: "var(--primary-brighty-color)",
   HIGHLIGHT: "var(--highlight-color)"

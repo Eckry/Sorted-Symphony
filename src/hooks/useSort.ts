@@ -8,12 +8,7 @@ import { QuickSort } from "../algorithms/QuickSort";
 import { MergeSort } from "../algorithms/MergeSort";
 import { InsertionSort } from "../algorithms/InsertionSort";
 import { HeapSort } from "../algorithms/HeapSort";
-import { colors, initialBlocks } from "../consts";
-
-const initialConfiguration = {
-  velocity: 50,
-  elements: 100,
-};
+import { colors, initialBlocks, initialConfiguration } from "../consts";
 
 const imports = {
   BubbleSort,
@@ -64,6 +59,7 @@ export const useSort = () => {
     });
   };
 
+  console.log(configuration.velocity);
   useEffect(() => {
     if (!isSorting) return stop();
     init(blocks, setBlocks, configuration, setIsSorting);
