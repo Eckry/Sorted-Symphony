@@ -59,7 +59,6 @@ export const useSort = () => {
     });
   };
 
-  console.log(configuration.velocity);
   useEffect(() => {
     if (!isSorting) return stop();
     init(blocks, setBlocks, configuration, setIsSorting);
