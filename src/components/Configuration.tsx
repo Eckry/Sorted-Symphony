@@ -1,5 +1,6 @@
 import { Block, ConfigurationElements, ConfigurationVelocity } from "../types";
-import { RangeInput } from "./RangeInput";
+import { RangeInputElements } from "./RangeInputElements";
+import { RangeInputVelocity } from "./RangeInputVelocity";
 import "./styles/Configuration.css";
 
 interface Props {
@@ -30,10 +31,10 @@ export const Configuration: React.FC<Props> = ({
   const handleChangeElements = (newElements: number) => {
     changeElements({ elements: newElements });
   };
-  
+
   return (
     <section className="configuration-container">
-      <RangeInput
+      <RangeInputElements
         handleChange={handleChangeElements}
         isSorting={isSorting}
         length={blocks.length}
@@ -41,7 +42,7 @@ export const Configuration: React.FC<Props> = ({
       <button className="play-sort" onClick={handleSort}>
         II
       </button>
-      <RangeInput
+      <RangeInputVelocity
         handleChange={handleChangeVelocity}
         isSorting={isSorting}
         length={200 - configuration.velocity}

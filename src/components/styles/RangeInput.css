@@ -1,23 +1,34 @@
 .configuration-range {
+  position: relative;
   display: grid;
   align-items: center;
   text-align: center;
   gap: 1rem;
-  width: 100%;
-  margin: 36px 0;
+  width: 300px;
 }
 
 .configuration-label {
-  color: var(--highlight-color);
+  color: var(--tertiary-brighty-color);
+}
+
+.rangeinput-tooltip {
+  position: absolute;
+  top: 0px;
+  text-align: center;
+  width: fit-content;
+  height: auto;
+  border: 2px solid var(--tertiary-color);
+  border-radius: 8px;
+  padding: 2px 8px;
+  color: var(--tertiary-brighty-color);
 }
 
 .wrapper {
-  margin: 1rem auto;
   position: relative;
-  width: 70%;
+  width: 94.7%;
 }
 
-.wrapper > input {
+input[type="range"] {
   position: absolute;
   opacity: 0;
   left: 0;
@@ -34,27 +45,28 @@
   top: 50%;
   transform: translateY(-50%);
   border-radius: 3px;
-  background-color: var(--tertiary-color);
+  background-color: var(--secondary-color);
 }
 
 .inner-rail {
   position: absolute;
   height: 100%;
-  background-color: var(--highlight-color);
+  background-color: var(--tertiary-color);
 }
 
 .control-wrapper {
   position: relative;
-  width: 100%;
+  width: 16px;
+  display: flex;
+  justify-content: center;
 }
 
 .control-dot {
-  position: absolute;
-  margin-top: -5px;
-  width: 10px;
-  height: 10px;
-  background-color: var(--highlight-color);
+  width: 16px;
+  height: 16px;
+  background-color: var(--tertiary-color);
   border-radius: 50%;
+  margin-top: 36px;
 }
 
 input[type="range"]::-ms-thumb {
