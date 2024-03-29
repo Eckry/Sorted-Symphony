@@ -1,4 +1,4 @@
-import "./styles/RangeInput.css"
+import "./styles/RangeInput.css";
 
 interface Props {
   isSorting: boolean;
@@ -32,17 +32,13 @@ export const RangeInput: React.FC<Props> = ({
           <div
             className="inner-rail"
             style={{
-              width: `${length / 2 > 90 ? 90 : length / 2}%`,
+              width: `calc(${length / 2}% - 5px)`,
             }}
           ></div>
         </div>
         <div className="control-wrapper">
           <div
-            className="control"
-            style={{ left: `calc(${length / 2}% - 3px)` }}
-          ></div>
-          <div
-            style={{ left: `calc(${length / 2}% + 0.5px)` }}
+            style={{ left: `calc(${length / 2}% - 12px)` }}
             className="control-dot"
           ></div>
         </div>
