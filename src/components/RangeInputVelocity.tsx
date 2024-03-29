@@ -24,6 +24,10 @@ export const RangeInputVelocity: React.FC<Props> = ({
 
   const position = percent * 100;
 
+  const velocityToShow = (1.5 / 99 * length + 48 / 99).toFixed(1)
+  // y = mx + b
+  // 100 -> 2
+  // 1 -> 0.5
   return (
     <div className="configuration-range">
       <input
@@ -45,7 +49,7 @@ export const RangeInputVelocity: React.FC<Props> = ({
       </div>
       <div className="wrapper">
         <div className="control-wrapper" style={{ left: `${position}%` }}>
-          <div className="rangeinput-tooltip">{length}</div>
+          <div className="rangeinput-tooltip">x{velocityToShow}</div>
           <div className="control-dot"></div>
         </div>
       </div>
