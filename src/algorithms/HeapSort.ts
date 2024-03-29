@@ -16,49 +16,47 @@ export const HeapSort = (): AlgorithmFunction => {
     setIsSorting: (newIsSorting: boolean) => void
   ) => {
     isSortingRef.current = true;
-    let prevBlocks = structuredClone(blocks);
-
     async function heapify(n: number, i: number) {
-      if (!isSortingRef.current) return stop(prevBlocks, setBlocks);
+      if (!isSortingRef.current) return stop(blocks, setBlocks);
       let largest = i;
       const left = 2 * i + 1;
       const right = 2 * i + 2;
 
-      if (left < n && prevBlocks[left].val > prevBlocks[largest].val) {
+      if (left < n && blocks[left].val > blocks[largest].val) {
         largest = left;
       }
 
-      if (right < n && prevBlocks[right].val > prevBlocks[largest].val) {
+      if (right < n && blocks[right].val > blocks[largest].val) {
         largest = right;
       }
 
       if (largest != i) {
-        prevBlocks = await swap(i, largest, prevBlocks, configuration.velocity);
-        setBlocks(prevBlocks);
+        await swap(i, largest, blocks, configuration.velocity);
+        setBlocks([...blocks]);
         await heapify(n, largest);
       }
     }
 
-    if (isSorted(prevBlocks)) {
-      await resetColor(prevBlocks, setBlocks);
+    if (isSorted(blocks)) {
+      await resetColor(blocks, setBlocks);
       isSortingRef.current = false;
       setIsSorting(false);
       return;
     }
 
-    for (let i = Math.floor(prevBlocks.length / 2) - 1; i >= 0; i--) {
-      if (!isSortingRef.current) return stop(prevBlocks, setBlocks);
-      await heapify(prevBlocks.length, i);
+    for (let i = Math.floor(blocks.length / 2) - 1; i >= 0; i--) {
+      if (!isSortingRef.current) return stop(blocks, setBlocks);
+      await heapify(blocks.length, i);
     }
 
-    for (let i = prevBlocks.length - 1; i >= 0; i--) {
-      if (!isSortingRef.current) return stop(prevBlocks, setBlocks);
-      prevBlocks = await swap(0, i, prevBlocks, configuration.velocity);
-      setBlocks(prevBlocks);
+    for (let i = blocks.length - 1; i >= 0; i--) {
+      if (!isSortingRef.current) return stop(blocks, setBlocks);
+      await swap(0, i, blocks, configuration.velocity);
+      setBlocks([...blocks]);
       await heapify(i, 0);
     }
 
-    await resetColor(prevBlocks, setBlocks);
+    await resetColor(blocks, setBlocks);
     isSortingRef.current = false;
     setIsSorting(false);
   };

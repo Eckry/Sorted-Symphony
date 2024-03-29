@@ -16,16 +16,15 @@ export const MergeSort = (): AlgorithmFunction => {
     setIsSorting: (newIsSorting: boolean) => void
   ) => {
     isSortingRef.current = true;
-    let prevBlocks = structuredClone(blocks);
-    let prevMerge = structuredClone(prevBlocks);
+    let prevMerge = structuredClone(blocks);
     async function merge(p: number, q: number, r: number) {
       const n1 = q - p + 1;
       const n2 = r - q;
       const L: number[] = Array(n1);
       const M: number[] = Array(n2);
 
-      for (let i = 0; i < n1; i++) L[i] = prevBlocks[p + i].val;
-      for (let j = 0; j < n2; j++) M[j] = prevBlocks[q + 1 + j].val;
+      for (let i = 0; i < n1; i++) L[i] = blocks[p + i].val;
+      for (let j = 0; j < n2; j++) M[j] = blocks[q + 1 + j].val;
 
       let i = 0;
       let j = 0;
@@ -34,16 +33,12 @@ export const MergeSort = (): AlgorithmFunction => {
       while (i < n1 && j < n2) {
         if (!isSortingRef.current) return;
         if (L[i] <= M[j]) {
-          prevBlocks = await insert(prevBlocks, L[i], k, configuration.velocity);
+          await insert(blocks, L[i], k, configuration.velocity);
+          setBlocks([...blocks]);
           i++;
         } else {
-          prevBlocks = await insert(
-            prevBlocks,
-            M[j],
-            k,
-            configuration.velocity
-          );
-          setBlocks(prevBlocks);
+          await insert(blocks, M[j], k, configuration.velocity);
+          setBlocks([...blocks]);
           j++;
         }
         k++;
@@ -51,21 +46,21 @@ export const MergeSort = (): AlgorithmFunction => {
 
       while (i < n1) {
         if (!isSortingRef.current) return;
-        prevBlocks = await insert(prevBlocks, L[i], k, configuration.velocity);
-        setBlocks(prevBlocks);
+        await insert(blocks, L[i], k, configuration.velocity);
+        setBlocks([...blocks]);
         i++;
         k++;
       }
 
       while (j < n2) {
         if (!isSortingRef.current) return;
-        prevBlocks = await insert(prevBlocks, M[j], k, configuration.velocity);
-        setBlocks(prevBlocks);
+        await insert(blocks, M[j], k, configuration.velocity);
+        setBlocks([...blocks]);
         j++;
         k++;
       }
       if (!isSortingRef.current) return;
-      prevMerge = structuredClone(prevBlocks);
+      prevMerge = structuredClone(blocks);
     }
 
     async function executeMergeSort(l: number, r: number) {
@@ -78,14 +73,14 @@ export const MergeSort = (): AlgorithmFunction => {
       }
     }
 
-    if (!isSorted(prevBlocks)) await executeMergeSort(0, prevBlocks.length - 1);
+    if (!isSorted(blocks)) await executeMergeSort(0, blocks.length - 1);
 
     if (!isSortingRef.current) {
       setBlocks(prevMerge);
       return stop(prevMerge, setBlocks);
     }
 
-    await resetColor(prevBlocks, setBlocks);
+    await resetColor(blocks, setBlocks);
     isSortingRef.current = false;
     setIsSorting(false);
   };

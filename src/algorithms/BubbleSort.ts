@@ -16,19 +16,18 @@ export const BubbleSort = (): AlgorithmFunction => {
     setIsSorting: (newIsSorting: boolean) => void
   ) => {
     isSortingRef.current = true;
-    let prevBlocks = structuredClone(blocks);
     for (let i = 0; i < blocks.length; i++) {
       for (let j = 0; j + 1 < blocks.length - i; j++) {
-        const { val: a } = prevBlocks[j];
-        const { val: b } = prevBlocks[j + 1];
-        if (!isSortingRef.current) return stop(prevBlocks, setBlocks);
+        const { val: a } = blocks[j];
+        const { val: b } = blocks[j + 1];
+        if (!isSortingRef.current) return stop(blocks, setBlocks);
         if (a > b) {
-          prevBlocks = await swap(j, j + 1, prevBlocks, configuration.velocity);
-          setBlocks(prevBlocks);
+          await swap(j, j + 1, blocks, configuration.velocity);
+          setBlocks([...blocks]);
         }
       }
     }
-    await resetColor(prevBlocks, setBlocks);
+    await resetColor(blocks, setBlocks);
     isSortingRef.current = false;
     setIsSorting(false);
   };

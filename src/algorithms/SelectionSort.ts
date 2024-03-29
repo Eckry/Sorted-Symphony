@@ -16,23 +16,22 @@ export const SelectionSort = (): AlgorithmFunction => {
     setIsSorting: (newIsSorting: boolean) => void
   ) => {
     isSortingRef.current = true;
-    let prevBlocks = structuredClone(blocks);
     for (let i = 0; i < blocks.length; i++) {
       let min = i;
       for (let j = i + 1; j < blocks.length; j++) {
-        const { val: a } = prevBlocks[min];
-        const { val: b } = prevBlocks[j];
-        if (!isSortingRef.current) return stop(prevBlocks, setBlocks);
+        const { val: a } = blocks[min];
+        const { val: b } = blocks[j];
+        if (!isSortingRef.current) return stop(blocks, setBlocks);
         if (a > b) {
           min = j;
         }
       }
       if (i !== min) {
-        prevBlocks = await swap(i, min, prevBlocks, configuration.velocity);
-        setBlocks(prevBlocks);
+        await swap(i, min, blocks, configuration.velocity);
+        setBlocks([...blocks]);
       }
     }
-    await resetColor(prevBlocks, setBlocks);
+    await resetColor(blocks, setBlocks);
     isSortingRef.current = false;
     setIsSorting(false);
   };

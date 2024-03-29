@@ -16,25 +16,24 @@ export const QuickSort = (): AlgorithmFunction => {
     setIsSorting: (newIsSorting: boolean) => void
   ) => {
     isSortingRef.current = true;
-    let prevBlocks = structuredClone(blocks);
     async function executeQuickSort(first: number, last: number) {
       const center = Math.floor((first + last) / 2);
-      const pivot = prevBlocks[center];
+      const pivot = blocks[center];
       let i = first;
       let j = last;
 
       while (i <= j) {
-        while (prevBlocks[i].val < pivot.val) i++;
-        while (prevBlocks[j].val > pivot.val) j--;
+        while (blocks[i].val < pivot.val) i++;
+        while (blocks[j].val > pivot.val) j--;
         if (!isSortingRef.current) return;
         if (i <= j) {
-          prevBlocks = await swapAndPaintBoth(
+          await swapAndPaintBoth(
             i,
             j,
-            prevBlocks,
+            blocks,
             configuration.velocity
           );
-          setBlocks(prevBlocks);
+          setBlocks([...blocks]);
           i++;
           j--;
         }
@@ -44,9 +43,9 @@ export const QuickSort = (): AlgorithmFunction => {
       if (i < last) await executeQuickSort(i, last);
     }
 
-    if (!isSorted(prevBlocks)) await executeQuickSort(0, prevBlocks.length - 1);
-    if (!isSortingRef.current) return stop(prevBlocks, setBlocks);
-    await resetColor(prevBlocks, setBlocks);
+    if (!isSorted(blocks)) await executeQuickSort(0, blocks.length - 1);
+    if (!isSortingRef.current) return stop(blocks, setBlocks);
+    await resetColor(blocks, setBlocks);
     isSortingRef.current = false;
     setIsSorting(false);
   };

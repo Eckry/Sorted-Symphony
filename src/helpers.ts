@@ -16,7 +16,7 @@ const playFinish = () => {
   const audio = new Audio("./finish.mp3");
   audio.volume = 0.2;
   audio.play();
-}
+};
 
 export const shuffle = (array: Block[]) => {
   const newArray = [...array];
@@ -45,62 +45,62 @@ export const sleep = (delay: number) =>
   new Promise((resolve) => setTimeout(resolve, delay));
 
 export const insert = async (
-  prevBlocks: Block[],
+  blocks: Block[],
   numberToInsert: number,
   i: number,
   delay: number
 ) => {
-  const newBlocks = prevBlocks.map((block) => {
-    return { ...block, color: colors.DEFAULT };
+  blocks.forEach((block, i) => {
+    blocks[i] = { ...block, color: colors.DEFAULT };
   });
 
-  newBlocks[i].val = numberToInsert;
-  newBlocks[i].color = colors.HIGHLIGHT;
+  blocks[i] = { val: numberToInsert, color: colors.HIGHLIGHT };
 
   await sleep(delay);
-  play(numberToInsert, newBlocks.length);
-  return newBlocks;
+  play(numberToInsert, blocks.length);
 };
 
 export const swap = async (
   i: number,
   j: number,
-  prevBlocks: Block[],
+  blocks: Block[],
   delay: number
 ) => {
-  const blocks = prevBlocks.map((block) => {
-    return { ...block, color: colors.DEFAULT };
+  blocks.forEach((block, i) => {
+    blocks[i] = { ...block, color: colors.DEFAULT };
   });
 
   const temp = { ...blocks[i], color: colors.HIGHLIGHT };
   blocks[i] = { ...blocks[j], color: colors.DEFAULT };
   blocks[j] = temp;
+
   await sleep(delay);
+
   play(blocks[i].val, blocks.length);
-  return blocks;
 };
 
 export const swapAndPaintBoth = async (
   i: number,
   j: number,
-  prevBlocks: Block[],
+  blocks: Block[],
   delay: number
 ) => {
-  const blocks = prevBlocks.map((block) => {
-    return { ...block, color: colors.DEFAULT };
+  blocks.forEach((block, i) => {
+    blocks[i] = { ...block, color: colors.DEFAULT };
   });
 
   const temp = { ...blocks[i], color: colors.HIGHLIGHT };
   blocks[i] = { ...blocks[j], color: colors.HIGHLIGHT };
   blocks[j] = temp;
+
   await sleep(delay);
+  
   play(blocks[j].val, blocks.length);
-  return blocks;
 };
 
 export const resetColor = async (
   prevBlocks: Block[],
-  setBlocks: (blocks: Block[]) => void,
+  setBlocks: (blocks: Block[]) => void
 ) => {
   const newBlocks = prevBlocks.map((block) => {
     return { ...block, color: colors.DEFAULT };

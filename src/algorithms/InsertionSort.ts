@@ -16,27 +16,26 @@ export const InsertionSort = (): AlgorithmFunction => {
     setIsSorting: (newIsSorting: boolean) => void
   ) => {
     isSortingRef.current = true;
-    let prevBlocks = structuredClone(blocks);
     let prevStatus = structuredClone(blocks);
-    for (let i = 1; i < prevBlocks.length; i++) {
-      prevStatus = structuredClone(prevBlocks);
-      const key = prevBlocks[i].val;
+    for (let i = 1; i < blocks.length; i++) {
+      prevStatus = structuredClone(blocks);
+      const key = blocks[i].val;
       let j = i - 1;
-      while (j >= 0 && key < prevBlocks[j].val) {
+      while (j >= 0 && key < blocks[j].val) {
         if (!isSortingRef.current) break;
-        prevBlocks = await insert(
-          prevBlocks,
-          prevBlocks[j].val,
+        await insert(
+          blocks,
+          blocks[j].val,
           j + 1,
           configuration.velocity
         );
-        setBlocks(prevBlocks);
+        setBlocks([...blocks]);
         j--;
       }
 
       if (!isSortingRef.current) break;
-      prevBlocks = await insert(prevBlocks, key, j + 1, configuration.velocity);
-      setBlocks(prevBlocks);
+      await insert(blocks, key, j + 1, configuration.velocity);
+      setBlocks([...blocks]);
     }
 
     if (!isSortingRef.current) {
@@ -44,7 +43,7 @@ export const InsertionSort = (): AlgorithmFunction => {
       return stop(prevStatus, setBlocks);
     }
 
-    await resetColor(prevBlocks, setBlocks);
+    await resetColor(blocks, setBlocks);
     isSortingRef.current = false;
     setIsSorting(false);
   };
