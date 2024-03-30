@@ -19,12 +19,25 @@
   padding: 1rem;
 }
 
-.copy-clipboard {
-  padding: 1rem;
-  background-color: var(--secondary-color);
+.copy-clipboard,
+.copy-clipboard-copied {
+  background-color: transparent;
   outline: none;
   border: none;
   cursor: pointer;
+  color: var(--tertiary-color);
+  transition: 0.2s ease-in-out;
+}
+
+.copy-clipboard-copied {
+  scale: 1.1;
+  color: var(--tertiary-brighty-color);
+}
+
+.copy-clipboard:hover {
+  scale: 1.1;
+  transition: 0.2s ease-in-out;
+  color: var(--tertiary-brighty-color);
 }
 
 .code,

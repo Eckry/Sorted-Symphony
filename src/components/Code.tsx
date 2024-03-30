@@ -5,7 +5,14 @@ import { useState } from "react";
 import { useSelected } from "../hooks/useSelected";
 import { Language } from "../types";
 import { languages } from "../consts";
-import { CppIcon, JavaIcon, JavaScriptIcon, PythonIcon } from "../icons";
+import {
+  ClipboardCheckedIcon,
+  ClipboardIcon,
+  CppIcon,
+  JavaIcon,
+  JavaScriptIcon,
+  PythonIcon,
+} from "../icons";
 
 export const Code = () => {
   const [languageSelected, setLanguageSelected] = useState<Language>(
@@ -56,8 +63,11 @@ export const Code = () => {
             );
           })}
         </ul>
-        <button className="copy-clipboard" onClick={handleCopyToClipboard}>
-          {copied ? "Copied!" : "Copy"}
+        <button
+          className={copied ? "copy-clipboard-copied" : "copy-clipboard"}
+          onClick={handleCopyToClipboard}
+        >
+          {copied ? <ClipboardCheckedIcon /> : <ClipboardIcon />}
         </button>
       </header>
       <SyntaxHighlighter
