@@ -38,6 +38,9 @@ export const Code = () => {
 
   const customStyle = {
     backgroundColor: "transparent",
+    border: "2px solid var(--secondary-color)",
+    borderTop: "none",
+    color: "var(--tertiary-brighty-color)",
   };
 
   const Icons = {
@@ -45,6 +48,10 @@ export const Code = () => {
     JavaScript: <JavaScriptIcon />,
     Python: <PythonIcon />,
     Java: <JavaIcon />,
+  };
+
+  const lineNumberStyle = {
+    color: "var(--tertiary-color)",
   };
 
   return (
@@ -72,6 +79,8 @@ export const Code = () => {
       </header>
       <SyntaxHighlighter
         showLineNumbers
+        wrapLines
+        lineNumberStyle={lineNumberStyle}
         language={languageSelected.toLowerCase()}
         style={atomOneDarkReasonable}
         customStyle={customStyle}
