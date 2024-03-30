@@ -1,8 +1,10 @@
 .code-header {
   display: flex;
-  background-color: var(--secondary-color);
   justify-content: space-between;
   align-items: center;
+  margin-top: 16px;
+  border-top: 2px solid var(--secondary-color);
+  border-bottom: 2px solid var(--secondary-color);
 }
 
 .code-container {
@@ -13,7 +15,7 @@
 .codes-container {
   display: flex;
   list-style: none;
-  gap: 1rem;
+  gap: 32px;
   padding: 1rem;
 }
 
@@ -27,13 +29,53 @@
 
 .code,
 .code-selected {
+  position: relative;
   cursor: pointer;
-  border: 2px solid white;
-  border-radius: 10px;
+  display: grid;
+  place-content: center;
   padding: 1rem;
+  border-bottom: 2px solid transparent;
+}
+
+.code:hover::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  animation: appear ease-in-out 0.2s;
+  border-radius: 8px;
+  border-top: 2px solid var(--tertiary-color);
+  border-bottom: 2px solid var(--tertiary-color);
 }
 
 .code-selected {
-  border-color: var(--highlight-color);
   color: var(--highlight-color);
+}
+
+.code-selected::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border-radius: 8px;
+  border-top: 2px solid var(--highlight-color);
+  border-bottom: 2px solid var(--highlight-color);
+}
+
+@keyframes appear {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100;
+  }
 }

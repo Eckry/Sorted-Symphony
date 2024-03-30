@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useSelected } from "../hooks/useSelected";
 import { Language } from "../types";
 import { languages } from "../consts";
+import { CppIcon, JavaIcon, JavaScriptIcon, PythonIcon } from "../icons";
 
 export const Code = () => {
   const [languageSelected, setLanguageSelected] = useState<Language>(
@@ -28,6 +29,17 @@ export const Code = () => {
     }, 1000);
   };
 
+  const customStyle = {
+    backgroundColor: "transparent",
+  };
+
+  const Icons = {
+    "C++": <CppIcon />,
+    JavaScript: <JavaScriptIcon />,
+    Python: <PythonIcon />,
+    Java: <JavaIcon />,
+  };
+
   return (
     <section className="code-container">
       <header className="code-header">
@@ -39,7 +51,7 @@ export const Code = () => {
                 key={idx}
                 onClick={() => changeLanguage(val)}
               >
-                {key}
+                {Icons[key]}
               </li>
             );
           })}
@@ -52,6 +64,7 @@ export const Code = () => {
         showLineNumbers
         language={languageSelected.toLowerCase()}
         style={atomOneDarkReasonable}
+        customStyle={customStyle}
       >
         {code[languageSelected]}
       </SyntaxHighlighter>
