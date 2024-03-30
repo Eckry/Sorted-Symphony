@@ -1,7 +1,7 @@
 import { AudioFile } from "./types";
 
 export const initialConfiguration = {
-  velocity: 150,
+  velocity: 100,
   elements: 100,
 };
 

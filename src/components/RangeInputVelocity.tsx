@@ -17,17 +17,17 @@ export const RangeInputVelocity: React.FC<Props> = ({
     handleChange(newConfiguration);
   };
 
-  const rangeMax = 100;
-  const rangeMin = 1;
+  const rangeMax = 200;
+  const rangeMin = 50;
 
   const percent = (length - rangeMin) / (rangeMax - rangeMin);
 
   const position = percent * 100;
 
-  const velocityToShow = (1.5 / 99 * length + 48 / 99).toFixed(1)
+  const velocityToShow = (1.5 / 150 * length).toFixed(1)
   // y = mx + b
-  // 100 -> 2
-  // 1 -> 0.5
+  // 200 -> 2
+  // 50 -> 0.5
   return (
     <div className="configuration-range">
       <input
