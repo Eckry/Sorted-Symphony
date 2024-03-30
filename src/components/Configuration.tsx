@@ -1,3 +1,4 @@
+import { PlayIcon, StopIcon } from "../icons";
 import { Block, ConfigurationElements, ConfigurationVelocity } from "../types";
 import { RangeInputElements } from "./RangeInputElements";
 import { RangeInputVelocity } from "./RangeInputVelocity";
@@ -40,7 +41,7 @@ export const Configuration: React.FC<Props> = ({
         length={blocks.length}
       />
       <button className="play-sort" onClick={handleSort}>
-        II
+        {isSorting ? <StopIcon /> : <PlayIcon />}
       </button>
       <RangeInputVelocity
         handleChange={handleChangeVelocity}

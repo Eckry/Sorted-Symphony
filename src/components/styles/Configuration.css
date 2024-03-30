@@ -5,17 +5,29 @@
 }
 
 .play-sort {
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   outline: none;
   border: none;
   cursor: pointer;
   color: var(--highlight-color);
-  font-weight: bold;
-  background-color: var(--secondary-color);
+  background-color: transparent;
   border-radius: 50%;
-  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  transition: 0.2s;
+  border: 1px solid var(--highlight-color);
 }
 
 .play-sort:hover {
-  background-color: var(--tertiary-color);
+  transition: 0.2s;
+  background-color: var(--primary-brighty-color);
+}
+
+.play-sort > svg {
+  transition: 0.2s;
+}
+
+.play-sort:hover > svg {
+  transition: 0.2s;
+  color: var(--highlight-brighty-color);
 }
