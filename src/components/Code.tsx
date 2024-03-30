@@ -51,7 +51,7 @@ export const Code = () => {
                 key={idx}
                 onClick={() => changeLanguage(val)}
               >
-                {Icons[key]}
+                {Icons[key as keyof typeof languages]}
               </li>
             );
           })}
