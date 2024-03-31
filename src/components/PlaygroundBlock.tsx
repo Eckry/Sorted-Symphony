@@ -46,7 +46,7 @@ export const PlaygroundBlock: React.FC<Props> = ({
     init(blocks, setBlocks, configuration, setIsSorting);
   }, [isSorting]);
 
-  const configuration: Configuration = { velocity: 25, elements: 0 };
+  const configuration: Configuration = { velocity: 75, elements: 0 };
 
   return (
     <div
