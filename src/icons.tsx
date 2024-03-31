@@ -3,16 +3,14 @@ export const PlayIcon = () => (
     width="32"
     height="32"
     viewBox="0 0 24 24"
-    stroke-width="1.5"
+    strokeWidth="1.5"
     stroke="#2c3e50"
     fill="none"
-    stroke-linecap="round"
-    stroke-linejoin="round"
   >
     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
     <path
       d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z"
-      stroke-width="0"
+      strokeWidth="0"
       fill="currentColor"
     />
   </svg>
@@ -94,8 +92,8 @@ export const PythonIcon = () => (
         y2="78.201%"
         id="a"
       >
-        <stop stop-color="#387EB8" offset="0%" />
-        <stop stop-color="#366994" offset="100%" />
+        <stop stopColor="#387EB8" offset="0%" />
+        <stop stopColor="#366994" offset="100%" />
       </linearGradient>
       <linearGradient
         x1="19.128%"
@@ -104,8 +102,8 @@ export const PythonIcon = () => (
         y2="88.429%"
         id="b"
       >
-        <stop stop-color="#FFE052" offset="0%" />
-        <stop stop-color="#FFC331" offset="100%" />
+        <stop stopColor="#FFE052" offset="0%" />
+        <stop stopColor="#FFC331" offset="100%" />
       </linearGradient>
     </defs>
     <path
@@ -137,7 +135,7 @@ export const ClipboardIcon = () => (
     width="62"
     height="62"
     viewBox="0 0 24 24"
-    stroke-width="1.5"
+    strokeWidth="1.5"
     stroke="currentColor"
     fill="none"
   >
@@ -154,7 +152,7 @@ export const ClipboardCheckedIcon = () => (
     width="62"
     height="62"
     viewBox="0 0 24 24"
-    stroke-width="1.5"
+    strokeWidth="1.5"
     stroke="currentColor"
     fill="none"
   >

@@ -58,7 +58,7 @@ export const useSort = () => {
       return { ...prevConfig, velocity: 200 - velocity };
     });
   };
-
+  
   useEffect(() => {
     if (!isSorting) return stop();
     init(blocks, setBlocks, configuration, setIsSorting);
