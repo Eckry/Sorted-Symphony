@@ -55,38 +55,43 @@ export const Code = () => {
   };
 
   return (
-    <section className="code-container">
-      <header className="code-header">
-        <ul className="codes-container">
-          {Object.entries(languages).map(([key, val], idx) => {
-            return (
-              <li
-                className={val === languageSelected ? "code-selected" : "code"}
-                key={idx}
-                onClick={() => changeLanguage(val)}
-              >
-                {Icons[key as keyof typeof languages]}
-              </li>
-            );
-          })}
-        </ul>
-        <button
-          className={copied ? "copy-clipboard-copied" : "copy-clipboard"}
-          onClick={handleCopyToClipboard}
+    <>
+      <h1 className="implementation-title">Implementation</h1>
+      <section className="code-container">
+        <header className="code-header">
+          <ul className="codes-container">
+            {Object.entries(languages).map(([key, val], idx) => {
+              return (
+                <li
+                  className={
+                    val === languageSelected ? "code-selected" : "code"
+                  }
+                  key={idx}
+                  onClick={() => changeLanguage(val)}
+                >
+                  {Icons[key as keyof typeof languages]}
+                </li>
+              );
+            })}
+          </ul>
+          <button
+            className={copied ? "copy-clipboard-copied" : "copy-clipboard"}
+            onClick={handleCopyToClipboard}
+          >
+            {copied ? <ClipboardCheckedIcon /> : <ClipboardIcon />}
+          </button>
+        </header>
+        <SyntaxHighlighter
+          showLineNumbers
+          wrapLines
+          lineNumberStyle={lineNumberStyle}
+          language={languageSelected.toLowerCase()}
+          style={atomOneDarkReasonable}
+          customStyle={customStyle}
         >
-          {copied ? <ClipboardCheckedIcon /> : <ClipboardIcon />}
-        </button>
-      </header>
-      <SyntaxHighlighter
-        showLineNumbers
-        wrapLines
-        lineNumberStyle={lineNumberStyle}
-        language={languageSelected.toLowerCase()}
-        style={atomOneDarkReasonable}
-        customStyle={customStyle}
-      >
-        {code[languageSelected]}
-      </SyntaxHighlighter>
-    </section>
+          {code[languageSelected]}
+        </SyntaxHighlighter>
+      </section>
+    </>
   );
 };

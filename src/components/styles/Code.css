@@ -1,3 +1,10 @@
+.implementation-title {
+  font-size: 2rem;
+  color: var(--tertiary-brighty-color);
+  text-align: center;
+  margin-top: 32px;
+}
+
 .code-header {
   display: flex;
   justify-content: space-between;
