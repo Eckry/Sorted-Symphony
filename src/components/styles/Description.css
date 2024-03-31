@@ -1,12 +1,39 @@
 .description-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  color: var(--tertiary-brighty-color);
   padding: 1rem;
+}
+
+.description-header {
+  text-align: center;
+  color: var(--tertiary-brighty-color);
+  font-weight: 100;
+  font-size: 1.5rem;
+}
+
+.description-grid {
+  display: grid;
+  margin-top: 32px;
+  grid-template-columns: 2fr 1fr;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.description-title {
+  color: var(--highlight-color);
+}
+
+.description-text {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  text-wrap: pretty;
+  line-height: 24px;
 }
 
 .extra-information {
-  border: 1px solid brown;
-  padding: 1rem;
-  background-color: var(--secondary-color);
+  border-left: 3px solid var(--highlight-color);
+  padding-left: 1.1rem;
 }
 
+.complexity {
+  list-style: none;
+}

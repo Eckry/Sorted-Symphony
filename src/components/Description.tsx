@@ -4,7 +4,7 @@ import { information } from "../information";
 
 export const Description = () => {
   const { selected } = useSelected();
-  
+
   const description = information[selected].description;
 
   const timeComplexity = {
@@ -14,23 +14,26 @@ export const Description = () => {
     "Space complexity": information[selected].time.space,
   };
   return (
-    <section>
-      <header>
-        <h1>More information about {selected}</h1>
+    <section className="description-container">
+      <header className="description-header">
+        <h1>Learn more about {selected}</h1>
       </header>
-      <div className="description-container">
+      <div className="description-grid">
         <div>
-          <p>{description}</p>
+          <h2 className="description-title">Description</h2>
+          <p className="description-text">{description}</p>
         </div>
         <aside className="extra-information">
-          <h2>Time complexity</h2>
-          {Object.entries(timeComplexity).map(([title, complexity]) => {
-            return (
-              <p key={title}>
-                {title}: {complexity}
-              </p>
-            );
-          })}
+          <h2 className="description-title">Complexity</h2>
+          <ul>
+            {Object.entries(timeComplexity).map(([title, complexity]) => {
+              return (
+                <li className="description-text complexity" key={title}>
+                  {title}: {complexity}
+                </li>
+              );
+            })}
+          </ul>
         </aside>
       </div>
     </section>
