@@ -23,7 +23,7 @@ export const Comparison = () => {
 
     const newAlgorithms = algorithmsSelected.slice(
       0,
-      algorithmsSelected.length - 2
+      algorithmsSelected.length - 1
     );
     setAlgorithmsSelected([algorithmToAdd, ...newAlgorithms]);
   };
