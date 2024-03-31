@@ -9,6 +9,7 @@ import { MergeSort } from "../algorithms/MergeSort";
 import { InsertionSort } from "../algorithms/InsertionSort";
 import { HeapSort } from "../algorithms/HeapSort";
 import { colors, initialBlocks, initialConfiguration } from "../consts";
+import { ShakerSort } from "../algorithms/ShakerSort";
 
 const imports = {
   BubbleSort,
@@ -17,6 +18,7 @@ const imports = {
   MergeSort,
   InsertionSort,
   HeapSort,
+  ShakerSort,
 };
 
 export const useSort = () => {
@@ -58,7 +60,7 @@ export const useSort = () => {
       return { ...prevConfig, velocity: 200 - velocity };
     });
   };
-  
+
   useEffect(() => {
     if (!isSorting) return stop();
     init(blocks, setBlocks, configuration, setIsSorting);

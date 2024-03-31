@@ -7,8 +7,8 @@ export const initialConfiguration = {
 
 export const colors = {
   DEFAULT: "var(--primary-brighty-color)",
-  HIGHLIGHT: "var(--highlight-color)"
-}
+  HIGHLIGHT: "var(--highlight-color)",
+};
 
 export const algorithms = {
   QUICKSORT: "QuickSort",
@@ -17,6 +17,7 @@ export const algorithms = {
   INSERTIONSORT: "InsertionSort",
   SELECTIONSORT: "SelectionSort",
   HEAPSORT: "HeapSort",
+  SHAKERSORT: "ShakerSort",
 } as const;
 
 export const sortOptions = {

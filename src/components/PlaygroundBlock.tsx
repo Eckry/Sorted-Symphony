@@ -10,6 +10,7 @@ import { InsertionSort } from "../algorithms/InsertionSort";
 import { QuickSort } from "../algorithms/QuickSort";
 import { MergeSort } from "../algorithms/MergeSort";
 import { initialBlocks } from "../consts";
+import { ShakerSort } from "../algorithms/ShakerSort";
 
 interface Props {
   algorithm: Algorithm;
@@ -24,6 +25,7 @@ const imports = {
   MergeSort,
   InsertionSort,
   HeapSort,
+  ShakerSort,
 };
 
 export const PlaygroundBlock: React.FC<Props> = ({

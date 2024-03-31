@@ -396,4 +396,10 @@ def heapSort(arr, n):
 `,
     java: ``,
   },
+  ShakerSort: {
+    javascript: ``,
+    cpp: ``,
+    python: ``,
+    java: ``,
+  },
 };
