@@ -53,44 +53,46 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
   };
 
   return (
-    <section className="playground-container">
-      <div style={gridColumns} className="playground-type">
-        <button className="click-all" onClick={handleClickAll}>
-          <PlayIcon />
-        </button>
-        {algorithmsSelected.map((algorithm, idx) => {
-          return (
+    <section style={gridColumns} className="playground-container">
+      <button className="click-all" onClick={handleClickAll}>
+        <PlayIcon />
+      </button>
+      {algorithmsSelected.map((algorithm, idx) => {
+        return (
+          <button
+            className="algorithm-button"
+            key={`${algorithm}-${idx}`}
+            onClick={createHandleColumnClick(idx)}
+          >
+            <PlayIcon />
+            {algorithm}
+          </button>
+        );
+      })}
+
+      {Object.values(sortOptions).map((sortOption, row) => {
+        return (
+          <React.Fragment key={crypto.randomUUID()}>
             <button
-              key={`${algorithm}-${idx}`}
-              onClick={createHandleColumnClick(idx)}
+              className="algorithm-button"
+              onClick={createHandleRowClick(row)}
             >
               <PlayIcon />
-              {algorithm}
+              {sortOption}
             </button>
-          );
-        })}
-
-        {Object.values(sortOptions).map((sortOption, row) => {
-          return (
-            <React.Fragment key={crypto.randomUUID()}>
-              <button onClick={createHandleRowClick(row)}>
-                <PlayIcon />
-                {sortOption}
-              </button>
-              {algorithmsSelected.map((algorithm, column) => {
-                return (
-                  <PlaygroundBlock
-                    algorithm={algorithm}
-                    option={sortOption}
-                    position={`${column}-${row}`}
-                    key={`${algorithm}-${sortOption}`}
-                  />
-                );
-              })}
-            </React.Fragment>
-          );
-        })}
-      </div>
+            {algorithmsSelected.map((algorithm, column) => {
+              return (
+                <PlaygroundBlock
+                  algorithm={algorithm}
+                  option={sortOption}
+                  position={`${column}-${row}`}
+                  key={`${algorithm}-${sortOption}`}
+                />
+              );
+            })}
+          </React.Fragment>
+        );
+      })}
     </section>
   );
 };

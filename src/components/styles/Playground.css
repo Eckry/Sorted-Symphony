@@ -1,17 +1,23 @@
 .playground-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.playground-type {
   display: grid;
-  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin: 32px 0;
 }
 
-.click-all {
+.click-all,
+.algorithm-button {
   background-color: transparent;
   border: 2px solid var(--highlight-color);
-  border-radius: 50%;
   aspect-ratio: 1;
   cursor: pointer;
+  width: 100%;
+}
+
+.algorithm-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-color: var(--secondary-color);
 }
