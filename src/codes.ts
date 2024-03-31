@@ -341,8 +341,7 @@ function heapSort(arr, n) {
 
     heapify(arr, i, 0);
   }
-}
-`,
+}`,
     cpp: `void heapify(int arr[], int n, int i)
 {
   int largest = i;
