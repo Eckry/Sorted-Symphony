@@ -4,20 +4,28 @@ import { Algorithm } from "../types";
 import { algorithms } from "../consts";
 import { Playground } from "../components/Playground";
 
+const initialAlgorithmsSelected: Algorithm[] = [
+  "QuickSort",
+  "MergeSort",
+  "BubbleSort",
+  "InsertionSort",
+  "SelectionSort",
+  "HeapSort",
+];
+
 export const Comparison = () => {
-  const [algorithmsSelected, setAlgorithmsSelected] = useState<Algorithm[]>([]);
+  const [algorithmsSelected, setAlgorithmsSelected] = useState<Algorithm[]>(
+    initialAlgorithmsSelected
+  );
 
   const addAlgorithm = (algorithmToAdd: Algorithm) => {
-    if (algorithmsSelected.includes(algorithmToAdd)) {
-      const newAlgorithms = algorithmsSelected.filter(
-        (algorithm) => algorithm !== algorithmToAdd
-      );
-      setAlgorithmsSelected(newAlgorithms);
-      return;
-    }
-    setAlgorithmsSelected((prevState) => {
-      return [...prevState, algorithmToAdd];
-    });
+    if (algorithmsSelected.includes(algorithmToAdd)) return;
+
+    const newAlgorithms = algorithmsSelected.slice(
+      0,
+      algorithmsSelected.length - 2
+    );
+    setAlgorithmsSelected([algorithmToAdd, ...newAlgorithms]);
   };
 
   return (
