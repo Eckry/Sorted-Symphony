@@ -23,16 +23,20 @@ export const Comparison = () => {
   return (
     <main className="comparison-container">
       <header className="comparison-header">
-        <h1>Compare all the algorithms you want.</h1>
+        <h1 className="header-title">Orchestra</h1>
+        <p className="header-phrase">
+          Compare all the algorithms you want and pay attention to the their
+          symphony
+        </p>
       </header>
-      <ul>
+      <ul className="selection-container">
         {Object.values(algorithms).map((algorithm) => {
           return (
             <li
               className={
                 algorithmsSelected.includes(algorithm)
-                  ? "algorithm-selected"
-                  : "algorithm"
+                  ? "option-selected"
+                  : "option"
               }
               onClick={() => addAlgorithm(algorithm)}
               key={algorithm}

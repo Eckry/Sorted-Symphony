@@ -5,16 +5,8 @@
 }
 
 .comparison-header {
+  padding-top: 32px;
   text-align: center;
-}
-
-.algorithm,
-.algorithm-selected {
-  list-style: none;
-  margin-top: 1rem;
-  cursor: pointer;
-}
-
-.algorithm-selected {
+  font-size: 2.5rem;
   color: var(--highlight-color);
 }
