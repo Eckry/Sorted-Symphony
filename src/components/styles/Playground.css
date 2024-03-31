@@ -5,6 +5,13 @@
 
 .playground-type {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1rem;
+}
+
+.click-all {
+  background-color: transparent;
+  border: 2px solid var(--highlight-color);
+  border-radius: 50%;
+  aspect-ratio: 1;
+  cursor: pointer;
 }

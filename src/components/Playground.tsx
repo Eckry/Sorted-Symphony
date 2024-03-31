@@ -3,6 +3,7 @@ import { Algorithm } from "../types";
 import { sortOptions } from "../consts";
 import { PlaygroundBlock } from "./PlaygroundBlock";
 import React from "react";
+import { PlayIcon } from "../icons";
 
 interface Props {
   algorithmsSelected: Algorithm[];
@@ -10,7 +11,7 @@ interface Props {
 
 export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
   const createHandleColumnClick = (column: number) => () => {
-    algorithmsSelected.forEach((_, row) => {
+    Object.values(sortOptions).forEach((_, row) => {
       const block = document.querySelector(
         `.playground-block-${column}-${row}`
       );
@@ -22,8 +23,10 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
   };
 
   const createHandleRowClick = (row: number) => () => {
-    Object.values(sortOptions).forEach((_, column) => {
-      const block = document.querySelector(`.playground-block-${column}-${row}`);
+    algorithmsSelected.forEach((_, column) => {
+      const block = document.querySelector(
+        `.playground-block-${column}-${row}`
+      );
 
       if (block instanceof HTMLElement) {
         block.click();
@@ -32,8 +35,8 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
   };
 
   const handleClickAll = () => {
-    algorithmsSelected.forEach((_, row) => {
-      Object.values(sortOptions).forEach((__, column) => {
+    Object.values(sortOptions).forEach((_, row) => {
+      algorithmsSelected.forEach((__, column) => {
         const block = document.querySelector(
           `.playground-block-${column}-${row}`
         );
@@ -45,21 +48,36 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
     });
   };
 
+  const gridColumns = {
+    gridTemplateColumns: `repeat(${algorithmsSelected.length + 1}, 1fr)`,
+  };
+
   return (
     <section className="playground-container">
-      <div className="playground-type">
-        <button onClick={handleClickAll}>All</button>
-        {Object.values(sortOptions).map((option, idx) => {
+      <div style={gridColumns} className="playground-type">
+        <button className="click-all" onClick={handleClickAll}>
+          <PlayIcon />
+        </button>
+        {algorithmsSelected.map((algorithm, idx) => {
           return (
-            <button key={option} onClick={createHandleColumnClick(idx)}>{option}</button>
+            <button
+              key={`${algorithm}-${idx}`}
+              onClick={createHandleColumnClick(idx)}
+            >
+              <PlayIcon />
+              {algorithm}
+            </button>
           );
         })}
 
-        {algorithmsSelected.map((algorithm, row) => {
+        {Object.values(sortOptions).map((sortOption, row) => {
           return (
             <React.Fragment key={crypto.randomUUID()}>
-              <button onClick={createHandleRowClick(row)}>{algorithm}</button>
-              {Object.values(sortOptions).map((sortOption, column) => {
+              <button onClick={createHandleRowClick(row)}>
+                <PlayIcon />
+                {sortOption}
+              </button>
+              {algorithmsSelected.map((algorithm, column) => {
                 return (
                   <PlaygroundBlock
                     algorithm={algorithm}
