@@ -31,13 +31,13 @@ export const PlaygroundBlock: React.FC<Props> = ({
   option,
   position,
 }) => {
-  const [blocks, setBlocks] = useState(initialBlocks[option]);
+  const [blocks, setBlocks] = useState([...initialBlocks[option]]);
   const [isSorting, setIsSorting] = useState(false);
 
   const [init, stop] = imports[algorithm]();
 
   const handleOnClick = () => {
-    if (!isSorting) setBlocks(initialBlocks[option]);
+    if (!isSorting) setBlocks([...initialBlocks[option]]);
     setIsSorting((prev) => !prev);
   };
 

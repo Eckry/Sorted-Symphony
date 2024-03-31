@@ -21,7 +21,7 @@ const imports = {
 
 export const useSort = () => {
   const { selected } = useSelected();
-  const [blocks, setBlocks] = useState(initialBlocks.Random);
+  const [blocks, setBlocks] = useState([...initialBlocks.Random]);
   const isSortingRef = useRef(false);
   const [isSorting, setIsSorting] = useState(false);
   const [configuration, setConfiguration] = useState(initialConfiguration);
@@ -71,6 +71,6 @@ export const useSort = () => {
     isSorting,
     changeVelocity,
     changeElements,
-    configuration
+    configuration,
   };
 };
