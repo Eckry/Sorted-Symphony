@@ -5,19 +5,20 @@
   margin: 32px 0;
 }
 
-.click-all,
 .algorithm-button {
   background-color: transparent;
-  border: 2px solid var(--highlight-color);
+  border: 2px solid var(--secondary-color);
   aspect-ratio: 1;
   cursor: pointer;
+  color: var(--tertiary-brighty-color);
   width: 100%;
-}
-
-.algorithm-button {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border-color: var(--secondary-color);
+  gap: 1rem;
+}
+
+.algorithm-button:hover {
+  color: var(--highlight-color);
 }

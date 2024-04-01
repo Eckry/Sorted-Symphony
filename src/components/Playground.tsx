@@ -54,8 +54,9 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
 
   return (
     <section style={gridColumns} className="playground-container">
-      <button className="click-all" onClick={handleClickAll}>
+      <button className="algorithm-button" onClick={handleClickAll}>
         <PlayIcon />
+        All
       </button>
       {algorithmsSelected.map((algorithm, idx) => {
         return (
