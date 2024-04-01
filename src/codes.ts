@@ -68,7 +68,22 @@ for(int i = 0; i < n; i++){
   arr[minIdx] = arr[i];
   arr[i] = temp;
 }`,
-    java: ``,
+    java: `public static void selectionSort(int[] arr) {
+  int n = arr.length;
+  for (int i = 0; i < n; i++) {
+    int minIdx = i;
+
+    for (int j = i + 1; j < n; j++) {
+      if (arr[j] < arr[minIdx]) {
+        minIdx = j;
+      }
+    }
+
+    int temp = arr[minIdx];
+    arr[minIdx] = arr[i];
+    arr[i] = temp;
+  }
+}`,
   },
   QuickSort: {
     javascript: `function quickSort(arr, l, r) {
@@ -136,7 +151,28 @@ for(int i = 0; i < n; i++){
   if (i < r) quickSort(arr, i, r);
   if (l < j) quickSort(arr, l, j);
 }`,
-    java: ``,
+    java: `public static void quickSort(int[] arr, int l, int r) {
+  int center = (l + r) / 2;
+  int i = l;
+  int j = r;
+  int pivot = arr[center];
+  
+  while (i <= j) {
+    while (arr[i] < pivot) i++;
+    while (pivot < arr[j]) j--;
+  
+    if (i <= j) {
+      int temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+      j--;
+      i++;
+    }
+  }
+  
+  if (i < r) quickSort(arr, i, r);
+  if (l < j) quickSort(arr, l, j);
+}`,
   },
   MergeSort: {
     javascript: `function merge(arr, p, q, r) {
@@ -280,7 +316,50 @@ def mergeSort(arr, l, r):
     mergeSort(arr, m + 1, r)
     merge(arr, l, m, r)
 `,
-    java: ``,
+    java: `public static void merge(int[] arr, int p, int q, int r) {
+  int n1 = q - p + 1;
+  int n2 = r - q;
+  int[] L = new int[n1];
+  int[] M = new int[n2];
+
+  for (int i = 0; i < n1; i++) L[i] = arr[p + i];
+  for (int j = 0; j < n2; j++) M[j] = arr[q + 1 + j];
+
+  int i = 0, j = 0;
+  int k = p;
+
+  while (i < n1 && j < n2) {
+    if (L[i] <= M[j]) {
+      arr[k] = L[i];
+      i++;
+    } else {
+      arr[k] = M[j];
+      j++;
+    }
+    k++;
+  }
+
+  while (i < n1) {
+    arr[k] = L[i];
+    i++;
+    k++;
+  }
+
+  while (j < n2) {
+    arr[k] = M[j];
+    j++;
+    k++;
+  }
+}
+
+public static void mergeSort(int[] arr, int l, int r) {
+  if (l < r) {
+    int m = l + (r - l) / 2;
+    mergeSort(arr, l, m);
+    mergeSort(arr, m + 1, r);
+    merge(arr, l, m, r);
+  }
+}`,
   },
   InsertionSort: {
     javascript: `for (let i = 1; i < n; i++) {
@@ -316,7 +395,20 @@ def mergeSort(arr, l, r):
     j -= 1
     
   arr[j + 1] = key`,
-    java: ``,
+    java: `public static void insertionSort(int[] arr) {
+  int n = arr.length;
+  for (int i = 1; i < n; i++) {
+    int key = arr[i];
+    int j = i - 1;
+
+    while (j >= 0 && key < arr[j]) {
+      arr[j + 1] = arr[j];
+      j--;
+    }
+
+    arr[j + 1] = key;
+  }
+}`,
   },
   HeapSort: {
     javascript: `function heapify(arr, n, i) {
@@ -394,12 +486,157 @@ def heapSort(arr, n):
     arr[i], arr[0] = arr[0], arr[i]
     heapify(arr, i, 0)
 `,
-    java: ``,
+    java: `public static void heapify(int[] arr, int n, int i) {
+  int largest = i;
+  int left = 2 * i + 1;
+  int right = 2 * i + 2;
+
+  if (left < n && arr[left] > arr[largest]) largest = left;
+  if (right < n && arr[right] > arr[largest]) largest = right;
+
+  if (largest != i) {
+    int temp = arr[i];
+    arr[i] = arr[largest];
+    arr[largest] = temp;
+
+    heapify(arr, n, largest);
+  }
+}
+
+public static void heapSort(int[] arr) {
+  int n = arr.length;
+
+  for (int i = n / 2 - 1; i >= 0; i--) heapify(arr, n, i);
+
+  for (int i = n - 1; i >= 0; i--) {
+    int temp = arr[0];
+    arr[0] = arr[i];
+    arr[i] = temp;
+
+    heapify(arr, i, 0);
+  }
+}`,
   },
   ShakerSort: {
-    javascript: ``,
-    cpp: ``,
-    python: ``,
-    java: ``,
+    javascript: `let swapped = true;
+let start = 0;
+let end = n - 1;
+    
+while(swapped){
+  swapped = false;
+    
+  for(let i = start; i < end; i++){
+    if(arr[i] > arr[i + 1]){
+      swapped = true;
+      [arr[i + 1], arr[i]] = [arr[i], arr[i + 1]]
+    }
+  }
+    
+  if(!swapped) break;
+  swapped = false;
+    
+  end--;
+    
+  for(let i = end; i - 1 >= start; i--){
+    if(arr[i] < arr[i - 1]){
+      swapped = true;
+      [arr[i - 1], arr[i]] = [arr[i], arr[i - 1]]
+    }
+  }
+    
+  start++;
+}`,
+    cpp: `bool swapped = true;
+int start = 0;
+int end = n - 1;
+
+while(swapped){
+  swapped = false;
+
+  for(int i = start; i < end; i++){
+    if(arr[i] > arr[i + 1]){
+      swapped true;
+
+      int temp = arr[i + 1];
+      arr[i + 1] = arr[i];
+      arr[i] = temp;
+    }
+  }
+
+  if(!swapped) break;
+  swapped = false;
+
+  end--;
+
+  for(int i = end; i - 1 >= start; i++){
+    if(arr[i] < arr[i - 1]){
+      swapped = true;
+
+      int temp = arr[i - 1];
+      arr[i - 1] = arr[i];
+      arr[i] = temp;
+    }
+  }
+
+  start++
+}`,
+    python: `swapped = True
+start = 0
+end = n - 1
+    
+while swapped:
+  swapped = False
+    
+  for i in range(start, end):
+    if arr[i] > arr[i + 1]:
+      swapped = True
+      arr[i + 1], arr[i] = arr[i], arr[i + 1]
+    
+  if not swapped:
+    break
+  swapped = False
+    
+  end -= 1
+    
+  for i in range(end, start - 1, -1):
+  if arr[i] < arr[i - 1]:
+    swapped = True
+    arr[i - 1], arr[i] = arr[i], arr[i - 1]
+    
+  start += 1`,
+    java: `boolean swapped = true;
+int start = 0;
+int end = n - 1;
+    
+while (swapped) {
+  swapped = false;
+    
+  for (int i = start; i < end; i++) {
+    if (arr[i] > arr[i + 1]) {
+    swapped = true;
+    
+    int temp = arr[i + 1];
+    arr[i + 1] = arr[i];
+    arr[i] = temp;
+    }
+  }
+    
+  if (!swapped) break;
+  swapped = false;
+    
+  end--;
+    
+  for (int i = end; i - 1 >= start; i--) {
+    if (arr[i] < arr[i - 1]) {
+      swapped = true;
+    
+      int temp = arr[i - 1];
+      arr[i - 1] = arr[i];
+      arr[i] = temp;
+    }
+  }
+    
+  start++;
+}`,
   },
 };
