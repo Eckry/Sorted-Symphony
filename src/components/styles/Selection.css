@@ -11,3 +11,21 @@
   gap: 10px;
   text-align: center;
 }
+
+@media (width <= 1080px){
+  .selection-container {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (width <= 857px){
+  .selection-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (width <= 670px){
+  .selection-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
