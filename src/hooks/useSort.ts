@@ -50,7 +50,7 @@ export const useSort = () => {
       return;
     } else {
       const prevBlocks = [...blocks].sort((a, b) => a.val - b.val);
-      const newBlocks = prevBlocks.slice(0, elements - 1);
+      const newBlocks = prevBlocks.slice(0, elements);
       setBlocks(newBlocks);
     }
   };
