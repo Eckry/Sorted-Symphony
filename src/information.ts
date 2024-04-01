@@ -62,12 +62,12 @@ export const information: Record<Algorithm, AlgorithmInformation> = {
     },
   },
   ShakerSort: {
-    description: "placeholder",
+    description: "Shaker Sort, also known as Cocktail Sort or Bidirectional Bubble Sort, is a variation of the Bubble Sort algorithm. It improves on Bubble Sort by allowing the sorting process to proceed in both directions (forward and backward) through the array.",
     time: {
-      avg: "placeholder",
-      best: "placeholder",
-      worst: "placeholder",
-      space: "placeholder",
+      avg: "O(n^2)",
+      best: "O(n)",
+      worst: "O(n^2)",
+      space: "O(1)",
     },
   },
 };
