@@ -4,7 +4,7 @@
   align-items: center;
   text-align: center;
   gap: 1rem;
-  width: 300px;
+  width: 100%;
 }
 
 .configuration-label {
@@ -30,6 +30,7 @@
 
 input[type="range"] {
   position: absolute;
+  background-color: transparent;
   opacity: 0;
   left: 0;
   width: 100%;
@@ -82,7 +83,7 @@ input[type="range"]::-ms-thumb {
 input[type="range"]::-moz-range-thumb {
   appearance: none;
   pointer-events: all;
-  width: 35px;
+  width: 20px;
   height: 16px;
   border-radius: 0px;
   border: 0 none;
@@ -98,3 +99,4 @@ input[type="range"]::-webkit-slider-thumb {
   border: 0 none;
   cursor: grab;
 }
+
