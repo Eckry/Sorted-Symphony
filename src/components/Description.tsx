@@ -25,7 +25,7 @@ export const Description = () => {
         </div>
         <aside className="extra-information">
           <h2 className="description-title">Complexity</h2>
-          <ul>
+          <ul className="description-list">
             {Object.entries(timeComplexity).map(([title, complexity]) => {
               return (
                 <li className="description-text complexity" key={title}>
