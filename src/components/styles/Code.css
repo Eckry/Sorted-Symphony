@@ -105,3 +105,20 @@
     width: 100;
   }
 }
+
+@media (width <= 660px) {
+  .code svg,
+  .code-selected svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .copy-clipboard {
+    margin-right: 1.2rem;
+  }
+
+  .copy-clipboard svg {
+    width: 30px;
+    height: 30px;
+  }
+}
