@@ -5,6 +5,7 @@
   text-align: center;
   gap: 1rem;
   width: 300px;
+  height: auto;
 }
 
 .configuration-label {
@@ -106,7 +107,16 @@ input[type="range"]::-webkit-slider-thumb {
   }
 
   .wrapper {
-    position: relative;
     width: 91.4%;
+  }
+}
+
+@media (width <= 495px) {
+  .configuration-range {
+    width: 100px;
+  }
+
+  .wrapper {
+    width: 83%;
   }
 }

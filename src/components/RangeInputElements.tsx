@@ -50,7 +50,7 @@ export const RangeInputElements: React.FC<Props> = ({
         </div>
       </div>
       <label htmlFor="configuration-quantity" className="configuration-label">
-        Number of elements
+        Elements
       </label>
     </div>
   );
