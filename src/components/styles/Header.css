@@ -8,7 +8,7 @@
   color: var(--highlight-color);
   font-weight: lighter;
   font-style: italic;
-  font-family: 'Kaushan Script', sans-serif;
+  font-family: "Kaushan Script", sans-serif;
 }
 
 .header-phrase {
@@ -17,4 +17,10 @@
   font-size: 1.5rem;
   margin-top: 1rem;
   text-wrap: pretty;
+}
+
+@media (width <= 720px) {
+  .header-phrase {
+    font-size: clamp(0.5rem, 4vw, 1.5rem);
+  }
 }
