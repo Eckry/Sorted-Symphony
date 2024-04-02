@@ -20,3 +20,9 @@
 .sortoption:hover {
   background-color: var(--secondary-color);
 }
+
+@media (width <= 480px){
+  .sortoptions-container {
+    flex-direction: column;
+  }
+}
