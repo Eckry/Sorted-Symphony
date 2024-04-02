@@ -107,18 +107,59 @@
 }
 
 @media (width <= 660px) {
+  .codes-container {
+    gap: 10px;
+  }
+
   .code svg,
   .code-selected svg {
     width: 30px;
     height: 30px;
   }
 
-  .copy-clipboard {
+  .copy-clipboard,
+  .copy-clipboard-copied {
     margin-right: 1.2rem;
   }
 
-  .copy-clipboard svg {
+  .copy-clipboard svg,
+  .copy-clipboard-copied svg {
     width: 30px;
     height: 30px;
+  }
+
+  .code-container code {
+    font-size: 12px;
+  }
+}
+
+@media (width <= 470px) {
+  .code-container code {
+    font-size: 10px;
+  }
+
+  .code, .code-selected {
+    padding: 7px;
+  }
+
+  .codes-container {
+    gap: 5px;
+  }
+
+  .code svg,
+  .code-selected svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .copy-clipboard,
+  .copy-clipboard-copied {
+    margin-right: 1.4rem;
+  }
+
+  .copy-clipboard svg,
+  .copy-clipboard-copied svg {
+    width: 20px;
+    height: 20px;
   }
 }
