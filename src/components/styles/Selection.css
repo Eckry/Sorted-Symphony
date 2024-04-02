@@ -29,3 +29,16 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+@media (width <= 530px){
+  .selection-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@media (width <= 350px){
+  .selection-container {
+    grid-template-columns: 1fr;
+  }
+}
