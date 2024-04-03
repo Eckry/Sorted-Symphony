@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { resetColor, stop, swap } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
-export const ShakerSort = (): AlgorithmFunction => {
+export const ShakerSort = (comparison: boolean): AlgorithmFunction => {
   const isSortingRef = useRef(true);
 
   const stopShakerSort = () => {
@@ -27,7 +27,7 @@ export const ShakerSort = (): AlgorithmFunction => {
         if (!isSortingRef.current) return stop(blocks, setBlocks);
         if (blocks[i].val > blocks[i + 1].val) {
           swapped = true;
-          await swap(i, i + 1, blocks, configuration.velocity);
+          await swap(i, i + 1, blocks, configuration.velocity, comparison);
           setBlocks([...blocks]);
         }
       }
@@ -41,7 +41,7 @@ export const ShakerSort = (): AlgorithmFunction => {
         if (!isSortingRef.current) return stop(blocks, setBlocks);
         if (blocks[i].val < blocks[i - 1].val) {
           swapped = true;
-          await swap(i, i - 1, blocks, configuration.velocity);
+          await swap(i, i - 1, blocks, configuration.velocity, comparison);
           setBlocks([...blocks]);
         }
       }

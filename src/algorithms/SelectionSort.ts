@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { resetColor, stop, swap } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
-export const SelectionSort = (): AlgorithmFunction => {
+export const SelectionSort = (comparison: boolean): AlgorithmFunction => {
   const isSortingRef = useRef(true);
 
   const stopSelectionSort = () => {
@@ -27,7 +27,7 @@ export const SelectionSort = (): AlgorithmFunction => {
         }
       }
       if (i !== min) {
-        await swap(i, min, blocks, configuration.velocity);
+        await swap(i, min, blocks, configuration.velocity, comparison);
         setBlocks([...blocks]);
       }
     }

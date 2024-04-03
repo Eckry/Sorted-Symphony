@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { isSorted, resetColor, stop, swapAndPaintBoth } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
-export const QuickSort = (): AlgorithmFunction => {
+export const QuickSort = (comparison: boolean): AlgorithmFunction => {
   const isSortingRef = useRef(true);
 
   const stopQuickSort = () => {
@@ -31,7 +31,8 @@ export const QuickSort = (): AlgorithmFunction => {
             i,
             j,
             blocks,
-            configuration.velocity
+            configuration.velocity,
+            comparison
           );
           setBlocks([...blocks]);
           i++;

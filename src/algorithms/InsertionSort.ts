@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { insert, resetColor, stop } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
-export const InsertionSort = (): AlgorithmFunction => {
+export const InsertionSort = (comparison: boolean): AlgorithmFunction => {
   const isSortingRef = useRef(true);
 
   const stopInsertionSort = () => {
@@ -27,14 +27,15 @@ export const InsertionSort = (): AlgorithmFunction => {
           blocks,
           blocks[j].val,
           j + 1,
-          configuration.velocity
+          configuration.velocity,
+          comparison
         );
         setBlocks([...blocks]);
         j--;
       }
 
       if (!isSortingRef.current) break;
-      await insert(blocks, key, j + 1, configuration.velocity);
+      await insert(blocks, key, j + 1, configuration.velocity, comparison);
       setBlocks([...blocks]);
     }
 

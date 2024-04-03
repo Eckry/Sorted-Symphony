@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { insert, isSorted, resetColor, stop } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
-export const MergeSort = (): AlgorithmFunction => {
+export const MergeSort = (comparison: boolean): AlgorithmFunction => {
   const isSortingRef = useRef(true);
 
   const stopMergeSort = () => {
@@ -33,11 +33,11 @@ export const MergeSort = (): AlgorithmFunction => {
       while (i < n1 && j < n2) {
         if (!isSortingRef.current) return;
         if (L[i] <= M[j]) {
-          await insert(blocks, L[i], k, configuration.velocity);
+          await insert(blocks, L[i], k, configuration.velocity, comparison);
           setBlocks([...blocks]);
           i++;
         } else {
-          await insert(blocks, M[j], k, configuration.velocity);
+          await insert(blocks, M[j], k, configuration.velocity, comparison);
           setBlocks([...blocks]);
           j++;
         }
@@ -46,7 +46,7 @@ export const MergeSort = (): AlgorithmFunction => {
 
       while (i < n1) {
         if (!isSortingRef.current) return;
-        await insert(blocks, L[i], k, configuration.velocity);
+        await insert(blocks, L[i], k, configuration.velocity, comparison);
         setBlocks([...blocks]);
         i++;
         k++;
@@ -54,7 +54,7 @@ export const MergeSort = (): AlgorithmFunction => {
 
       while (j < n2) {
         if (!isSortingRef.current) return;
-        await insert(blocks, M[j], k, configuration.velocity);
+        await insert(blocks, M[j], k, configuration.velocity, comparison);
         setBlocks([...blocks]);
         j++;
         k++;

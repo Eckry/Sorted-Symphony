@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { isSorted, resetColor, stop, swap } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
-export const HeapSort = (): AlgorithmFunction => {
+export const HeapSort = (comparison: boolean): AlgorithmFunction => {
   const isSortingRef = useRef(true);
 
   const stopHeapSort = () => {
@@ -31,7 +31,7 @@ export const HeapSort = (): AlgorithmFunction => {
       }
 
       if (largest != i) {
-        await swap(i, largest, blocks, configuration.velocity);
+        await swap(i, largest, blocks, configuration.velocity, comparison);
         setBlocks([...blocks]);
         await heapify(n, largest);
       }
@@ -51,7 +51,7 @@ export const HeapSort = (): AlgorithmFunction => {
 
     for (let i = blocks.length - 1; i >= 0; i--) {
       if (!isSortingRef.current) return stop(blocks, setBlocks);
-      await swap(0, i, blocks, configuration.velocity);
+      await swap(0, i, blocks, configuration.velocity, comparison);
       setBlocks([...blocks]);
       await heapify(i, 0);
     }
