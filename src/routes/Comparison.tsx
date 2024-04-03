@@ -29,13 +29,10 @@ export const Comparison = () => {
   };
 
   useEffect(() => {
-    const query = window.matchMedia("(max-width: 840px)");
-    query.addEventListener("change", () => {
-      const width = window.innerWidth;
+    const width = window.innerWidth;
 
-      if (width > 840) setAlgorithmsSelected(initialAlgorithmsSelected);
-      else setAlgorithmsSelected(algorithmsSelected.slice(0, 3));
-    });
+    if (width > 840) setAlgorithmsSelected(initialAlgorithmsSelected);
+    else setAlgorithmsSelected(algorithmsSelected.slice(0, 3));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

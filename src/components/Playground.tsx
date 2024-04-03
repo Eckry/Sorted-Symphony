@@ -57,15 +57,12 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
   };
 
   useEffect(() => {
-    const query = window.matchMedia("(max-width: 840px)");
-    query.addEventListener("change", () => {
-      const width = window.innerWidth;
+    const width = window.innerWidth;
 
-      if (width > 840)
-        setGridColumns(`repeat(${algorithmsSelected.length + 1}, 1fr)`);
-      else setGridColumns(`repeat(${4}, 1fr)`);
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (width > 840)
+      setGridColumns(`repeat(${algorithmsSelected.length + 1}, 1fr)`);
+    else setGridColumns(`repeat(${4}, 1fr)`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
