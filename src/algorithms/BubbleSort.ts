@@ -16,8 +16,9 @@ export const BubbleSort = (): AlgorithmFunction => {
     setIsSorting: (newIsSorting: boolean) => void
   ) => {
     isSortingRef.current = true;
-    for (let i = 0; i < blocks.length; i++) {
-      for (let j = 0; j + 1 < blocks.length - i; j++) {
+    const len = blocks.length
+    for (let i = 0; i < len; i++) {
+      for (let j = 0; j + 1 < len - i; j++) {
         const { val: a } = blocks[j];
         const { val: b } = blocks[j + 1];
         if (!isSortingRef.current) return stop(blocks, setBlocks);
