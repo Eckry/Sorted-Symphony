@@ -22,3 +22,14 @@
 .algorithm-button:hover {
   color: var(--highlight-color);
 }
+
+@media (width <= 850px){
+  .algorithm-button {
+    font-size: clamp(5px, 1.5vw, 14px);
+  }
+
+  .algorithm-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}

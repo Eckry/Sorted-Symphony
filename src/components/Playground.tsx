@@ -2,7 +2,7 @@ import "./styles/Playground.css";
 import { Algorithm } from "../types";
 import { sortOptions } from "../consts";
 import { PlaygroundBlock } from "./PlaygroundBlock";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PlayIcon } from "../icons";
 
 interface Props {
@@ -10,6 +10,10 @@ interface Props {
 }
 
 export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
+  const [gridColumns, setGridColumns] = useState(
+    `repeat(${algorithmsSelected.length + 1}, 1fr)`
+  );
+
   const createHandleColumnClick = (column: number) => () => {
     Object.values(sortOptions).forEach((_, row) => {
       const block = document.querySelector(
@@ -48,12 +52,24 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
     });
   };
 
-  const gridColumns = {
-    gridTemplateColumns: `repeat(${algorithmsSelected.length + 1}, 1fr)`,
+  const gridStyle = {
+    gridTemplateColumns: gridColumns,
   };
 
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 840px)");
+    query.addEventListener("change", () => {
+      const width = window.innerWidth;
+
+      if (width > 840)
+        setGridColumns(`repeat(${algorithmsSelected.length + 1}, 1fr)`);
+      else setGridColumns(`repeat(${4}, 1fr)`);
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <section style={gridColumns} className="playground-container">
+    <section style={gridStyle} className="playground-container">
       <button className="algorithm-button" onClick={handleClickAll}>
         <PlayIcon />
         All

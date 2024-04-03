@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles/Comparison.css";
 import { Algorithm } from "../types";
 import { algorithms } from "../consts";
@@ -27,6 +27,17 @@ export const Comparison = () => {
     );
     setAlgorithmsSelected([algorithmToAdd, ...newAlgorithms]);
   };
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 840px)");
+    query.addEventListener("change", () => {
+      const width = window.innerWidth;
+
+      if (width > 840) setAlgorithmsSelected(initialAlgorithmsSelected);
+      else setAlgorithmsSelected(algorithmsSelected.slice(0, 3));
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <main className="comparison-container">
