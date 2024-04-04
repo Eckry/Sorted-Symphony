@@ -13,6 +13,7 @@ import {
   VolumeActiveIcon,
   VolumeNonActiveIcon,
 } from "../icons";
+import { useVolume } from "../hooks/useVolume";
 
 export const Home = () => {
   const {
@@ -23,10 +24,10 @@ export const Home = () => {
     changeVelocity,
     changeElements,
     configuration,
-    changeVolume,
   } = useSort();
+  const { volume, changeVolume } = useVolume();
 
-  const isVolumeActive = configuration.volume === 0.1;
+  const isVolumeActive = volume === 0.1;
   return (
     <>
       <button onClick={changeVolume} className="volume-button">

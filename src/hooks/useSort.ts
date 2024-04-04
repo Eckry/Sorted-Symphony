@@ -10,6 +10,7 @@ import { InsertionSort } from "../algorithms/InsertionSort";
 import { HeapSort } from "../algorithms/HeapSort";
 import { colors, initialBlocks, initialConfiguration } from "../consts";
 import { ShakerSort } from "../algorithms/ShakerSort";
+import { useVolume } from "./useVolume";
 
 const imports = {
   BubbleSort,
@@ -22,12 +23,12 @@ const imports = {
 };
 
 export const useSort = () => {
+  const { volume } = useVolume();
   const { selected } = useSelected();
   const [blocks, setBlocks] = useState([...initialBlocks.Random]);
   const isSortingRef = useRef(false);
   const [isSorting, setIsSorting] = useState(false);
   const [configuration, setConfiguration] = useState(initialConfiguration);
-
   const [init, stop] = imports[selected](false, null);
 
   const changeIsSorting = () => {
@@ -61,21 +62,9 @@ export const useSort = () => {
     });
   };
 
-  const changeVolume = () => {
-    if (configuration.volume === 0.1) {
-      setConfiguration((prevConfig) => {
-        return { ...prevConfig, volume: 0 };
-      });
-      return;
-    }
-    setConfiguration((prevConfig) => {
-      return { ...prevConfig, volume: 0.1 };
-    });
-  };
-
   useEffect(() => {
     if (!isSorting) return stop();
-    init(blocks, setBlocks, configuration, setIsSorting);
+    init(blocks, setBlocks, { ...configuration, volume }, setIsSorting);
   }, [isSorting]);
 
   return {
@@ -86,6 +75,5 @@ export const useSort = () => {
     changeVelocity,
     changeElements,
     configuration,
-    changeVolume,
   };
 };

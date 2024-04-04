@@ -3,7 +3,6 @@ import { AudioFile } from "./types";
 export const initialConfiguration = {
   velocity: 100,
   elements: 100,
-  volume: 0.1,
 };
 
 export const colors = {

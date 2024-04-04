@@ -11,6 +11,7 @@ import { QuickSort } from "../algorithms/QuickSort";
 import { MergeSort } from "../algorithms/MergeSort";
 import { initialBlocks } from "../consts";
 import { ShakerSort } from "../algorithms/ShakerSort";
+import { useVolume } from "../hooks/useVolume";
 
 const elise = new Audio("./elise.mp3");
 
@@ -39,7 +40,7 @@ export const PlaygroundBlock: React.FC<Props> = ({
 }) => {
   const [blocks, setBlocks] = useState([...initialBlocks[option]]);
   const [isSorting, setIsSorting] = useState(false);
-
+  const { volume } = useVolume();
   const [init, stop] = imports[algorithm](true, count);
 
   const handleOnClick = () => {
@@ -52,6 +53,8 @@ export const PlaygroundBlock: React.FC<Props> = ({
     }
   };
 
+  const configuration: Configuration = { velocity: 75, elements: 0, volume };
+
   useEffect(() => {
     if (!isSorting) {
       stop();
@@ -59,16 +62,18 @@ export const PlaygroundBlock: React.FC<Props> = ({
         elise.pause();
         elise.currentTime = 0;
       } else {
+        elise.volume = volume;
         elise.play();
       }
       return;
     }
 
-    if (count.current !== 0) elise.play();
+    if (count.current !== 0) {
+        elise.volume = volume;
+        elise.play();
+    }
     init(blocks, setBlocks, configuration, setIsSorting);
   }, [isSorting]);
-
-  const configuration: Configuration = { velocity: 75, elements: 0 };
 
   return (
     <div
