@@ -2,7 +2,7 @@ import "./styles/Playground.css";
 import { Algorithm } from "../types";
 import { sortOptions } from "../consts";
 import { PlaygroundBlock } from "./PlaygroundBlock";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { PlayIcon } from "../icons";
 
 interface Props {
@@ -59,6 +59,12 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
   const gridStyle = {
     gridTemplateColumns: gridColumns,
   };
+
+  useEffect(() => {
+    return () => {
+      count.current = 0;
+    };
+  });
 
   return (
     <section style={gridStyle} className="playground-container">

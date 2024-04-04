@@ -56,23 +56,19 @@ export const PlaygroundBlock: React.FC<Props> = ({
   const configuration: Configuration = { velocity: 75, elements: 0, volume };
 
   useEffect(() => {
-    if (!isSorting) {
+    if (!isSorting) return;
+    
+    elise.volume = volume;
+    elise.play();
+
+    init(blocks, setBlocks, configuration, setIsSorting);
+    return () => {
       stop();
       if (count.current === 0) {
         elise.pause();
         elise.currentTime = 0;
-      } else {
-        elise.volume = volume;
-        elise.play();
       }
-      return;
-    }
-
-    if (count.current !== 0) {
-        elise.volume = volume;
-        elise.play();
-    }
-    init(blocks, setBlocks, configuration, setIsSorting);
+    };
   }, [isSorting]);
 
   return (
