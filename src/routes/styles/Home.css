@@ -7,3 +7,49 @@
 .home-blocks {
   height: 500px;
 }
+
+.link-orchestra {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 32px auto;
+  text-align: center;
+  width: fit-content;
+  color: var(--tertiary-brighty-color);
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-style: italic;
+  position: relative;
+}
+
+.link-orchestra svg {
+  transition: transform 0.2s ease-in-out;
+}
+
+.link-orchestra:hover {
+  color: var(--highlight-color);
+}
+
+.link-orchestra:hover svg {
+  transition: transform 0.2s ease-in-out;
+  transform: translateX(5px);
+  stroke: var(--highlight-color);
+}
+
+.link-orchestra::before {
+  content: "";
+  transform-origin: 100%;
+  background-color: var(--highlight-color);
+  width: 100%;
+  height: 2px;
+  transition: transform 0.2s ease-in-out;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  transform: scaleX(0);
+}
+
+.link-orchestra:hover::before {
+  transform: scaleX(1);
+  transform-origin: 0;
+}

@@ -7,6 +7,8 @@ import { Header } from "../components/Header";
 import { Selection } from "../components/Selection";
 import { SortOptions } from "../components/SortOptions";
 import { useSort } from "../hooks/useSort";
+import { Link } from "react-router-dom";
+import { RightArrowIcon } from "../icons";
 
 export const Home = () => {
   const {
@@ -21,6 +23,7 @@ export const Home = () => {
   return (
     <main className="main-container">
       <Header />
+      <Link className="link-orchestra" to="/comparison">Go to the Orchestra <RightArrowIcon /></Link>
       <Selection />
       <div className="home-blocks">
         <Blocks blocks={blocks} />

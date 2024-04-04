@@ -160,3 +160,19 @@ export const ClipboardCheckedIcon = () => (
     <path d="M9 14l2 2l4 -4" />
   </svg>
 );
+
+export const RightArrowIcon = () => (
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 24 24"
+    strokeWidth="1.5"
+    stroke="#a0a7d2"
+    fill="none"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M5 12l14 0" />
+    <path d="M15 16l4 -4" />
+    <path d="M15 8l4 4" />
+  </svg>
+);

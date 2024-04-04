@@ -3,6 +3,8 @@ import "./styles/Comparison.css";
 import { Algorithm } from "../types";
 import { algorithms } from "../consts";
 import { Playground } from "../components/Playground";
+import { Link } from "react-router-dom";
+import { RightArrowIcon } from "../icons";
 
 const initialAlgorithmsSelected: Algorithm[] = [
   "QuickSort",
@@ -41,6 +43,7 @@ export const Comparison = () => {
           symphony
         </p>
       </header>
+      <Link className="link-orchestra" to="/">Leave the Orchestra <RightArrowIcon /></Link>
       <ul className="selection-container">
         {Object.values(algorithms).map((algorithm) => {
           return (
