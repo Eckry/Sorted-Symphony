@@ -30,7 +30,11 @@ export const Home = () => {
   const isVolumeActive = volume === 0.1;
   return (
     <>
-      <button onClick={changeVolume} className="volume-button">
+      <button
+        disabled={isSorting}
+        onClick={changeVolume}
+        className="volume-button"
+      >
         {isVolumeActive ? <VolumeActiveIcon /> : <VolumeNonActiveIcon />}
       </button>
       <main className="main-container">
