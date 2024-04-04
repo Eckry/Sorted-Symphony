@@ -2,10 +2,14 @@ import { useRef } from "react";
 import { insert, resetColor, stop } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
-export const InsertionSort = (comparison: boolean): AlgorithmFunction => {
+export const InsertionSort = (
+  comparison: boolean,
+  count: React.MutableRefObject<number> | null
+): AlgorithmFunction => {
   const isSortingRef = useRef(true);
 
   const stopInsertionSort = () => {
+    if (count) count.current = count.current === 0 ? 0 : count.current - 1;
     isSortingRef.current = false;
   };
 

@@ -2,10 +2,14 @@ import { useRef } from "react";
 import { isSorted, resetColor, stop, swap } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
-export const HeapSort = (comparison: boolean): AlgorithmFunction => {
+export const HeapSort = (
+  comparison: boolean,
+  count: React.MutableRefObject<number> | null
+): AlgorithmFunction => {
   const isSortingRef = useRef(true);
 
   const stopHeapSort = () => {
+    if (count) count.current = count.current === 0 ? 0 : count.current - 1;
     isSortingRef.current = false;
   };
 

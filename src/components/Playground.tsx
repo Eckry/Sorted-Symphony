@@ -2,7 +2,7 @@ import "./styles/Playground.css";
 import { Algorithm } from "../types";
 import { sortOptions } from "../consts";
 import { PlaygroundBlock } from "./PlaygroundBlock";
-import React from "react";
+import React, { useRef } from "react";
 import { PlayIcon } from "../icons";
 
 interface Props {
@@ -10,6 +10,8 @@ interface Props {
 }
 
 export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
+  const count = useRef(0);
+
   let gridColumns;
   const width = window.innerWidth;
   if (width > 840)
@@ -90,6 +92,7 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
             {algorithmsSelected.map((algorithm, column) => {
               return (
                 <PlaygroundBlock
+                  count={count}
                   algorithm={algorithm}
                   option={sortOption}
                   position={`${column}-${row}`}

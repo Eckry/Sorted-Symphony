@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./styles/PlaygroundBlock.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Algorithm, Configuration, SortOption } from "../types";
 import { Blocks } from "./Blocks";
 import { BubbleSort } from "../algorithms/BubbleSort";
@@ -12,10 +12,13 @@ import { MergeSort } from "../algorithms/MergeSort";
 import { initialBlocks } from "../consts";
 import { ShakerSort } from "../algorithms/ShakerSort";
 
+const elise = new Audio("./elise.mp3");
+
 interface Props {
   algorithm: Algorithm;
   option: SortOption;
   position: `${number}-${number}`;
+  count: React.MutableRefObject<number>;
 }
 
 const imports = {
@@ -32,19 +35,36 @@ export const PlaygroundBlock: React.FC<Props> = ({
   algorithm,
   option,
   position,
+  count,
 }) => {
   const [blocks, setBlocks] = useState([...initialBlocks[option]]);
   const [isSorting, setIsSorting] = useState(false);
 
-  const [init, stop] = imports[algorithm](true);
+  const [init, stop] = imports[algorithm](true, count);
 
   const handleOnClick = () => {
-    if (!isSorting) setBlocks([...initialBlocks[option]]);
-    setIsSorting((prev) => !prev);
+    if (!isSorting) {
+      setBlocks([...initialBlocks[option]]);
+      count.current++;
+      setIsSorting((prev) => !prev);
+    } else {
+      setIsSorting((prev) => !prev);
+    }
   };
 
   useEffect(() => {
-    if (!isSorting) return stop();
+    if (!isSorting) {
+      stop();
+      if (count.current === 0) {
+        elise.pause();
+        elise.currentTime = 0;
+      } else {
+        elise.play();
+      }
+      return;
+    }
+
+    if (count.current !== 0) elise.play();
     init(blocks, setBlocks, configuration, setIsSorting);
   }, [isSorting]);
 

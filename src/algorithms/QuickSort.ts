@@ -2,10 +2,14 @@ import { useRef } from "react";
 import { isSorted, resetColor, stop, swapAndPaintBoth } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
-export const QuickSort = (comparison: boolean): AlgorithmFunction => {
+export const QuickSort = (
+  comparison: boolean,
+  count: React.MutableRefObject<number> | null
+): AlgorithmFunction => {
   const isSortingRef = useRef(true);
 
   const stopQuickSort = () => {
+    if (count) count.current = count.current === 0 ? 0 : count.current - 1;
     isSortingRef.current = false;
   };
 
