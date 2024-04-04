@@ -2,7 +2,7 @@ import "./styles/Playground.css";
 import { Algorithm } from "../types";
 import { sortOptions } from "../consts";
 import { PlaygroundBlock } from "./PlaygroundBlock";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { PlayIcon } from "../icons";
 
 interface Props {
@@ -10,9 +10,11 @@ interface Props {
 }
 
 export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
-  const [gridColumns, setGridColumns] = useState(
-    `repeat(${algorithmsSelected.length + 1}, 1fr)`
-  );
+  let gridColumns;
+  const width = window.innerWidth;
+  if (width > 840)
+    gridColumns = `repeat(${algorithmsSelected.length + 1}, 1fr)`;
+  else gridColumns = `repeat(${4}, 1fr)`;
 
   const createHandleColumnClick = (column: number) => () => {
     Object.values(sortOptions).forEach((_, row) => {
@@ -55,15 +57,6 @@ export const Playground: React.FC<Props> = ({ algorithmsSelected }) => {
   const gridStyle = {
     gridTemplateColumns: gridColumns,
   };
-
-  useEffect(() => {
-    const width = window.innerWidth;
-
-    if (width > 840)
-      setGridColumns(`repeat(${algorithmsSelected.length + 1}, 1fr)`);
-    else setGridColumns(`repeat(${4}, 1fr)`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <section style={gridStyle} className="playground-container">
