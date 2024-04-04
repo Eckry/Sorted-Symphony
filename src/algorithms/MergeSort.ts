@@ -37,11 +37,11 @@ export const MergeSort = (
       while (i < n1 && j < n2) {
         if (!isSortingRef.current) return;
         if (L[i] <= M[j]) {
-          await insert(blocks, L[i], k, configuration.velocity, comparison);
+          await insert(blocks, L[i], k, configuration, comparison);
           setBlocks([...blocks]);
           i++;
         } else {
-          await insert(blocks, M[j], k, configuration.velocity, comparison);
+          await insert(blocks, M[j], k, configuration, comparison);
           setBlocks([...blocks]);
           j++;
         }
@@ -50,7 +50,7 @@ export const MergeSort = (
 
       while (i < n1) {
         if (!isSortingRef.current) return;
-        await insert(blocks, L[i], k, configuration.velocity, comparison);
+        await insert(blocks, L[i], k, configuration, comparison);
         setBlocks([...blocks]);
         i++;
         k++;
@@ -58,7 +58,7 @@ export const MergeSort = (
 
       while (j < n2) {
         if (!isSortingRef.current) return;
-        await insert(blocks, M[j], k, configuration.velocity, comparison);
+        await insert(blocks, M[j], k, configuration, comparison);
         setBlocks([...blocks]);
         j++;
         k++;
@@ -84,7 +84,7 @@ export const MergeSort = (
       return stop(prevMerge, setBlocks);
     }
 
-    await resetColor(blocks, setBlocks);
+    await resetColor(blocks, setBlocks, configuration);
     isSortingRef.current = false;
     setIsSorting(false);
   };

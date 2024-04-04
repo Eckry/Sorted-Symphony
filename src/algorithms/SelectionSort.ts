@@ -31,11 +31,11 @@ export const SelectionSort = (
         }
       }
       if (i !== min) {
-        await swap(i, min, blocks, configuration.velocity, comparison);
+        await swap(i, min, blocks, configuration, comparison);
         setBlocks([...blocks]);
       }
     }
-    await resetColor(blocks, setBlocks);
+    await resetColor(blocks, setBlocks, configuration);
     isSortingRef.current = false;
     setIsSorting(false);
   };

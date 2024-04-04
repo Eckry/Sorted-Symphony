@@ -1,21 +1,26 @@
-import { Block } from "./types";
+import { Block, Configuration } from "./types";
 import { audios } from "./consts";
 import { colors } from "./consts";
 
-const play = (pitch: number, length: number, comparison: boolean) => {
+const play = (
+  pitch: number,
+  length: number,
+  comparison: boolean,
+  volume: number
+) => {
   if (comparison) return;
   const audioIndex = Math.floor((pitch / length) * 5);
   const path = audios[audioIndex];
   const audioClone = new Audio(path);
   if (audioClone instanceof HTMLAudioElement) {
-    audioClone.volume = 0.1;
+    audioClone.volume = volume;
     audioClone.play();
   }
 };
 
-const playFinish = () => {
+const playFinish = (volume: number) => {
   const audio = new Audio("./finish.mp3");
-  audio.volume = 0.2;
+  audio.volume = volume;
   audio.play();
 };
 
@@ -49,7 +54,7 @@ export const insert = async (
   blocks: Block[],
   numberToInsert: number,
   i: number,
-  delay: number,
+  configuration: Configuration,
   comparison: boolean
 ) => {
   blocks.forEach((block, i) => {
@@ -58,15 +63,15 @@ export const insert = async (
 
   blocks[i] = { val: numberToInsert, color: colors.HIGHLIGHT };
 
-  await sleep(delay);
-  play(numberToInsert, blocks.length, comparison);
+  await sleep(configuration.velocity);
+  play(numberToInsert, blocks.length, comparison, configuration.volume);
 };
 
 export const swap = async (
   i: number,
   j: number,
   blocks: Block[],
-  delay: number,
+  configuration: Configuration,
   comparison: boolean
 ) => {
   blocks.forEach((block, i) => {
@@ -77,16 +82,16 @@ export const swap = async (
   blocks[i] = { ...blocks[j], color: colors.DEFAULT };
   blocks[j] = temp;
 
-  await sleep(delay);
+  await sleep(configuration.velocity);
 
-  play(blocks[i].val, blocks.length, comparison);
+  play(blocks[i].val, blocks.length, comparison, configuration.volume);
 };
 
 export const swapAndPaintBoth = async (
   i: number,
   j: number,
   blocks: Block[],
-  delay: number,
+  configuration: Configuration,
   comparison: boolean
 ) => {
   blocks.forEach((block, i) => {
@@ -97,20 +102,21 @@ export const swapAndPaintBoth = async (
   blocks[i] = { ...blocks[j], color: colors.HIGHLIGHT };
   blocks[j] = temp;
 
-  await sleep(delay);
+  await sleep(configuration.velocity);
 
-  play(blocks[j].val, blocks.length, comparison);
+  play(blocks[j].val, blocks.length, comparison, configuration.volume);
 };
 
 export const resetColor = async (
   prevBlocks: Block[],
-  setBlocks: (blocks: Block[]) => void
+  setBlocks: (blocks: Block[]) => void,
+  configuration: Configuration
 ) => {
   const newBlocks = prevBlocks.map((block) => {
     return { ...block, color: colors.DEFAULT };
   });
   setBlocks(newBlocks);
-  playFinish();
+  playFinish(configuration.volume);
 };
 
 export const isSorted = (prevBlocks: Block[]) => {

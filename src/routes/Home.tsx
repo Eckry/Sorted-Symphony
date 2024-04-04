@@ -8,7 +8,11 @@ import { Selection } from "../components/Selection";
 import { SortOptions } from "../components/SortOptions";
 import { useSort } from "../hooks/useSort";
 import { Link } from "react-router-dom";
-import { RightArrowIcon } from "../icons";
+import {
+  RightArrowIcon,
+  VolumeActiveIcon,
+  VolumeNonActiveIcon,
+} from "../icons";
 
 export const Home = () => {
   const {
@@ -19,30 +23,40 @@ export const Home = () => {
     changeVelocity,
     changeElements,
     configuration,
+    changeVolume,
   } = useSort();
+
+  const isVolumeActive = configuration.volume === 0.1;
   return (
-    <main className="main-container">
-      <Header />
-      <Link className="link-orchestra" to="/comparison">Go to the Orchestra <RightArrowIcon /></Link>
-      <Selection />
-      <div className="home-blocks">
-        <Blocks blocks={blocks} />
-      </div>
-      <SortOptions
-        isSorting={isSorting}
-        blocks={blocks}
-        setBlocks={setBlocks}
-      />
-      <Configuration
-        changeVelocity={changeVelocity}
-        changeIsSorting={changeIsSorting}
-        changeElements={changeElements}
-        blocks={blocks}
-        isSorting={isSorting}
-        configuration={configuration}
-      />
-      <Code />
-      <Description />
-    </main>
+    <>
+      <button onClick={changeVolume} className="volume-button">
+        {isVolumeActive ? <VolumeActiveIcon /> : <VolumeNonActiveIcon />}
+      </button>
+      <main className="main-container">
+        <Header />
+        <Link className="link-orchestra" to="/comparison">
+          Go to the Orchestra <RightArrowIcon />
+        </Link>
+        <Selection />
+        <div className="home-blocks">
+          <Blocks blocks={blocks} />
+        </div>
+        <SortOptions
+          isSorting={isSorting}
+          blocks={blocks}
+          setBlocks={setBlocks}
+        />
+        <Configuration
+          changeVelocity={changeVelocity}
+          changeIsSorting={changeIsSorting}
+          changeElements={changeElements}
+          blocks={blocks}
+          isSorting={isSorting}
+          configuration={configuration}
+        />
+        <Code />
+        <Description />
+      </main>
+    </>
   );
 };

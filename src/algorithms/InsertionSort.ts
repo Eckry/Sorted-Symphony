@@ -31,7 +31,7 @@ export const InsertionSort = (
           blocks,
           blocks[j].val,
           j + 1,
-          configuration.velocity,
+          configuration,
           comparison
         );
         setBlocks([...blocks]);
@@ -39,7 +39,7 @@ export const InsertionSort = (
       }
 
       if (!isSortingRef.current) break;
-      await insert(blocks, key, j + 1, configuration.velocity, comparison);
+      await insert(blocks, key, j + 1, configuration, comparison);
       setBlocks([...blocks]);
     }
 
@@ -48,7 +48,7 @@ export const InsertionSort = (
       return stop(prevStatus, setBlocks);
     }
 
-    await resetColor(blocks, setBlocks);
+    await resetColor(blocks, setBlocks, configuration);
     isSortingRef.current = false;
     setIsSorting(false);
   };

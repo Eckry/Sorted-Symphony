@@ -29,6 +29,7 @@ export type Block = {
 export interface Configuration {
   velocity: number;
   elements: number;
+  volume: number;
 }
 
 export type ConfigurationElements = Pick<Configuration, "elements">;

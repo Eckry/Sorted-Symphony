@@ -61,6 +61,18 @@ export const useSort = () => {
     });
   };
 
+  const changeVolume = () => {
+    if (configuration.volume === 0.1) {
+      setConfiguration((prevConfig) => {
+        return { ...prevConfig, volume: 0 };
+      });
+      return;
+    }
+    setConfiguration((prevConfig) => {
+      return { ...prevConfig, volume: 0.1 };
+    });
+  };
+
   useEffect(() => {
     if (!isSorting) return stop();
     init(blocks, setBlocks, configuration, setIsSorting);
@@ -74,5 +86,6 @@ export const useSort = () => {
     changeVelocity,
     changeElements,
     configuration,
+    changeVolume,
   };
 };

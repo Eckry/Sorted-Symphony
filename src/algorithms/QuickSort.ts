@@ -31,13 +31,7 @@ export const QuickSort = (
         while (blocks[j].val > pivot.val) j--;
         if (!isSortingRef.current) return;
         if (i <= j) {
-          await swapAndPaintBoth(
-            i,
-            j,
-            blocks,
-            configuration.velocity,
-            comparison
-          );
+          await swapAndPaintBoth(i, j, blocks, configuration, comparison);
           setBlocks([...blocks]);
           i++;
           j--;
@@ -50,7 +44,7 @@ export const QuickSort = (
 
     if (!isSorted(blocks)) await executeQuickSort(0, blocks.length - 1);
     if (!isSortingRef.current) return stop(blocks, setBlocks);
-    await resetColor(blocks, setBlocks);
+    await resetColor(blocks, setBlocks, configuration);
     isSortingRef.current = false;
     setIsSorting(false);
   };

@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -8,9 +10,9 @@
   --primary-color: #060014;
   --primary-brighty-color: #0f0033;
   --secondary-color: #16004d;
-  --tertiary-color: #3F0071;
+  --tertiary-color: #3f0071;
   --tertiary-brighty-color: #a0a7d2;
-  --highlight-color: #FB2576;
+  --highlight-color: #fb2576;
   --highlight-brighty-color: #ff77ab;
 }
 
@@ -20,7 +22,11 @@
   height: 100%;
   width: 100%;
   z-index: -2;
-  background: radial-gradient(ellipse 80% 80% at 50% -20%, var(--secondary-color), var(--primary-color));
+  background: radial-gradient(
+    ellipse 80% 80% at 50% -20%,
+    var(--secondary-color),
+    var(--primary-color)
+  );
 }
 
 html {
@@ -29,6 +35,18 @@ html {
 
 body {
   min-height: 100vh;
-  font-family: 'Averia Serif Libre', sans-serif;
+  font-family: "Averia Serif Libre", sans-serif;
   background-color: var(--primary-color);
+}
+
+.volume-button {
+  position: fixed;
+  top: 2px;
+  right: 2px;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  border: 2px solid var(--tertiary-brighty-color);
+  border-radius: 8px;
+  padding: 5px;
 }

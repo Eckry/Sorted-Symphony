@@ -31,7 +31,7 @@ export const ShakerSort = (
         if (!isSortingRef.current) return stop(blocks, setBlocks);
         if (blocks[i].val > blocks[i + 1].val) {
           swapped = true;
-          await swap(i, i + 1, blocks, configuration.velocity, comparison);
+          await swap(i, i + 1, blocks, configuration, comparison);
           setBlocks([...blocks]);
         }
       }
@@ -45,14 +45,14 @@ export const ShakerSort = (
         if (!isSortingRef.current) return stop(blocks, setBlocks);
         if (blocks[i].val < blocks[i - 1].val) {
           swapped = true;
-          await swap(i, i - 1, blocks, configuration.velocity, comparison);
+          await swap(i, i - 1, blocks, configuration, comparison);
           setBlocks([...blocks]);
         }
       }
 
       start++;
     }
-    await resetColor(blocks, setBlocks);
+    await resetColor(blocks, setBlocks, configuration);
     isSortingRef.current = false;
     setIsSorting(false);
   };
