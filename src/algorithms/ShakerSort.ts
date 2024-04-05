@@ -57,5 +57,128 @@ export const ShakerSort = (
     setIsSorting(false);
   };
 
-  return [initShakerSort, stopShakerSort];
+  const codes = {
+    javascript: `let swapped = true;
+let start = 0;
+let end = n - 1;
+    
+while(swapped){
+  swapped = false;
+    
+  for(let i = start; i < end; i++){
+    if(arr[i] > arr[i + 1]){
+      swapped = true;
+      [arr[i + 1], arr[i]] = [arr[i], arr[i + 1]]
+    }
+  }
+    
+  if(!swapped) break;
+  swapped = false;
+    
+  end--;
+    
+  for(let i = end; i - 1 >= start; i--){
+    if(arr[i] < arr[i - 1]){
+      swapped = true;
+      [arr[i - 1], arr[i]] = [arr[i], arr[i - 1]]
+    }
+  }
+    
+  start++;
+}`,
+    cpp: `bool swapped = true;
+int start = 0;
+int end = n - 1;
+
+while(swapped){
+  swapped = false;
+
+  for(int i = start; i < end; i++){
+    if(arr[i] > arr[i + 1]){
+      swapped true;
+
+      int temp = arr[i + 1];
+      arr[i + 1] = arr[i];
+      arr[i] = temp;
+    }
+  }
+
+  if(!swapped) break;
+  swapped = false;
+
+  end--;
+
+  for(int i = end; i - 1 >= start; i++){
+    if(arr[i] < arr[i - 1]){
+      swapped = true;
+
+      int temp = arr[i - 1];
+      arr[i - 1] = arr[i];
+      arr[i] = temp;
+    }
+  }
+
+  start++
+}`,
+    python: `swapped = True
+start = 0
+end = n - 1
+    
+while swapped:
+  swapped = False
+    
+  for i in range(start, end):
+    if arr[i] > arr[i + 1]:
+      swapped = True
+      arr[i + 1], arr[i] = arr[i], arr[i + 1]
+    
+  if not swapped:
+    break
+  swapped = False
+    
+  end -= 1
+    
+  for i in range(end, start - 1, -1):
+  if arr[i] < arr[i - 1]:
+    swapped = True
+    arr[i - 1], arr[i] = arr[i], arr[i - 1]
+    
+  start += 1`,
+    java: `boolean swapped = true;
+int start = 0;
+int end = n - 1;
+    
+while (swapped) {
+  swapped = false;
+    
+  for (int i = start; i < end; i++) {
+    if (arr[i] > arr[i + 1]) {
+    swapped = true;
+    
+    int temp = arr[i + 1];
+    arr[i + 1] = arr[i];
+    arr[i] = temp;
+    }
+  }
+    
+  if (!swapped) break;
+  swapped = false;
+    
+  end--;
+    
+  for (int i = end; i - 1 >= start; i--) {
+    if (arr[i] < arr[i - 1]) {
+      swapped = true;
+    
+      int temp = arr[i - 1];
+      arr[i - 1] = arr[i];
+      arr[i] = temp;
+    }
+  }
+    
+  start++;
+}`,
+  };
+
+  return [initShakerSort, stopShakerSort, codes];
 };

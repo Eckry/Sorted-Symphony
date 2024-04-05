@@ -27,13 +27,7 @@ export const InsertionSort = (
       let j = i - 1;
       while (j >= 0 && key < blocks[j].val) {
         if (!isSortingRef.current) break;
-        await insert(
-          blocks,
-          blocks[j].val,
-          j + 1,
-          configuration,
-          comparison
-        );
+        await insert(blocks, blocks[j].val, j + 1, configuration, comparison);
         setBlocks([...blocks]);
         j--;
       }
@@ -53,5 +47,55 @@ export const InsertionSort = (
     setIsSorting(false);
   };
 
-  return [initInsertionSort, stopInsertionSort];
+  const codes = {
+    javascript: `for (let i = 1; i < n; i++) {
+  const  key = arr[i];
+  let j = i - 1;
+
+  while (j >= 0 && key < arr[j]) {
+      arr[j + 1] = arr[j];
+      j--;
+  }
+  
+  arr[j + 1] = key;
+}`,
+    cpp: `for (int i = 1; i < n; i++)
+{
+  int key = arr[i];
+  int j = i - 1;
+
+  while (j >= 0 && key < arr[j])
+  {
+    arr[j + 1] = arr[j];
+    j--;
+  }
+  
+  arr[j + 1] = key;
+}`,
+    python: `for i in range(1, n):
+  key = arr[i]
+  j = i - 1
+
+  while j >= 0 and key < arr[j]:
+    arr[j + 1] = arr[j]
+    j -= 1
+    
+  arr[j + 1] = key`,
+    java: `public static void insertionSort(int[] arr) {
+  int n = arr.length;
+  for (int i = 1; i < n; i++) {
+    int key = arr[i];
+    int j = i - 1;
+
+    while (j >= 0 && key < arr[j]) {
+      arr[j + 1] = arr[j];
+      j--;
+    }
+
+    arr[j + 1] = key;
+  }
+}`,
+  };
+
+  return [initInsertionSort, stopInsertionSort, codes];
 };

@@ -37,5 +37,41 @@ export const BubbleSort = (
     setIsSorting(false);
   };
 
-  return [initBubbleSort, stopBubbleSort];
+  const codes = {
+    javascript: `for(let i = 0; i < n; i++){
+  for(let j = 0; j + 1 < n - i; j++){
+    if(arr[j] > arr[j + 1]){
+      [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+    }
+  }
+}`,
+    python: `for i in range(n):
+  for j in range(n - i - 1):
+    if arr[j] > arr[j + 1]:
+      arr[j], arr[j + 1] = arr[j + 1], arr[j]`,
+
+    cpp: `for(int i = 0; i < n; i++){
+  for(int j = 0; j + 1 < n - i; j++){
+    if(arr[j] > arr[j + 1]){
+      int temp = arr[j];
+      arr[j] = arr[j + 1];
+      arr[j + 1] = temp;
+    }
+  }
+}`,
+    java: `int n = arr.length;
+int temp = 0;
+
+for(int i = 0; i < n; i++){
+  for(int j = 0; j + 1 < n - i; j++){
+    if(arr[j] > arr[j + 1]){
+      temp = arr[j];
+      arr[j] = arr[j + 1];
+      arr[j + 1] = temp;
+    }
+  }
+}`,
+  };
+
+  return [initBubbleSort, stopBubbleSort, codes];
 };

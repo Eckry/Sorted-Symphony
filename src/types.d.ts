@@ -21,6 +21,13 @@ export interface AlgorithmInformation {
   };
 }
 
+export interface Codes {
+  javascript: string
+  python: string
+  cpp: string
+  java: string
+}
+
 export type Block = {
   val: number;
   color: string;
@@ -42,5 +49,6 @@ export type AlgorithmFunction = [
     configuration: Configuration,
     setIsSorting: (newIsSorting: boolean) => void
   ) => void,
-  () => void
+  () => void,
+  codes: Codes
 ];

@@ -29,7 +29,7 @@ export const useSort = () => {
   const isSortingRef = useRef(false);
   const [isSorting, setIsSorting] = useState(false);
   const [configuration, setConfiguration] = useState(initialConfiguration);
-  const [init, stop] = imports[selected](false, null);
+  const [init, stop, codes] = imports[selected](false, null);
 
   const changeIsSorting = () => {
     isSortingRef.current = !isSortingRef.current;
@@ -75,5 +75,6 @@ export const useSort = () => {
     changeVelocity,
     changeElements,
     configuration,
+    codes,
   };
 };

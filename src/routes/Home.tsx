@@ -24,6 +24,7 @@ export const Home = () => {
     changeVelocity,
     changeElements,
     configuration,
+    codes,
   } = useSort();
   const { volume, changeVolume } = useVolume();
 
@@ -59,7 +60,7 @@ export const Home = () => {
           isSorting={isSorting}
           configuration={configuration}
         />
-        <Code />
+        <Code codes={codes} />
         <Description />
       </main>
     </>
