@@ -14,7 +14,7 @@
 
 @media (width <= 1080px){
   .selection-container {
-    grid-template-columns: repeat(5, 1fr);
+    font-size: 12px;
   }
 }
 

@@ -19,6 +19,14 @@
   color: var(--highlight-color);
 }
 
+@media (width <= 1080px){
+  .option,
+  .option-selected {
+    padding: 10px;
+    margin: 1px 0;
+  }
+}
+
 @media (width <= 530px) {
   .option,
   .option-selected {
