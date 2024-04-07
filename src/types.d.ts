@@ -4,12 +4,12 @@ export type Algorithm = (typeof algorithms)[keyof typeof algorithms];
 export type SortOption = (typeof sortOptions)[keyof typeof sortOptions];
 export type Language = (typeof languages)[keyof typeof languages];
 export type AudioFile =
-  | "./DO.wav"
-  | "./RE.wav"
-  | "./FA.wav"
-  | "./LA.wav"
-  | "./MI.wav"
-  | "./SOL.wav";
+  | "./DO.mp3"
+  | "./RE.mp3"
+  | "./FA.mp3"
+  | "./LA.mp3"
+  | "./MI.mp3"
+  | "./SOL.mp3";
 
 export interface AlgorithmInformation {
   description: string;

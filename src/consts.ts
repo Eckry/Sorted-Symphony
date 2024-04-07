@@ -34,12 +34,12 @@ export const languages = {
 } as const;
 
 export const audios: AudioFile[] = [
-  "./DO.wav",
-  "./RE.wav",
-  "./MI.wav",
-  "./FA.wav",
-  "./SOL.wav",
-  "./LA.wav",
+  "./DO.mp3",
+  "./RE.mp3",
+  "./MI.mp3",
+  "./FA.mp3",
+  "./SOL.mp3",
+  "./LA.mp3",
 ];
 
 export const initialBlocks = {
