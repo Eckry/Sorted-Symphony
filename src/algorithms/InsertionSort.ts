@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { insert, resetColor, stop } from "../helpers";
+import { insert, playFinish, stop } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
 export const InsertionSort = (
@@ -27,7 +27,14 @@ export const InsertionSort = (
       let j = i - 1;
       while (j >= 0 && key < blocks[j].val) {
         if (!isSortingRef.current) break;
-        await insert(blocks, blocks[j].val, j + 1, configuration, comparison, setBlocks);
+        await insert(
+          blocks,
+          blocks[j].val,
+          j + 1,
+          configuration,
+          comparison,
+          setBlocks
+        );
         j--;
       }
 
@@ -40,7 +47,7 @@ export const InsertionSort = (
       return stop(prevStatus, setBlocks);
     }
 
-    await resetColor(blocks, setBlocks, configuration);
+    playFinish(configuration.volume);
     isSortingRef.current = false;
     setIsSorting(false);
   };

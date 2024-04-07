@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { insert, isSorted, resetColor, stop } from "../helpers";
+import { insert, isSorted, playFinish, stop } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
 export const MergeSort = (
@@ -80,9 +80,9 @@ export const MergeSort = (
       return stop(prevMerge, setBlocks);
     }
 
-    await resetColor(blocks, setBlocks, configuration);
     isSortingRef.current = false;
     setIsSorting(false);
+    playFinish(configuration.volume);
   };
 
   const codes = {

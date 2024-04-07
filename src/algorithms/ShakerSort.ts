@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { resetColor, stop, swap } from "../helpers";
+import { playFinish, stop, swap } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
 export const ShakerSort = (
@@ -50,9 +50,9 @@ export const ShakerSort = (
 
       start++;
     }
-    await resetColor(blocks, setBlocks, configuration);
     isSortingRef.current = false;
     setIsSorting(false);
+    playFinish(configuration.volume);
   };
 
   const codes = {

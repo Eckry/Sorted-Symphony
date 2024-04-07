@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { isSorted, resetColor, stop, swap } from "../helpers";
+import { isSorted, playFinish, stop, swap } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
 export const HeapSort = (
@@ -41,9 +41,9 @@ export const HeapSort = (
     }
 
     if (isSorted(blocks)) {
-      await resetColor(blocks, setBlocks, configuration);
       isSortingRef.current = false;
       setIsSorting(false);
+      playFinish(configuration.volume);
       return;
     }
 
@@ -58,9 +58,9 @@ export const HeapSort = (
       await heapify(i, 0);
     }
 
-    await resetColor(blocks, setBlocks, configuration);
     isSortingRef.current = false;
     setIsSorting(false);
+    playFinish(configuration.volume);
   };
 
   const codes = {

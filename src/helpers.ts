@@ -18,7 +18,7 @@ const play = (
   }
 };
 
-const playFinish = (volume: number) => {
+export const playFinish = (volume: number) => {
   const audio = new Audio("./finish.mp3");
   audio.volume = volume;
   audio.play();
@@ -112,18 +112,6 @@ export const swapAndPaintBoth = async (
   blocks[j].color = colors.DEFAULT;
 
   setBlocks([...blocks]);
-};
-
-export const resetColor = async (
-  prevBlocks: Block[],
-  setBlocks: (blocks: Block[]) => void,
-  configuration: Configuration
-) => {
-  const newBlocks = prevBlocks.map((block) => {
-    return { ...block, color: colors.DEFAULT };
-  });
-  setBlocks(newBlocks);
-  playFinish(configuration.volume);
 };
 
 export const isSorted = (prevBlocks: Block[]) => {
