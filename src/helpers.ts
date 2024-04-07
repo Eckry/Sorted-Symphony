@@ -55,16 +55,18 @@ export const insert = async (
   numberToInsert: number,
   i: number,
   configuration: Configuration,
-  comparison: boolean
+  comparison: boolean,
+  setBlocks: (newBlocks: Block[]) => void
 ) => {
-  blocks.forEach((block, i) => {
-    blocks[i] = { ...block, color: colors.DEFAULT };
-  });
-
   blocks[i] = { val: numberToInsert, color: colors.HIGHLIGHT };
+
+  setBlocks([...blocks]);
 
   await sleep(configuration.velocity);
   play(numberToInsert, blocks.length, comparison, configuration.volume);
+
+  blocks[i] = { val: numberToInsert, color: colors.DEFAULT };
+  setBlocks([...blocks]);
 };
 
 export const swap = async (

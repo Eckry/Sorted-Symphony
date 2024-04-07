@@ -27,14 +27,12 @@ export const InsertionSort = (
       let j = i - 1;
       while (j >= 0 && key < blocks[j].val) {
         if (!isSortingRef.current) break;
-        await insert(blocks, blocks[j].val, j + 1, configuration, comparison);
-        setBlocks([...blocks]);
+        await insert(blocks, blocks[j].val, j + 1, configuration, comparison, setBlocks);
         j--;
       }
 
       if (!isSortingRef.current) break;
-      await insert(blocks, key, j + 1, configuration, comparison);
-      setBlocks([...blocks]);
+      await insert(blocks, key, j + 1, configuration, comparison, setBlocks);
     }
 
     if (!isSortingRef.current) {
