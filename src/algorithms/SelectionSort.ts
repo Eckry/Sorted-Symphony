@@ -31,7 +31,7 @@ export const SelectionSort = (
         }
       }
       if (i !== min) {
-        await swap(i, min, blocks, configuration, comparison);
+        await swap(i, min, blocks, configuration, comparison, setBlocks);
         setBlocks([...blocks]);
       }
     }

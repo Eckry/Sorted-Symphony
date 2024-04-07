@@ -27,8 +27,7 @@ export const BubbleSort = (
         const { val: b } = blocks[j + 1];
         if (!isSortingRef.current) return stop(blocks, setBlocks);
         if (a > b) {
-          await swap(j, j + 1, blocks, configuration, comparison);
-          setBlocks([...blocks]);
+          await swap(j, j + 1, blocks, configuration, comparison, setBlocks);
         }
       }
     }
