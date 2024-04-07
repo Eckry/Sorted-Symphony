@@ -96,19 +96,22 @@ export const swapAndPaintBoth = async (
   j: number,
   blocks: Block[],
   configuration: Configuration,
-  comparison: boolean
+  comparison: boolean,
+  setBlocks: (newBlocks: Block[]) => void
 ) => {
-  blocks.forEach((block, i) => {
-    blocks[i] = { ...block, color: colors.DEFAULT };
-  });
-
   const temp = { ...blocks[i], color: colors.HIGHLIGHT };
   blocks[i] = { ...blocks[j], color: colors.HIGHLIGHT };
   blocks[j] = temp;
 
-  await sleep(configuration.velocity);
+  setBlocks([...blocks]);
 
+  await sleep(configuration.velocity);
   play(blocks[j].val, blocks.length, comparison, configuration.volume);
+
+  blocks[i].color = colors.DEFAULT;
+  blocks[j].color = colors.DEFAULT;
+
+  setBlocks([...blocks]);
 };
 
 export const resetColor = async (

@@ -36,7 +36,6 @@ export const HeapSort = (
 
       if (largest != i) {
         await swap(i, largest, blocks, configuration, comparison, setBlocks);
-        setBlocks([...blocks]);
         await heapify(n, largest);
       }
     }
@@ -56,7 +55,6 @@ export const HeapSort = (
     for (let i = blocks.length - 1; i >= 0; i--) {
       if (!isSortingRef.current) return stop(blocks, setBlocks);
       await swap(0, i, blocks, configuration, comparison, setBlocks);
-      setBlocks([...blocks]);
       await heapify(i, 0);
     }
 

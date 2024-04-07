@@ -32,7 +32,6 @@ export const ShakerSort = (
         if (blocks[i].val > blocks[i + 1].val) {
           swapped = true;
           await swap(i, i + 1, blocks, configuration, comparison, setBlocks);
-          setBlocks([...blocks]);
         }
       }
 
@@ -46,7 +45,6 @@ export const ShakerSort = (
         if (blocks[i].val < blocks[i - 1].val) {
           swapped = true;
           await swap(i, i - 1, blocks, configuration, comparison, setBlocks);
-          setBlocks([...blocks]);
         }
       }
 

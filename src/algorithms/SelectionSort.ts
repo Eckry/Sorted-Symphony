@@ -23,16 +23,13 @@ export const SelectionSort = (
     for (let i = 0; i < blocks.length; i++) {
       let min = i;
       for (let j = i + 1; j < blocks.length; j++) {
-        const { val: a } = blocks[min];
-        const { val: b } = blocks[j];
         if (!isSortingRef.current) return stop(blocks, setBlocks);
-        if (a > b) {
+        if (blocks[min].val > blocks[j].val) {
           min = j;
         }
       }
       if (i !== min) {
         await swap(i, min, blocks, configuration, comparison, setBlocks);
-        setBlocks([...blocks]);
       }
     }
     await resetColor(blocks, setBlocks, configuration);
