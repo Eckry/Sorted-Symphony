@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useSelected } from "./useSelected";
 import { Block, ConfigurationElements, ConfigurationVelocity } from "../types";
 import { BubbleSort } from "../algorithms/BubbleSort";
@@ -31,12 +31,12 @@ export const useSort = () => {
   const [configuration, setConfiguration] = useState(initialConfiguration);
   const [init, stop, codes] = imports[selected](false, null);
 
-  const changeIsSorting = () => {
+  const changeIsSorting = useCallback(() => {
     isSortingRef.current = !isSortingRef.current;
     setIsSorting((prevIsSorting) => !prevIsSorting);
-  };
+  }, []);
 
-  const changeElements = ({ elements }: ConfigurationElements) => {
+  const changeElements = useCallback(({ elements }: ConfigurationElements) => {
     const length = blocks.length;
     if (length === elements) return;
     if (length < elements) {
@@ -54,13 +54,13 @@ export const useSort = () => {
       const newBlocks = prevBlocks.slice(0, elements);
       setBlocks(newBlocks);
     }
-  };
+  }, []);
 
-  const changeVelocity = ({ velocity }: ConfigurationVelocity) => {
+  const changeVelocity = useCallback(({ velocity }: ConfigurationVelocity) => {
     setConfiguration((prevConfig) => {
       return { ...prevConfig, velocity: 200 - velocity };
     });
-  };
+  }, []);
 
   useEffect(() => {
     if (!isSorting) return stop();
