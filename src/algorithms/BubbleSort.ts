@@ -23,10 +23,8 @@ export const BubbleSort = (
     const len = blocks.length;
     for (let i = 0; i < len; i++) {
       for (let j = 0; j + 1 < len - i; j++) {
-        const { val: a } = blocks[j];
-        const { val: b } = blocks[j + 1];
         if (!isSortingRef.current) return stop(blocks, setBlocks);
-        if (a > b) {
+        if (blocks[j].val > blocks[j + 1].val) {
           await swap(j, j + 1, blocks, configuration, comparison, setBlocks);
         }
       }
