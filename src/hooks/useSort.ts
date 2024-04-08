@@ -2,25 +2,13 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useSelected } from "./useSelected";
 import { Block, ConfigurationElements, ConfigurationVelocity } from "../types";
-import { BubbleSort } from "../algorithms/BubbleSort";
-import { SelectionSort } from "../algorithms/SelectionSort";
-import { QuickSort } from "../algorithms/QuickSort";
-import { MergeSort } from "../algorithms/MergeSort";
-import { InsertionSort } from "../algorithms/InsertionSort";
-import { HeapSort } from "../algorithms/HeapSort";
-import { colors, initialBlocks, initialConfiguration } from "../consts";
-import { ShakerSort } from "../algorithms/ShakerSort";
+import {
+  colors,
+  initialBlocks,
+  initialConfiguration,
+  initImports,
+} from "../consts";
 import { useVolume } from "./useVolume";
-
-const imports = {
-  BubbleSort,
-  SelectionSort,
-  QuickSort,
-  MergeSort,
-  InsertionSort,
-  HeapSort,
-  ShakerSort,
-};
 
 export const useSort = () => {
   const { volume } = useVolume();
@@ -29,7 +17,7 @@ export const useSort = () => {
   const isSortingRef = useRef(false);
   const [isSorting, setIsSorting] = useState(false);
   const [configuration, setConfiguration] = useState(initialConfiguration);
-  const [init, stop] = imports[selected](false, null);
+  const [init, stop] = initImports[selected](false, null);
 
   const changeIsSorting = useCallback(() => {
     isSortingRef.current = !isSortingRef.current;

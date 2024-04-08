@@ -1,3 +1,10 @@
+import { BubbleSort, bubbleSortC } from "./algorithms/BubbleSort";
+import { HeapSort, heapSortC } from "./algorithms/HeapSort";
+import { InsertionSort, insertionSortC } from "./algorithms/InsertionSort";
+import { MergeSort, mergeSortC } from "./algorithms/MergeSort";
+import { QuickSort, quickSortC } from "./algorithms/QuickSort";
+import { SelectionSort, selectionSortC } from "./algorithms/SelectionSort";
+import { ShakerSort, shakerSortC } from "./algorithms/ShakerSort";
 import { AudioFile } from "./types";
 
 export const initialConfiguration = {
@@ -139,4 +146,24 @@ export const initialBlocks = {
     { val: 29, color: colors.DEFAULT },
     { val: 13, color: colors.DEFAULT },
   ],
+};
+
+export const initImports = {
+  QuickSort,
+  BubbleSort,
+  InsertionSort,
+  SelectionSort,
+  MergeSort,
+  HeapSort,
+  ShakerSort,
+};
+
+export const codeImports = {
+  QuickSort: quickSortC,
+  BubbleSort: bubbleSortC,
+  InsertionSort: insertionSortC,
+  SelectionSort: selectionSortC,
+  MergeSort: mergeSortC,
+  HeapSort: heapSortC,
+  ShakerSort: shakerSortC,
 };
