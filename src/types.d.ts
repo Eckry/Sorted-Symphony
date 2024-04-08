@@ -22,10 +22,10 @@ export interface AlgorithmInformation {
 }
 
 export interface Codes {
-  javascript: string
-  python: string
-  cpp: string
-  java: string
+  javascript: string;
+  python: string;
+  cpp: string;
+  java: string;
 }
 
 export type Block = {
@@ -49,6 +49,5 @@ export type AlgorithmFunction = [
     configuration: Configuration,
     setIsSorting: (newIsSorting: boolean) => void
   ) => void,
-  () => void,
-  codes: Codes
+  () => void
 ];

@@ -2,6 +2,56 @@ import { useRef } from "react";
 import { insert, playFinish, stop } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
+export const insertionSortC = {
+  javascript: `for (let i = 1; i < n; i++) {
+  const  key = arr[i];
+  let j = i - 1;
+
+  while (j >= 0 && key < arr[j]) {
+    arr[j + 1] = arr[j];
+    j--;
+  }
+
+  arr[j + 1] = key;
+}`,
+  cpp: `for (int i = 1; i < n; i++)
+{
+  int key = arr[i];
+  int j = i - 1;
+
+  while (j >= 0 && key < arr[j])
+  {
+    arr[j + 1] = arr[j];
+    j--;
+  }
+
+  arr[j + 1] = key;
+}`,
+  python: `for i in range(1, n):
+  key = arr[i]
+  j = i - 1
+
+  while j >= 0 and key < arr[j]:
+    arr[j + 1] = arr[j]
+    j -= 1
+
+  arr[j + 1] = key`,
+  java: `public static void insertionSort(int[] arr) {
+  int n = arr.length;
+  for (int i = 1; i < n; i++) {
+    int key = arr[i];
+    int j = i - 1;
+  
+    while (j >= 0 && key < arr[j]) {
+      arr[j + 1] = arr[j];
+      j--;
+    }
+  
+    arr[j + 1] = key;
+  }
+}`,
+};
+
 export const InsertionSort = (
   comparison: boolean,
   count: React.MutableRefObject<number> | null
@@ -52,55 +102,5 @@ export const InsertionSort = (
     setIsSorting(false);
   };
 
-  const codes = {
-    javascript: `for (let i = 1; i < n; i++) {
-  const  key = arr[i];
-  let j = i - 1;
-
-  while (j >= 0 && key < arr[j]) {
-      arr[j + 1] = arr[j];
-      j--;
-  }
-  
-  arr[j + 1] = key;
-}`,
-    cpp: `for (int i = 1; i < n; i++)
-{
-  int key = arr[i];
-  int j = i - 1;
-
-  while (j >= 0 && key < arr[j])
-  {
-    arr[j + 1] = arr[j];
-    j--;
-  }
-  
-  arr[j + 1] = key;
-}`,
-    python: `for i in range(1, n):
-  key = arr[i]
-  j = i - 1
-
-  while j >= 0 and key < arr[j]:
-    arr[j + 1] = arr[j]
-    j -= 1
-    
-  arr[j + 1] = key`,
-    java: `public static void insertionSort(int[] arr) {
-  int n = arr.length;
-  for (int i = 1; i < n; i++) {
-    int key = arr[i];
-    int j = i - 1;
-
-    while (j >= 0 && key < arr[j]) {
-      arr[j + 1] = arr[j];
-      j--;
-    }
-
-    arr[j + 1] = key;
-  }
-}`,
-  };
-
-  return [initInsertionSort, stopInsertionSort, codes];
+  return [initInsertionSort, stopInsertionSort];
 };

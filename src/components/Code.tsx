@@ -2,7 +2,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import "./styles/Code.css";
 import { useState } from "react";
-import { Codes, Language } from "../types";
+import { Language } from "../types";
 import { languages } from "../consts";
 import {
   ClipboardCheckedIcon,
@@ -12,16 +12,31 @@ import {
   JavaScriptIcon,
   PythonIcon,
 } from "../icons";
+import { bubbleSortC } from "../algorithms/BubbleSort";
+import { heapSortC } from "../algorithms/HeapSort";
+import { insertionSortC } from "../algorithms/InsertionSort";
+import { mergeSortC } from "../algorithms/MergeSort";
+import { quickSortC } from "../algorithms/QuickSort";
+import { selectionSortC } from "../algorithms/SelectionSort";
+import { shakerSortC } from "../algorithms/ShakerSort";
+import { useSelected } from "../hooks/useSelected";
 
-interface Props {
-  codes: Codes;
-}
+const imports = {
+  BubbleSort: bubbleSortC,
+  HeapSort: heapSortC,
+  InsertionSort: insertionSortC,
+  MergeSort: mergeSortC,
+  QuickSort: quickSortC,
+  SelectionSort: selectionSortC,
+  ShakerSort: shakerSortC,
+};
 
-export const Code: React.FC<Props> = ({ codes }) => {
+export const Code = () => {
   const [languageSelected, setLanguageSelected] = useState<Language>(
     languages.JavaScript
   );
   const [copied, setCopied] = useState(false);
+  const { selected } = useSelected();
 
   let timeoutId: number;
 
@@ -32,7 +47,7 @@ export const Code: React.FC<Props> = ({ codes }) => {
   const handleCopyToClipboard = () => {
     clearTimeout(timeoutId);
     setCopied(true);
-    navigator.clipboard.writeText(codes[languageSelected]);
+    navigator.clipboard.writeText(imports[selected][languageSelected]);
     timeoutId = setTimeout(() => {
       setCopied(false);
     }, 1000);
@@ -91,7 +106,7 @@ export const Code: React.FC<Props> = ({ codes }) => {
           style={atomOneDarkReasonable}
           customStyle={customStyle}
         >
-          {codes[languageSelected]}
+          {imports[selected][languageSelected]}
         </SyntaxHighlighter>
       </section>
     </>

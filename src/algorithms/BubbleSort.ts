@@ -2,6 +2,42 @@ import { useRef } from "react";
 import { playFinish, stop, swap } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
+export const bubbleSortC = {
+  javascript: `for(let i = 0; i < n; i++){
+  for(let j = 0; j + 1 < n - i; j++){
+    if(arr[j] > arr[j + 1]){
+      [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+    }
+  }
+}`,
+  python: `for i in range(n):
+  for j in range(n - i - 1):
+    if arr[j] > arr[j + 1]:
+      arr[j], arr[j + 1] = arr[j + 1], arr[j]`,
+
+  cpp: `for(int i = 0; i < n; i++){
+  for(int j = 0; j + 1 < n - i; j++){
+    if(arr[j] > arr[j + 1]){
+      int temp = arr[j];
+      arr[j] = arr[j + 1];
+      arr[j + 1] = temp;
+    }
+  }
+}`,
+  java: `int n = arr.length;
+int temp = 0;
+
+for(int i = 0; i < n; i++){
+  for(int j = 0; j + 1 < n - i; j++){
+    if(arr[j] > arr[j + 1]){
+      temp = arr[j];
+      arr[j] = arr[j + 1];
+      arr[j + 1] = temp;
+    }
+  }
+}`,
+};
+
 export const BubbleSort = (
   comparison: boolean,
   count: React.MutableRefObject<number> | null
@@ -34,41 +70,5 @@ export const BubbleSort = (
     playFinish(configuration.volume);
   };
 
-  const codes = {
-    javascript: `for(let i = 0; i < n; i++){
-  for(let j = 0; j + 1 < n - i; j++){
-    if(arr[j] > arr[j + 1]){
-      [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-    }
-  }
-}`,
-    python: `for i in range(n):
-  for j in range(n - i - 1):
-    if arr[j] > arr[j + 1]:
-      arr[j], arr[j + 1] = arr[j + 1], arr[j]`,
-
-    cpp: `for(int i = 0; i < n; i++){
-  for(int j = 0; j + 1 < n - i; j++){
-    if(arr[j] > arr[j + 1]){
-      int temp = arr[j];
-      arr[j] = arr[j + 1];
-      arr[j + 1] = temp;
-    }
-  }
-}`,
-    java: `int n = arr.length;
-int temp = 0;
-
-for(int i = 0; i < n; i++){
-  for(int j = 0; j + 1 < n - i; j++){
-    if(arr[j] > arr[j + 1]){
-      temp = arr[j];
-      arr[j] = arr[j + 1];
-      arr[j + 1] = temp;
-    }
-  }
-}`,
-  };
-
-  return [initBubbleSort, stopBubbleSort, codes];
+  return [initBubbleSort, stopBubbleSort];
 };
