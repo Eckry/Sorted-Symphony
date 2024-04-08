@@ -5,7 +5,6 @@ import { MergeSort, mergeSortC } from "./algorithms/MergeSort";
 import { QuickSort, quickSortC } from "./algorithms/QuickSort";
 import { SelectionSort, selectionSortC } from "./algorithms/SelectionSort";
 import { ShakerSort, shakerSortC } from "./algorithms/ShakerSort";
-import { AudioFile } from "./types";
 
 export const initialConfiguration = {
   velocity: 100,
@@ -39,15 +38,6 @@ export const languages = {
   Python: "python",
   Java: "java",
 } as const;
-
-export const audios: AudioFile[] = [
-  "./DO.mp3",
-  "./RE.mp3",
-  "./MI.mp3",
-  "./FA.mp3",
-  "./SOL.mp3",
-  "./LA.mp3",
-];
 
 export const initialBlocks = {
   Reversed: [

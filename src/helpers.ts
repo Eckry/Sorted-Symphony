@@ -1,6 +1,10 @@
 import { Block, Configuration } from "./types";
-import { audios } from "./consts";
 import { colors } from "./consts";
+
+const FREQ_MAX = 300;
+const FREQ_MIN = 50;
+
+const audioCtx = new AudioContext();
 
 const play = (
   pitch: number,
@@ -9,19 +13,39 @@ const play = (
   volume: number
 ) => {
   if (comparison) return;
-  const audioIndex = Math.floor((pitch / length) * 5);
-  const path = audios[audioIndex];
-  const audioClone = new Audio(path);
-  if (audioClone instanceof HTMLAudioElement) {
-    audioClone.volume = volume;
-    audioClone.play();
-  }
+  const oscillator = new OscillatorNode(audioCtx);
+  const gainNode = new GainNode(audioCtx);
+
+  oscillator.type = "square";
+
+  const freq = Math.floor((pitch / length) * FREQ_MAX + FREQ_MIN);
+  oscillator.frequency.value = freq;
+
+  gainNode.gain.value = volume ? 0.01 : 0;
+
+  oscillator.connect(gainNode).connect(audioCtx.destination);
+  oscillator.start();
+
+  setTimeout(function () {
+    oscillator.stop();
+  }, 50);
 };
 
 export const playFinish = (volume: number) => {
-  const audio = new Audio("./finish.mp3");
-  audio.volume = volume;
-  audio.play();
+  const oscillator = new OscillatorNode(audioCtx);
+  const gainNode = new GainNode(audioCtx);
+
+  oscillator.type = "square";
+
+  oscillator.frequency.value = 100;
+  gainNode.gain.value = volume ? 0.01 : 0;
+
+  oscillator.connect(gainNode).connect(audioCtx.destination);
+  oscillator.start();
+  
+  setTimeout(function () {
+    oscillator.stop();
+  }, 100);
 };
 
 export const shuffle = (array: Block[]) => {
