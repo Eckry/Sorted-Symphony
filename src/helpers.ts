@@ -37,7 +37,7 @@ export const playFinish = (volume: number) => {
 
   oscillator.type = "square";
 
-  oscillator.frequency.value = 100;
+  oscillator.frequency.value = 500;
   gainNode.gain.value = volume ? 0.01 : 0;
 
   oscillator.connect(gainNode).connect(audioCtx.destination);
