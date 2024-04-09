@@ -38,15 +38,3 @@ body {
   font-family: "Averia Serif Libre", sans-serif;
   background-color: var(--primary-color);
 }
-
-.volume-button {
-  position: fixed;
-  top: 2px;
-  right: 2px;
-  background-color: transparent;
-  outline: none;
-  cursor: pointer;
-  border: 2px solid var(--tertiary-brighty-color);
-  border-radius: 8px;
-  padding: 5px;
-}
