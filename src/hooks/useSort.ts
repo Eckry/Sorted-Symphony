@@ -77,7 +77,6 @@ export const useSort = () => {
 
   return {
     blocks,
-    setBlocks,
     changeIsSorting,
     isSorting,
     changeVelocity,
