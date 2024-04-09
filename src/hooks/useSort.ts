@@ -7,8 +7,10 @@ import {
   initialBlocks,
   initialConfiguration,
   initImports,
+  sortOptions,
 } from "../consts";
 import { useVolume } from "./useVolume";
+import { lowShuffle, shuffle } from "../helpers";
 
 export const useSort = () => {
   const { volume } = useVolume();
@@ -50,6 +52,24 @@ export const useSort = () => {
     });
   }, []);
 
+  const shuffleElements = (type: string) => {
+    if (type === sortOptions.RANDOM) {
+      const newBlocks = shuffle([...blocks]);
+      setBlocks(newBlocks);
+    }
+
+    if (type === sortOptions.REVERSED) {
+      const newBlocks = [...blocks];
+      newBlocks.sort((a, b) => b.val - a.val);
+      setBlocks(newBlocks);
+    }
+
+    if (type === sortOptions.NEARLY_SORTED) {
+      const newBlocks = lowShuffle([...blocks]);
+      setBlocks(newBlocks);
+    }
+  };
+
   useEffect(() => {
     if (!isSorting) return stop();
     init(blocks, setBlocks, { ...configuration, volume }, setIsSorting);
@@ -63,5 +83,6 @@ export const useSort = () => {
     changeVelocity,
     changeElements,
     configuration,
+    shuffleElements,
   };
 };

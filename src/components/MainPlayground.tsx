@@ -6,23 +6,19 @@ import { SortOptions } from "./SortOptions";
 export const MainPlayground = () => {
   const {
     blocks,
-    setBlocks,
     changeIsSorting,
     isSorting,
     changeVelocity,
     changeElements,
     configuration,
+    shuffleElements,
   } = useSort();
   return (
     <>
       <div className="home-blocks">
         <Blocks blocks={blocks} />
       </div>
-      <SortOptions
-        isSorting={isSorting}
-        blocks={blocks}
-        setBlocks={setBlocks}
-      />
+      <SortOptions isSorting={isSorting} shuffleElements={shuffleElements} />
       <Configuration
         changeVelocity={changeVelocity}
         changeIsSorting={changeIsSorting}
