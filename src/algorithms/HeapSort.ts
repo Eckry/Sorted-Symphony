@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { isSorted, playFinish, stop, swap } from "../helpers";
+import { playFinish, stop, swap } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
 export const heapSortC = {
@@ -146,13 +146,6 @@ export const HeapSort = (
         await swap(i, largest, blocks, configuration, comparison, setBlocks);
         await heapify(n, largest);
       }
-    }
-
-    if (isSorted(blocks)) {
-      isSortingRef.current = false;
-      setIsSorting(false);
-      playFinish(configuration.volume);
-      return;
     }
 
     for (let i = Math.floor(blocks.length / 2) - 1; i >= 0; i--) {

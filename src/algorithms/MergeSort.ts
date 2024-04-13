@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { insert, isSorted, playFinish, stop } from "../helpers";
+import { insert, playFinish, stop } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
 export const mergeSortC = {
@@ -261,7 +261,7 @@ export const MergeSort = (
       }
     }
 
-    if (!isSorted(blocks)) await executeMergeSort(0, blocks.length - 1);
+    await executeMergeSort(0, blocks.length - 1);
 
     if (!isSortingRef.current) {
       setBlocks(prevMerge);

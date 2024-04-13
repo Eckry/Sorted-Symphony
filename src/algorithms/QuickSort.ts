@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { isSorted, playFinish, stop, swapAndPaintBoth } from "../helpers";
+import { playFinish, stop, swapAndPaintBoth } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
 export const quickSortC = {
@@ -138,7 +138,7 @@ export const QuickSort = (
       if (i < last) await executeQuickSort(i, last);
     }
 
-    if (!isSorted(blocks)) await executeQuickSort(0, blocks.length - 1);
+    await executeQuickSort(0, blocks.length - 1);
     if (!isSortingRef.current) return stop(blocks, setBlocks);
     isSortingRef.current = false;
     setIsSorting(false);
