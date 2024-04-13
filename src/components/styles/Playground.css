@@ -23,9 +23,10 @@
   color: var(--highlight-color);
 }
 
-@media (width <= 850px){
+@media (width <= 520px){
   .algorithm-button {
-    font-size: clamp(5px, 1.5vw, 14px);
+    gap: 4px;
+    font-size: 10px;
   }
 
   .algorithm-button svg {
