@@ -10,7 +10,6 @@
 
 .block {
   width: 100%;
-  border-top: 2px solid var(--highlight-color);
   position: relative;
 }
 

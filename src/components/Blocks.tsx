@@ -18,6 +18,7 @@ export const Blocks: React.FC<Props> = ({ blocks }) => {
             style={{
               height: `${(val * 100) / blocks.length}%`,
               backgroundColor: color,
+              borderTop: `${width}px solid var(--highlight-color)`
             }}
           >
             <span
