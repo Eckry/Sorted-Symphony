@@ -1,3 +1,4 @@
+import { isSorted } from "../helpers";
 import { PlayIcon, StopIcon } from "../icons";
 import { Block, ConfigurationElements, ConfigurationVelocity } from "../types";
 import { RangeInputElements } from "./RangeInputElements";
@@ -22,7 +23,7 @@ export const Configuration: React.FC<Props> = ({
   configuration,
 }) => {
   const handleSort = () => {
-    changeIsSorting();
+    if (!isSorted(blocks)) changeIsSorting();
   };
 
   const handleChangeVelocity = (newVelocity: number) => {
