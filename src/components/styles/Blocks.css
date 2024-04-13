@@ -17,6 +17,5 @@
 .block-top {
   position: absolute;
   left: 0;
-  width: 2px;
   background-color: var(--highlight-color);
 }
