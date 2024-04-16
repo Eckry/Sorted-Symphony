@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { RightArrowIcon } from "../icons";
 import { MainPlayground } from "../components/MainPlayground";
 import { VolumeButton } from "../components/VolumeButton";
+import { Footer } from "../components/Footer";
 
 export const Home = () => {
   return (
@@ -22,6 +23,7 @@ export const Home = () => {
         <Code />
         <Description />
       </main>
+      <Footer />
     </>
   );
 };
