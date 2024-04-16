@@ -1,0 +1,37 @@
+.about-container {
+  width: 90%;
+  max-width: 800px;
+  margin: auto;
+  padding-top: 100px;
+}
+
+.about-title {
+  text-align: center;
+  color: var(--highlight-color);
+  font-size: 4rem;
+}
+
+.about-text {
+  color: var(--tertiary-brighty-color);
+  line-height: 25px;
+  margin-top: 12px;
+}
+
+.about-ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.about-algorithm {
+  color: var(--tertiary-brighty-color);
+}
+
+.about-link {
+  text-decoration: none;
+  color: var(--highlight-color);
+  text-decoration: underline;
+}
