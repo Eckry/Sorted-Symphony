@@ -236,3 +236,33 @@ export const SendIcon = () => (
     <path d="M6.5 12h14.5" />
   </svg>
 );
+
+export const CheckIcon = () => (
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 24 24"
+    strokeWidth="1.5"
+    stroke="currentColor"
+    fill="none"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M5 12l5 5l10 -10" />
+  </svg>
+);
+
+export const ErrorIcon = () => (
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 24 24"
+    strokeWidth="1.5"
+    stroke="#2c3e50"
+    fill="none"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+    <path d="M12 9v4" />
+    <path d="M12 16v.01" />
+  </svg>
+);
