@@ -1,3 +1,4 @@
+import "vite/client";
 import { algorithms, languages, sortOptions } from "./consts";
 
 export type Algorithm = (typeof algorithms)[keyof typeof algorithms];
