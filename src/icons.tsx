@@ -257,12 +257,12 @@ export const ErrorIcon = () => (
     height="32"
     viewBox="0 0 24 24"
     strokeWidth="1.5"
-    stroke="#2c3e50"
+    stroke="currentColor"
     fill="none"
   >
     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-    <path d="M12 9v4" />
-    <path d="M12 16v.01" />
+    <path d="M12.896 19.792l-2.896 -5.792l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5l-3.487 9.657" />
+    <path d="M21.5 21.5l-5 -5" />
+    <path d="M16.5 21.5l5 -5" />
   </svg>
 );
