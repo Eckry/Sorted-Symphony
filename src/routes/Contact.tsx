@@ -49,6 +49,7 @@ export const Contact = () => {
   return (
     <main className="contact-container">
       <h1 className="contact-title">Contact</h1>
+      <h6 className="contact-email">My email is ericktorresagui@gmail.com</h6>
       <form ref={form} className="contact-form" onSubmit={handleOnSubmit}>
         <label className="contact-label" htmlFor="input-name">
           Name
