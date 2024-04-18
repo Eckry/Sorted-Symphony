@@ -34,6 +34,7 @@
   resize: none;
   outline: none;
   border-radius: 6px;
+  font-family: "Averia Serif Libre", sans-serif;
 }
 
 .contact-input:focus {
