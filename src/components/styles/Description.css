@@ -27,6 +27,7 @@
   margin-top: 0.5rem;
   text-wrap: pretty;
   line-height: 24px;
+  white-space: pre-wrap;
 }
 
 .extra-information {
