@@ -73,7 +73,17 @@ export const information: Record<Algorithm, AlgorithmInformation> = {
   },
   GnomeSort: {
     description:
-      'Gnome Sort, also known as Stupid Sort or Slow Sort, is a simple sorting algorithm that works by repeatedly swapping adjacent elements if they are in the wrong order, similar to Bubble Sort. However, Gnome Sort also has a "backward" step where it moves one position back in the list to check the previous elements.',
+      'Gnome Sort, also known as Stupid Sort or Slow Sort, is a simple sorting algorithm that works by repeatedly swapping adjacent elements if they are in the wrong order, similar to Bubble Sort. However, Gnome Sort also has a "backward" step where it moves one position back in the list to check the previous elements. \n\nGnome Sort is named after the behavior of a garden gnome who sorts a line of flower pots. The gnome will compare adjacent pots and swap them if they are in the wrong order, but if they are in the correct order, the gnome will move to the next pot. If a swap occurs, the gnome will go back to the previous position to check again.',
+    time: {
+      avg: "O(n^2)",
+      best: "O(n)",
+      worst: "O(n^2)",
+      space: "O(1)",
+    },
+  },
+  OddEvenSort: {
+    description:
+      "Odd-Even Sort, also known as Brick Sort, is a variation of the Bubble Sort algorithm. It is designed to improve upon Bubble Sort by allowing comparisons and swaps of adjacent elements in parallel.\n\nOdd-even sort is particularly suited for parallel implementations because the odd-phase and even-phase comparisons can be performed independently. However, it's important to note that the sorting performance of Odd-Even Sort is generally not as efficient as more traditional sorting algorithms like Quick Sort or Merge Sort.",
     time: {
       avg: "O(n^2)",
       best: "O(n)",
