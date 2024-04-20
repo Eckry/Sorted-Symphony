@@ -1,4 +1,5 @@
 import { BubbleSort, bubbleSortC } from "./algorithms/BubbleSort";
+import { GnomeSort, gnomeSortC } from "./algorithms/GnomeSort";
 import { HeapSort, heapSortC } from "./algorithms/HeapSort";
 import { InsertionSort, insertionSortC } from "./algorithms/InsertionSort";
 import { MergeSort, mergeSortC } from "./algorithms/MergeSort";
@@ -24,6 +25,7 @@ export const algorithms = {
   SELECTIONSORT: "SelectionSort",
   HEAPSORT: "HeapSort",
   SHAKERSORT: "ShakerSort",
+  GNOMESORT: "GnomeSort",
 } as const;
 
 export const sortOptions = {
@@ -146,6 +148,7 @@ export const initImports = {
   MergeSort,
   HeapSort,
   ShakerSort,
+  GnomeSort,
 };
 
 export const codeImports = {
@@ -156,4 +159,5 @@ export const codeImports = {
   MergeSort: mergeSortC,
   HeapSort: heapSortC,
   ShakerSort: shakerSortC,
+  GnomeSort: gnomeSortC,
 };

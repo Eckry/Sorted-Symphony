@@ -62,7 +62,18 @@ export const information: Record<Algorithm, AlgorithmInformation> = {
     },
   },
   ShakerSort: {
-    description: "Shaker Sort, also known as Cocktail Sort or Bidirectional Bubble Sort, is a variation of the Bubble Sort algorithm. It improves on Bubble Sort by allowing the sorting process to proceed in both directions (forward and backward) through the array.",
+    description:
+      "Shaker Sort, also known as Cocktail Sort or Bidirectional Bubble Sort, is a variation of the Bubble Sort algorithm. It improves on Bubble Sort by allowing the sorting process to proceed in both directions (forward and backward) through the array.",
+    time: {
+      avg: "O(n^2)",
+      best: "O(n)",
+      worst: "O(n^2)",
+      space: "O(1)",
+    },
+  },
+  GnomeSort: {
+    description:
+      'Gnome Sort, also known as Stupid Sort or Slow Sort, is a simple sorting algorithm that works by repeatedly swapping adjacent elements if they are in the wrong order, similar to Bubble Sort. However, Gnome Sort also has a "backward" step where it moves one position back in the list to check the previous elements.',
     time: {
       avg: "O(n^2)",
       best: "O(n)",
