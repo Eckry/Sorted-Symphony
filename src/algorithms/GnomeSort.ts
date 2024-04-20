@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { playFinish, swap } from "../helpers";
+import { playFinish, swap, stop } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
 export const gnomeSortC = {
@@ -74,7 +74,7 @@ export const GnomeSort = (
     const len = blocks.length;
     let pos = 1;
     while (pos < len) {
-      if (!isSortingRef.current) return stop();
+      if (!isSortingRef.current) return stop(blocks, setBlocks);
       if (blocks[pos].val >= blocks[pos - 1].val) {
         pos++;
       } else {
