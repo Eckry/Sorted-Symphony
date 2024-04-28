@@ -4,6 +4,7 @@ import { HeapSort, heapSortC } from "./algorithms/HeapSort";
 import { InsertionSort, insertionSortC } from "./algorithms/InsertionSort";
 import { MergeSort, mergeSortC } from "./algorithms/MergeSort";
 import { OddEvenSort, oddEvenSortC } from "./algorithms/OddEvenSort";
+import { PancakeSort, pancakeSortC } from "./algorithms/PancakeSort";
 import { QuickSort, quickSortC } from "./algorithms/QuickSort";
 import { SelectionSort, selectionSortC } from "./algorithms/SelectionSort";
 import { ShakerSort, shakerSortC } from "./algorithms/ShakerSort";
@@ -28,6 +29,7 @@ export const algorithms = {
   SHAKERSORT: "ShakerSort",
   GNOMESORT: "GnomeSort",
   ODDEVENSORT: "OddEvenSort",
+  PANCAKESORT: "PancakeSort"
 } as const;
 
 export const sortOptions = {
@@ -152,6 +154,7 @@ export const initImports = {
   ShakerSort,
   GnomeSort,
   OddEvenSort,
+  PancakeSort,
 };
 
 export const codeImports = {
@@ -164,4 +167,5 @@ export const codeImports = {
   ShakerSort: shakerSortC,
   GnomeSort: gnomeSortC,
   OddEvenSort: oddEvenSortC,
+  PancakeSort: pancakeSortC,
 };

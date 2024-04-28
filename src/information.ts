@@ -91,4 +91,14 @@ export const information: Record<Algorithm, AlgorithmInformation> = {
       space: "O(1)",
     },
   },
+  PancakeSort: {
+    description:
+      "Pancake Sort is a sorting algorithm that sorts a sequence by repeatedly flipping the elements in the sequence. The basic idea is to make the largest unsorted element move to the beginning of the sequence, then flip the entire sequence, making the largest element move to the end. This process is repeated until the entire sequence is sorted.\n\nPancake Sort is named after the process of flipping pancakes in a frying pan.",
+    time: {
+      avg: "O(n^2)",
+      best: "O(n^2)",
+      worst: "O(n^2)",
+      space: "O(1)",
+    },
+  },
 };
