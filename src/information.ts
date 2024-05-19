@@ -131,4 +131,14 @@ export const information: Record<Algorithm, AlgorithmInformation> = {
       space: "O(1)",
     },
   },
+  StoogeSort: {
+    description:
+      "Stooge Sort is a recursive sorting algorithm that sorts elements by recursively sorting the first two-thirds and last two-thirds of the array, then recursively sorting the first two-thirds again. It derives its name from the Stooges, who repeatedly hit each other in slapstick comedy. Stooge Sort is inefficient for large datasets due to its poor time complexity.",
+    time: {
+      avg: "O(n^(log 3 / log 1.5))",
+      best: "O(n^(log 3 / log 1.5))",
+      worst: "O(n^(log 3 / log 1.5))",
+      space: "O(n)",
+    },
+  },
 };

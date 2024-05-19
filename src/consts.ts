@@ -11,6 +11,7 @@ import { RadixSort, radixSortC } from "./algorithms/RadixSort";
 import { SelectionSort, selectionSortC } from "./algorithms/SelectionSort";
 import { ShakerSort, shakerSortC } from "./algorithms/ShakerSort";
 import { ShellSort, shellSortC } from "./algorithms/ShellSort";
+import { StoogeSort, stoogeSortC } from "./algorithms/StoogeSort";
 
 export const initialConfiguration = {
   velocity: 100,
@@ -36,6 +37,7 @@ export const algorithms = {
   SHELLSORT: "ShellSort",
   RADIXSORT: "RadixSort",
   COMBSORT: "CombSort",
+  STOOGESORT: "StoogeSort",
 } as const;
 
 export const sortOptions = {
@@ -164,6 +166,7 @@ export const initImports = {
   ShellSort,
   RadixSort,
   CombSort,
+  StoogeSort,
 };
 
 export const codeImports = {
@@ -180,4 +183,5 @@ export const codeImports = {
   ShellSort: shellSortC,
   RadixSort: radixSortC,
   CombSort: combSortC,
+  StoogeSort: stoogeSortC,
 };
