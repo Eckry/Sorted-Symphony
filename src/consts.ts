@@ -8,6 +8,7 @@ import { PancakeSort, pancakeSortC } from "./algorithms/PancakeSort";
 import { QuickSort, quickSortC } from "./algorithms/QuickSort";
 import { SelectionSort, selectionSortC } from "./algorithms/SelectionSort";
 import { ShakerSort, shakerSortC } from "./algorithms/ShakerSort";
+import { ShellSort, shellSortC } from "./algorithms/ShellSort";
 
 export const initialConfiguration = {
   velocity: 100,
@@ -29,7 +30,8 @@ export const algorithms = {
   SHAKERSORT: "ShakerSort",
   GNOMESORT: "GnomeSort",
   ODDEVENSORT: "OddEvenSort",
-  PANCAKESORT: "PancakeSort"
+  PANCAKESORT: "PancakeSort",
+  SHELLSORT: "ShellSort",
 } as const;
 
 export const sortOptions = {
@@ -155,6 +157,7 @@ export const initImports = {
   GnomeSort,
   OddEvenSort,
   PancakeSort,
+  ShellSort,
 };
 
 export const codeImports = {
@@ -168,4 +171,5 @@ export const codeImports = {
   GnomeSort: gnomeSortC,
   OddEvenSort: oddEvenSortC,
   PancakeSort: pancakeSortC,
+  ShellSort: shellSortC,
 };

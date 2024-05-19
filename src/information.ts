@@ -101,4 +101,14 @@ export const information: Record<Algorithm, AlgorithmInformation> = {
       space: "O(1)",
     },
   },
+  ShellSort: {
+    description:
+      "Shell Sort is an in-place comparison-based sorting algorithm that generalizes insertion sort by allowing the exchange of items that are far apart. \n\nThe idea is to arrange the list of elements so that, starting anywhere, taking every h-th element produces a sorted list. The algorithm first sorts elements far apart from each other and successively reduces the interval between elements to be compared. This interval is called the gap. \n\nThe performance of Shell Sort depends on the gap sequence it uses. Shell's original sequence starts with a large gap, then reduces it by half each time, but other sequences can be used to improve performance.",
+    time: {
+      avg: "O(n log n) or O(n^1.5)",
+      best: "O(n log n)",
+      worst: "O(n^2)",
+      space: "O(1)",
+    },
+  },
 };
