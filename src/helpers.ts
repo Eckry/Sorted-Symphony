@@ -6,7 +6,7 @@ const FREQ_MIN = 50;
 
 const audioCtx = new AudioContext();
 
-const play = (
+export const play = (
   pitch: number,
   length: number,
   comparison: boolean,
@@ -42,7 +42,7 @@ export const playFinish = (volume: number) => {
 
   oscillator.connect(gainNode).connect(audioCtx.destination);
   oscillator.start();
-  
+
   setTimeout(function () {
     oscillator.stop();
   }, 100);

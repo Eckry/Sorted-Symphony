@@ -111,4 +111,14 @@ export const information: Record<Algorithm, AlgorithmInformation> = {
       space: "O(1)",
     },
   },
+  RadixSort: {
+    description:
+      "Radix Sort is a non-comparison-based sorting algorithm that sorts integers by processing individual digits of the numbers from least significant digit (LSD) to most significant digit (MSD) or vice versa. It can be applied to integers represented in any positional numeral system. \n\nRadix Sort uses the concept of bucket sorting, where elements are grouped into buckets based on the value of the digit being processed. After sorting each digit, the elements are rearranged according to their bucket order. \n\nRadix Sort is often used for sorting strings, floating-point numbers, or other data types that can be decomposed into individual digits or characters.",
+    time: {
+      avg: "O(n * k)",
+      best: "O(n * k)",
+      worst: "O(n * k)",
+      space: "O(n + k)",
+    },
+  },
 };
