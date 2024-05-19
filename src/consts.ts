@@ -1,4 +1,5 @@
 import { BubbleSort, bubbleSortC } from "./algorithms/BubbleSort";
+import { CombSort, combSortC } from "./algorithms/CombSort";
 import { GnomeSort, gnomeSortC } from "./algorithms/GnomeSort";
 import { HeapSort, heapSortC } from "./algorithms/HeapSort";
 import { InsertionSort, insertionSortC } from "./algorithms/InsertionSort";
@@ -34,6 +35,7 @@ export const algorithms = {
   PANCAKESORT: "PancakeSort",
   SHELLSORT: "ShellSort",
   RADIXSORT: "RadixSort",
+  COMBSORT: "CombSort",
 } as const;
 
 export const sortOptions = {
@@ -161,6 +163,7 @@ export const initImports = {
   PancakeSort,
   ShellSort,
   RadixSort,
+  CombSort,
 };
 
 export const codeImports = {
@@ -176,4 +179,5 @@ export const codeImports = {
   PancakeSort: pancakeSortC,
   ShellSort: shellSortC,
   RadixSort: radixSortC,
+  CombSort: combSortC,
 };

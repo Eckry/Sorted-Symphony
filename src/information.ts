@@ -121,4 +121,14 @@ export const information: Record<Algorithm, AlgorithmInformation> = {
       space: "O(n + k)",
     },
   },
+  CombSort: {
+    description:
+      "Comb Sort is a comparison-based sorting algorithm that improves upon the bubble sort algorithm. \n\nIt works by repeatedly stepping through the list of elements and comparing adjacent elements with a gap size. Unlike bubble sort, where adjacent elements are compared with a fixed gap of 1, Comb Sort starts with a large gap and shrinks it with each iteration until it becomes 1, at which point the algorithm behaves like a bubble sort. \n\nThe shrink factor determines how much the gap is reduced in each iteration. Comb Sort is efficient for sorting large datasets with random order.",
+    time: {
+      avg: "O(n^2)",
+      best: "O(n log n)",
+      worst: "O(n^2)",
+      space: "O(1)",
+    },
+  },
 };
