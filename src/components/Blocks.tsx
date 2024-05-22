@@ -41,7 +41,7 @@ export const Blocks: React.FC<Props> = ({ blocks }) => {
       {blocks.map(({ val, color }) => {
         return (
           <LineBlock
-            key={val}
+            key={crypto.randomUUID()}
             height={(val * 100) / blocks.length}
             width={width}
             color={color}
