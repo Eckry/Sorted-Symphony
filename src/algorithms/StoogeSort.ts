@@ -3,55 +3,63 @@ import { playFinish, stop, swap } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
 export const stoogeSortC = {
-  javascript: `let k;
+  javascript: `function stoogesort(arr, i, j) {
+  let k; 
 
-if (arr[i] > arr[j]) 
-  [arr[j], arr[i]] = [arr[i], arr[j]];
+  if (arr[i] > arr[j]) 
+    [arr[j], arr[i]] = [arr[i], arr[j]];
 
-if ((i + 1) >= j) return;
+  if ((i + 1) >= j) return;
 
-k = Math.floor((j - i + 1) / 3);
-stoogesort(arr, i, j - k);
-stoogesort(arr, i + k, j);
-stoogesort(arr, i, j - k);`,
-  python: `if arr[i] > arr[j]:
-  arr[j], arr[i] = arr[i], arr[j]
+  k = Math.floor((j - i + 1) / 3);
+  stoogesort(arr, i, j - k);
+  stoogesort(arr, i + k, j);
+  stoogesort(arr, i, j - k);
+}`,
+  python: `def stoogesort(arr, i, j):
+  if arr[i] > arr[j]:
+    arr[j], arr[i] = arr[i], arr[j]
   
-if (i + 1) >= j:
-  return
+  if (i + 1) >= j:
+    return
 
-k = (j - i + 1) // 3
-stoogesort(arr, i, j - k)
-stoogesort(arr, i + k, j)
-stoogesort(arr, i, j - k)`,
-  cpp: `int k;
-
-if (arr[i] > arr[j])
+  k = (j - i + 1) // 3
+  stoogesort(arr, i, j - k)
+  stoogesort(arr, i + k, j)
+  stoogesort(arr, i, j - k)`,
+  cpp: `void stoogesort(int arr[], int i, int j) 
 {
-  int temp = arr[i];
-  arr[i] = arr[j];
-  arr[j] = temp;
-}
+  int k;
 
-if ((i + 1) >= j) return;
-k = (int)((j - i + 1) / 3);
-stoogesort(arr, i, j - k);
-stoogesort(arr, i + k, j);
-stoogesort(arr, i, j - k);`,
-  java: `int k;
+  if (arr[i] > arr[j])
+  {
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
 
-if (arr[i] > arr[j]) {
-  int temp = arr[i];
-  arr[i] = arr[j];
-  arr[j] = temp;
-}
+  if ((i + 1) >= j) return;
+  k = (int)((j - i + 1) / 3);
+  stoogesort(arr, i, j - k);
+  stoogesort(arr, i + k, j);
+  stoogesort(arr, i, j - k);
+}`,
+  java: `static void stoogesort(int arr[], int i, int j) {
+  int k;
 
-if ((i + 1) >= j) return;
-
-k = (int)((j - i + 1) / 3);
-stoogesort(arr, i, j - k);
-stoogesort(arr, i + k, j);
-stoogesort(arr, i, j - k);`,
+  if (arr[i] > arr[j]) {
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+  
+  if ((i + 1) >= j) return;
+  
+  k = (int)((j - i + 1) / 3);
+  stoogesort(arr, i, j - k);
+  stoogesort(arr, i + k, j);
+  stoogesort(arr, i, j - k);
+}`,
 };
 
 export const StoogeSort = (
