@@ -141,4 +141,14 @@ export const information: Record<Algorithm, AlgorithmInformation> = {
       space: "O(n)",
     },
   },
+  BogoSort: {
+    description:
+      "BogoSort is a highly inefficient and humorous sorting algorithm that repeatedly randomizes the elements of the array and checks if they are sorted. If the array is sorted, the algorithm terminates; otherwise, it repeats the process. Due to its random nature, BogoSort has an extremely poor average and worst-case time complexity.",
+    time: {
+      avg: "O((n+1)!)",
+      best: "O(n)",
+      worst: "O(∞)",
+      space: "O(1)",
+    },
+  },
 };

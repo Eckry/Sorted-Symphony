@@ -1,3 +1,4 @@
+import { BogoSort, bogoSortC } from "./algorithms/BogoSort";
 import { BubbleSort, bubbleSortC } from "./algorithms/BubbleSort";
 import { CombSort, combSortC } from "./algorithms/CombSort";
 import { GnomeSort, gnomeSortC } from "./algorithms/GnomeSort";
@@ -15,7 +16,7 @@ import { StoogeSort, stoogeSortC } from "./algorithms/StoogeSort";
 
 export const initialConfiguration = {
   velocity: 100,
-  elements: 100,
+  elements: 30,
 };
 
 export const colors = {
@@ -38,6 +39,7 @@ export const algorithms = {
   RADIXSORT: "RadixSort",
   COMBSORT: "CombSort",
   STOOGESORT: "StoogeSort",
+  BOGOSORT: "BogoSort",
 } as const;
 
 export const sortOptions = {
@@ -167,6 +169,7 @@ export const initImports = {
   RadixSort,
   CombSort,
   StoogeSort,
+  BogoSort,
 };
 
 export const codeImports = {
@@ -184,4 +187,5 @@ export const codeImports = {
   RadixSort: radixSortC,
   CombSort: combSortC,
   StoogeSort: stoogeSortC,
+  BogoSort: bogoSortC,
 };
