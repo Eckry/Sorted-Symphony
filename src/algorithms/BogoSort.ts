@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { isSorted, playFinish, shuffle, sleep, stop } from "../helpers";
+import { isSorted, play, playFinish, shuffle, sleep, stop } from "../helpers";
 import { AlgorithmFunction, Block, Configuration } from "../types";
 
 export const bogoSortC = {
@@ -103,6 +103,7 @@ static void bogosort(int[] arr) {
 };
 
 export const BogoSort = (
+  comparison: boolean,
   count: React.MutableRefObject<number> | null
 ): AlgorithmFunction => {
   const isSortingRef = useRef(true);
@@ -127,11 +128,19 @@ export const BogoSort = (
         const newBlocks = shuffle(blocks);
         sorted = isSorted(newBlocks);
         await sleep(configuration.velocity);
+        play(
+          blocks[Math.floor(Math.random() * (blocks.length - 1))].val,
+          blocks.length,
+          comparison,
+          configuration.volume
+        );
         setBlocks(newBlocks);
       }
     }
 
     await bogoSort();
+
+    if (!isSorted(blocks)) return;
 
     isSortingRef.current = false;
     setIsSorting(false);
